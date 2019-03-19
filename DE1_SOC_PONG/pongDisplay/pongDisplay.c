@@ -13,5 +13,5 @@ void Displays_drawPixel(int x, int y, short colour){
 }
 
 void Displays_clearScreen(){
-
+	VGA_clearScreen();
 }

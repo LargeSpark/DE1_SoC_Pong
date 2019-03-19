@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;DE1_SOC_PONG/DE1_SoC_UART&apos; to &apos;DE1SoC_UART&apos;" description="Rename resource &apos;DE1_SoC_UART&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="DE1_SoC_UART" name="DE1SoC_UART" stamp="1553028054936" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;DE1_SOC_PONG/DE1SoC_UART/DE1SoC_VGA.c&apos; to &apos;DE1SoC_UART.c&apos;" description="Rename resource &apos;DE1SoC_VGA.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="DE1SoC_UART/DE1SoC_VGA.c" name="DE1SoC_UART.c" stamp="1553028174128" updateReferences="true"/>
+</session>

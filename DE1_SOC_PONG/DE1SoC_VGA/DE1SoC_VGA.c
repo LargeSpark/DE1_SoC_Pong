@@ -2,10 +2,10 @@
 
 //http://www-ug.eecg.utoronto.ca/msl/nios_devices_SoC/dev_vga.html
 //320x240 pixel resolution
-unsigned volatile short *vga_addr = 0x0; //0x08000000
+volatile short *vga_addr = 0x0; //0x08000000
 
-void VGA_init(unsigned volatile short vga_address){
-	vga_addr = (unsigned short *) vga_address;
+void VGA_init(volatile short vga_address){
+	vga_addr = (short *) vga_address;
 }
 
 void VGA_drawPixel(int x, int y, short colour){

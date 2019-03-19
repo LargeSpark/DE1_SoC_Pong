@@ -14,15 +14,20 @@ void VGA_init(unsigned int vgaPixelBuffer_address, unsigned int vgaCharBuffer_ad
 
 void VGA_drawPixel(int x, int y, short colour){
 	//volatile short *vga_addr=(volatile short*)(vga_addr + (y<<10) + (x<<1));
-	volatile short *vga_addr=(volatile short*)(0x08000000 + (y<<10) + (x<<1));
+	/*volatile short *vga_addr=(volatile short*)(0x08000000 + (y<<10) + (x<<1));
 	*vga_addr=colour;
+	*vga_addr=colour;*/
+
+	int pixel_ptr;
+	pixel_ptr = 0xC8000000 + (y << 10) + (x << 1);
+	*(short *)pixel_ptr = colour;		// set pixel color
 }
 
 void VGA_clearScreen(){
 	  int x, y;
 	  for (x = 0; x < 320; x++) {
 	    for (y = 0; y < 240; y++) {
-	    	VGA_drawPixel(x,y,0);
+	    	VGA_drawPixel(x,y,0x0000);
 		}
 	  }
 }

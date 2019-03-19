@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project>
+	<configuration id="com.arm.eclipse.build.config.baremetal.exe.debug.1746657359" name="Debug">
+		<extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
+			<provider id="com.arm.eclipse.builder.armcc.v5.langprovider">
+				<language id="com.arm.eclipse.builder.armcc.lang.cpp">
+					<entry kind="includePath" name="C:/intelFPGA/17.1/embedded/ds-5/sw/ARMCompiler5.06u5/include">
+						<flag value="BUILTIN|READONLY"/>
+					</entry>
+				</language>
+				<language id="com.arm.eclipse.builder.armcc.lang.c">
+					<entry kind="includePath" name="C:/intelFPGA/17.1/embedded/ds-5/sw/ARMCompiler5.06u5/include">
+						<flag value="BUILTIN|READONLY"/>
+					</entry>
+				</language>
+			</provider>
+		</extension>
+	</configuration>
+</project>

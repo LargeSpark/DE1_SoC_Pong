@@ -3,8 +3,9 @@
 int main(void){
 //VGA TESTCODE
 		int x;
-		VGA_init(0x08000000);
-		VGA_clearScreen();
+		Displays_init(0x08000000,0xFF200060,0xFF200080);
+
+		Displays_clearScreen();
 
 	   for (x=0;x<320;x++)
 	   {
@@ -12,7 +13,7 @@ int main(void){
 		   VGA_drawPixel(x, 59, 0xf800);
 	      // Draw a "diagonal" line in green
 	      if (x<240)
-	    	  VGA_drawPixel(x, x, 0x07e0);
+	    	  Displays_drawPixel(x, x, 0x07e0);
 	   }
 	   return 0;
 }

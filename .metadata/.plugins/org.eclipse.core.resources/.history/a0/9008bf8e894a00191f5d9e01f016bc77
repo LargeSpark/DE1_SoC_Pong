@@ -1,0 +1,5 @@
+#include 'DE1SoC_VGA.h'
+
+void VGA_init(){
+
+}

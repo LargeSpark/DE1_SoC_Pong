@@ -9,7 +9,7 @@ void Displays_init(volatile short vga_PixelAddress, unsigned volatile int vga_Ch
 
 void Displays_drawPixel(int x, int y, short colour){
 	VGA_drawPixel(x,y, colour);
-	LT24_drawPixel(colour,y,x);
+	LT24_drawPixel(colour,240-y,x);
 }
 
 void Displays_clearScreen(){

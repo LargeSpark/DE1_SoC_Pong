@@ -9,20 +9,21 @@
 short vga_address = 0x0;
 
 void VGA_init(short vgaPixelBuffer_address, unsigned int vgaCharBuffer_address){
-	//vga_address = vgaPixelBuffer_address;
+	vga_address = vgaPixelBuffer_address;
 	//vga_charaddr = (unsigned int *) vgaCharBuffer_address;
 }
 
 void VGA_drawPixel(int x, int y, short colour){
-	//volatile short *vga_addr=(volatile short*)(vga_address + (y<<10) + (x<<1));
-	volatile short *vga_addr=(volatile short*)(0xC8000000 + (y<<10) + (x<<1));
-	*vga_addr=colour;
+	//Call address of pixel
+	volatile short *vga_addr=(volatile short*)(vga_address + (y<<10) + (x<<1));
+	*vga_addr=colour; //Set pixel to colour
 }
 
 void VGA_clearScreen(){
 	  int x, y;
 	  for (x = 0; x < 320; x++) {
 	    for (y = 0; y < 240; y++) {
+	    	//set all pixels to black
 	    	VGA_drawPixel(x,y,0x0000);
 		}
 	  }

@@ -13,10 +13,9 @@ int main(void){
 	   Displays_setPixel(x, 59, 0xf800);
 	   //Displays_drawPixel(x, 59, 0x07e0);
 	  // Draw a "diagonal" line in green
-	  if (x<240){
+	  if (x<240)
 		  //Displays_drawPixel(x, x, 0xf800);
 		  Displays_setPixel(x, x, 0x07e0);
-	  }
 
 	}
 	Displays_Refresh();

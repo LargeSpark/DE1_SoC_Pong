@@ -3,8 +3,8 @@
 int PixelHeight = 240;
 int PixelWidth = 320;
 int totalPixel = 76800;
-short frontFrameBuffer[320][240];
-short rearFrameBuffer[320][240];
+volatile short frontFrameBuffer[320][240];
+volatile short rearFrameBuffer[320][240];
 
 void Displays_init(volatile short vga_PixelAddress, unsigned volatile int vga_CharacterAddress, unsigned volatile int lcd_pio_base, unsigned volatile int lcd_hw_base){
 	int x = 0;
@@ -40,7 +40,7 @@ void Displays_Refresh(){
 			if(frontFrameBuffer[x][y] != rearFrameBuffer[x][y]){
 				VGA_drawPixel(x,y, frontFrameBuffer[x][y]);
 				LT24_drawPixel(frontFrameBuffer[x][y],240-y,x);
-				rearFrameBuffer[x][y] == frontFrameBuffer[x][y];
+				rearFrameBuffer[x][y] = frontFrameBuffer[x][y];
 			}
 		}
 	}

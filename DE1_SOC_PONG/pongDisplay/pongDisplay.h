@@ -15,5 +15,6 @@ void Displays_drawPixel(int x, int y, short colour);
 void Displays_clearScreen();
 void Displays_Refresh();
 void Displays_setPixel(int x, int y, short colour);
+short Displays_getPixel(int x, int y);
 void Displays_mode(int mode);
 #endif

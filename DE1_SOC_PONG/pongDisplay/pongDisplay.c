@@ -136,3 +136,28 @@ void Displays_setPixel(int x, int y, short colour){
 		}
 	}
 }
+
+short Displays_getPixel(int x, int y){
+	short pixel = 0x000;
+	if(modeSet == 0){
+		pixel = 0x000;
+	}
+	else if(modeSet == SOFTWAREFB){
+		pixel = rearFrameBuffer[x][y];
+	}
+	else if(modeSet == SOFTWAREQUADFB){
+		if(x<160 && y<120){
+			pixel = frontFrameBuffer1[x][y];
+		}
+		else if(x>=160 && y<120){
+			pixel = frontFrameBuffer2[x-160][y];
+		}
+		else if(x<160 && y>=120){
+			pixel = frontFrameBuffer3[x][y-120];
+		}
+		else if(x>=160 && y>=120){
+			pixel = frontFrameBuffer4[x-160][y-120];
+		}
+	}
+	return pixel;
+}

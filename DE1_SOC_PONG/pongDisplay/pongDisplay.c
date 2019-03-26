@@ -38,8 +38,9 @@ void Displays_Refresh(){
 	for(y = 0; y < PixelHeight; y++){
 		for(x = 0; x < PixelWidth; x++){
 			if(frontFrameBuffer[x][y] != rearFrameBuffer[x][y]){
-				VGA_drawPixel(y,x, frontFrameBuffer[x][y]);
+				VGA_drawPixel(x,y, frontFrameBuffer[x][y]);
 				LT24_drawPixel(frontFrameBuffer[x][y],240-y,x);
+				rearFrameBuffer[x][y] == frontFrameBuffer[x][y];
 			}
 		}
 	}

@@ -18,7 +18,7 @@ void VGA_init(short vgaPixelBuffer_address, short vgaCharBuffer_address){
 
 void VGA_drawPixel(int x, int y, short colour){
 	//Call address of pixel
-	volatile short *vga_addr=(volatile short*)(vga_address + (y<<10) + (x<<1));
+	volatile short *vga_addr=(volatile short*)(0xC8000000 + (y<<10) + (x<<1));
 	*vga_addr=colour; //Set pixel to colour
 }
 

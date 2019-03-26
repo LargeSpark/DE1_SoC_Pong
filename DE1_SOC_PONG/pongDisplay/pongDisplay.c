@@ -3,8 +3,8 @@
 int PixelHeight = 240;
 int PixelWidth = 320;
 int totalPixel = 76800;
-volatile short frontFrameBuffer[320][240];
-volatile short rearFrameBuffer[320][240];
+short frontFrameBuffer[320][240];
+short rearFrameBuffer[320][240];
 
 void Displays_init(volatile short vga_PixelAddress, unsigned volatile int vga_CharacterAddress, unsigned volatile int lcd_pio_base, unsigned volatile int lcd_hw_base){
 	int x = 0;
@@ -17,7 +17,7 @@ void Displays_init(volatile short vga_PixelAddress, unsigned volatile int vga_Ch
 	for(y = 0; y < PixelHeight; y++){
 		for(x = 0; x < PixelWidth; x++){
 			frontFrameBuffer[x][y] = 0x000;
-			rearFrameBuffer[x][y] = 0x000;
+			rearFrameBuffer[x][y] = 0x001;
 		}
 	}
 }

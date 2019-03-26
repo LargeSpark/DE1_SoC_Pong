@@ -5,6 +5,7 @@
 #include "../DE1Soc_VGA/DE1Soc_VGA.h"
 #include "../HPS_Watchdog/HPS_Watchdog.h"
 
+#define NOFRAMEBUFFER 0
 #define SOFTWAREFB 1
 #define SOFTWAREQUADFB 2
 #define HARDWARE 3

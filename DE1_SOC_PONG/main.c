@@ -5,7 +5,7 @@ int main(void){
 //VGA TESTCODE
 	int x;
 	Displays_init(0xC8000000,0xC9000000,0xFF200060,0xFF200080);
-	Displays_mode(SOFTWAREQUADFB);
+	Displays_mode(NOFRAMEBUFFER);
 	Displays_clearScreen();
 
 	while(1){

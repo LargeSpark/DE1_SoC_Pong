@@ -5,7 +5,7 @@ int main(void){
 //VGA TESTCODE
 	int x;
 	Displays_init(0xC8000000,0xC9000000,0xFF200060,0xFF200080);
-	Displays_mode(SOFTWAREQUADFB);
+	Displays_mode(SOFTWAREOCTOFB);
 	Displays_clearScreen();
 
 	while(1){
@@ -28,8 +28,8 @@ int main(void){
 		   //Displays_drawPixel(x, 59, 0xf800);
 		   Displays_setPixel(x, 59, 0x07e0);
 		  // Draw a "diagonal" line in green
-		  //if (x<240)
-			  //Displays_setPixel(x, x, 0x0000);
+		  if (x<240)
+			  Displays_setPixel(x, x, 0x0000);
 			//Displays_drawPixel(x, x, 0x07e0);
 		}
 	Displays_Refresh();

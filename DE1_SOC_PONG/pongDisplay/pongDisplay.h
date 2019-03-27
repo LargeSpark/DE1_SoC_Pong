@@ -8,7 +8,7 @@
 #define NOFRAMEBUFFER 0
 #define SOFTWAREFB 1
 #define SOFTWAREQUADFB 2
-#define HARDWARE 3
+#define SOFTWAREOCTOFB 3
 
 void Displays_init(volatile short vga_PixelAddress, unsigned volatile int vga_CharacterAddress, unsigned volatile int lcd_pio_base, unsigned volatile int lcd_hw_base);
 void Displays_drawPixel(int x, int y, short colour);
@@ -17,4 +17,10 @@ void Displays_Refresh();
 void Displays_setPixel(int x, int y, short colour);
 short Displays_getPixel(int x, int y);
 void Displays_mode(int mode);
+
+//Functions not intended to be used outside of pongDisplay.cpp
+
+void DisplaysLocal_singleRefresh();
+void DisplaysLocal_quadRefresh();
+void DisplaysLocal_octoRefresh();
 #endif

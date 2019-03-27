@@ -196,7 +196,30 @@ short Displays_getPixel(int x, int y){
 		}
 	}
 	else if(modeSet == SOFTWAREOCTOFB){
-
+		if(x<80 && y<120){
+			pixel = OCTOfrontFrameBuffer1[x][y];
+		}
+		else if(x>=80 && y<120 && x<160){
+			pixel = OCTOfrontFrameBuffer2[x-80][y];
+		}
+		else if(x>=160 && y<120 && x<240){
+			pixel = OCTOfrontFrameBuffer3[x-160][y];
+		}
+		else if(x>=240 && y<120){
+			pixel = OCTOfrontFrameBuffer4[x-240][y];
+		}
+		else if(x<80 && y>=120){
+			pixel = OCTOfrontFrameBuffer5[x][y-120];
+		}
+		else if(x>=80 && y>=120 && x<160){
+			pixel = OCTOfrontFrameBuffer6[x-80][y-120];
+		}
+		else if(x>=160 && y>=120 && x<240){
+			pixel = OCTOfrontFrameBuffer7[x-160][y-120];
+		}
+		else if(x>=240 && y>=120){
+			pixel = OCTOfrontFrameBuffer8[x-240][y-120];
+		}
 	}
 	return pixel;
 }

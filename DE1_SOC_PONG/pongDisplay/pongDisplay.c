@@ -90,26 +90,39 @@ void Displays_Refresh(){
 		}
 	}
 	else if(modeSet == 2){
+		int q1change = memcmp(frontFrameBuffer1,rearFrameBuffer1, sizeof(frontFrameBuffer1));
+		int q2change = memcmp(frontFrameBuffer2,rearFrameBuffer2, sizeof(frontFrameBuffer2));
+		int q3change = memcmp(frontFrameBuffer3,rearFrameBuffer3, sizeof(frontFrameBuffer3));
+		int q4change = memcmp(frontFrameBuffer4,rearFrameBuffer4, sizeof(frontFrameBuffer4));
 		for(y = 0; y < PixelHeight/2; y++){
 				for(x = 0; x < PixelWidth/2; x++){
-					if(frontFrameBuffer1[x][y] != rearFrameBuffer1[x][y]){
-						Displays_drawPixel(x,y,frontFrameBuffer1[x][y]);
-						rearFrameBuffer1[x][y] = frontFrameBuffer1[x][y];
+					if(q1change != 0){
+						if(frontFrameBuffer1[x][y] != rearFrameBuffer1[x][y]){
+							Displays_drawPixel(x,y,frontFrameBuffer1[x][y]);
+							rearFrameBuffer1[x][y] = frontFrameBuffer1[x][y];
+						}
 					}
-					if(frontFrameBuffer2[x][y] != rearFrameBuffer2[x][y]){
-						Displays_drawPixel(x+160,y,frontFrameBuffer2[x][y]);
-						rearFrameBuffer2[x][y] = frontFrameBuffer2[x][y];
+					if(q2change != 0){
+						if(frontFrameBuffer2[x][y] != rearFrameBuffer2[x][y]){
+							Displays_drawPixel(x+160,y,frontFrameBuffer2[x][y]);
+							rearFrameBuffer2[x][y] = frontFrameBuffer2[x][y];
+						}
 					}
-					if(frontFrameBuffer3[x][y] != rearFrameBuffer3[x][y]){
-						Displays_drawPixel(x,y+120,frontFrameBuffer3[x][y]);
-						rearFrameBuffer3[x][y] = frontFrameBuffer3[x][y];
+					if(q3change != 0){
+						if(frontFrameBuffer3[x][y] != rearFrameBuffer3[x][y]){
+							Displays_drawPixel(x,y+120,frontFrameBuffer3[x][y]);
+							rearFrameBuffer3[x][y] = frontFrameBuffer3[x][y];
+						}
 					}
-					if(frontFrameBuffer4[x][y] != rearFrameBuffer4[x][y]){
-						Displays_drawPixel(x+160,y+120,frontFrameBuffer4[x][y]);
-						rearFrameBuffer4[x][y] = frontFrameBuffer4[x][y];
+					if(q4change != 0){
+						if(frontFrameBuffer4[x][y] != rearFrameBuffer4[x][y]){
+							Displays_drawPixel(x+160,y+120,frontFrameBuffer4[x][y]);
+							rearFrameBuffer4[x][y] = frontFrameBuffer4[x][y];
+						}
 					}
 				}
 		}
+
 	}
 }
 

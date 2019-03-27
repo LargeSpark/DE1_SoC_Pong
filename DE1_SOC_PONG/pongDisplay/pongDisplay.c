@@ -171,6 +171,9 @@ void Displays_setPixel(int x, int y, short colour){
 			OCTOfrontFrameBuffer8[x-240][y-120] = colour;
 		}
 	}
+	else if(modeSet == HARDWAREFB){
+
+	}
 }
 
 short Displays_getPixel(int x, int y){

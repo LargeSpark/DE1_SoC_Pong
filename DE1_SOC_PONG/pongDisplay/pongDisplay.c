@@ -121,6 +121,9 @@ void Displays_Refresh(){
 	else if(modeSet == SOFTWAREOCTOFB){
 		DisplaysLocal_octoRefresh();
 	}
+	else if(modeSet == HARDWAREFB){
+		VGA_BufferSwap();
+	}
 }
 
 void Displays_setPixel(int x, int y, short colour){
@@ -172,7 +175,7 @@ void Displays_setPixel(int x, int y, short colour){
 		}
 	}
 	else if(modeSet == HARDWAREFB){
-
+		VGA_drawPixelToHwBuffer(x, y, colour);
 	}
 }
 

@@ -40,7 +40,7 @@
 							<tool id="com.arm.tool.c.linker.1064842648" name="ARM Linker 5" superClass="com.arm.tool.c.linker">
 								<option id="com.arm.tool.c.linker.option.cpu.1797492130" name="Target CPU (--cpu)" superClass="com.arm.tool.c.linker.option.cpu" value="Cortex-A9" valueType="string"/>
 								<option id="com.arm.tool.c.linker.option.entry.843033743" name="Image entry point (--entry)" superClass="com.arm.tool.c.linker.option.entry" value="__main" valueType="string"/>
-								<option id="com.arm.tool.c.linker.option.scatter.1605260711" name="Scatter file (--scatter)" superClass="com.arm.tool.c.linker.option.scatter" value="${ProjDirPath}/DDRRomRam.scat" valueType="string"/>
+								<option id="com.arm.tool.c.linker.option.scatter.1605260711" name="Scatter file (--scatter)" superClass="com.arm.tool.c.linker.option.scatter" value="${ProjDirPath}/FPGARomRam.scat" valueType="string"/>
 							</tool>
 							<tool id="com.arm.tool.librarian.1414543489" name="ARM Librarian 5" superClass="com.arm.tool.librarian"/>
 						</toolChain>

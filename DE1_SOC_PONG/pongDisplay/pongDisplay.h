@@ -9,6 +9,7 @@
 #define SOFTWAREFB 1
 #define SOFTWAREQUADFB 2
 #define SOFTWAREOCTOFB 3
+#define HARDWAREFB 4
 
 void Displays_init(volatile short vga_PixelAddress, unsigned volatile int vga_CharacterAddress, unsigned volatile int lcd_pio_base, unsigned volatile int lcd_hw_base);
 void Displays_drawPixel(int x, int y, short colour);

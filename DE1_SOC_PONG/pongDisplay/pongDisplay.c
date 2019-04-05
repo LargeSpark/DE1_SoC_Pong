@@ -31,9 +31,22 @@ volatile short OCTOfrontFrameBuffer7[80][120];
 volatile short OCTOrearFrameBuffer7[80][120];
 volatile short OCTOfrontFrameBuffer8[80][120];
 volatile short OCTOrearFrameBuffer8[80][120];
+//Fast FB using mainly quad
+struct FFB{
+int x;
+int y;
+short colour;
+};
+
+struct FFB FFB1[19200];
+struct FFB FFB2[19200];
+struct FFB FFB3[19200];
+struct FFB FFB4[19200];
+
 //defines
 int modeSet = 1;
-
+int frameskip = 0;
+int framecount = 0;
 
 void Displays_init(volatile short vga_PixelAddress, unsigned volatile int vga_CharacterAddress, unsigned volatile int lcd_pio_base, unsigned volatile int lcd_hw_base){
 
@@ -43,6 +56,10 @@ void Displays_init(volatile short vga_PixelAddress, unsigned volatile int vga_Ch
 	LT24_initialise(lcd_pio_base,lcd_hw_base);
 	//Set framebuffers black
 
+}
+
+void Displays_frameSkip(int skipamount){
+	frameskip = skipamount;
 }
 
 void Displays_mode(int mode){
@@ -57,7 +74,7 @@ void Displays_mode(int mode){
 			 }
 		 }
  }
- else if(modeSet == SOFTWAREQUADFB){
+ else if(modeSet == SOFTWAREQUADFB || modeSet == FASTFB){
 	 for(y = 0; y < 120; y++){
 		 for(x = 0; x < 160; x++){
 			 frontFrameBuffer1[x][y] = 0x000;
@@ -109,20 +126,45 @@ void Displays_clearScreen(){
 void Displays_Refresh(){
 	int y = 0;
 	int x = 0;
-	if(modeSet == 0){
+	if(frameskip==0){
+		if(modeSet == 0){
 
+		}
+		else if(modeSet == SOFTWAREFB){
+			DisplaysLocal_singleRefresh();
+		}
+		else if(modeSet == SOFTWAREQUADFB){
+			DisplaysLocal_quadRefresh();
+		}
+		else if(modeSet == SOFTWAREOCTOFB){
+			DisplaysLocal_octoRefresh();
+		}
+		else if(modeSet == HARDWAREFB){
+			VGA_BufferSwap();
+		}
 	}
-	else if(modeSet == SOFTWAREFB){
-		DisplaysLocal_singleRefresh();
-	}
-	else if(modeSet == SOFTWAREQUADFB){
-		DisplaysLocal_quadRefresh();
-	}
-	else if(modeSet == SOFTWAREOCTOFB){
-		DisplaysLocal_octoRefresh();
-	}
-	else if(modeSet == HARDWAREFB){
-		VGA_BufferSwap();
+	else{
+		if(frameskip == framecount){
+			framecount = 0;
+			if(modeSet == 0){
+
+			}
+			else if(modeSet == SOFTWAREFB){
+				DisplaysLocal_singleRefresh();
+			}
+			else if(modeSet == SOFTWAREQUADFB){
+				DisplaysLocal_quadRefresh();
+			}
+			else if(modeSet == SOFTWAREOCTOFB){
+				DisplaysLocal_octoRefresh();
+			}
+			else if(modeSet == HARDWAREFB){
+				VGA_BufferSwap();
+			}
+		}
+		else{
+			framecount++;
+		}
 	}
 }
 

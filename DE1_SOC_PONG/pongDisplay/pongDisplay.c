@@ -232,8 +232,8 @@ void Displays_setPixel(int x, int y, short colour){
 			//FB1
 			found = 0;
 			for(z = 0; z<FFB1_Counter ; z++){
-				if(x == FFB1[FFB1_Counter].x && y == FFB1[FFB1_Counter].y){
-					FFB1[FFB1_Counter].colour = colour;
+				if(x == FFB1[z].x && y == FFB1[z].y){
+					FFB1[z].colour = colour;
 					found = 1;
 				}
 			}

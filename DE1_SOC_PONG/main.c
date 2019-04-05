@@ -4,9 +4,9 @@
 int main(void){
 //VGA TESTCODE
 	int x;
-	int FS = 0;
+	int FS = 2;
 	Displays_init(0xC8000000,0xC9000000,0xFF200060,0xFF200080);
-	Displays_mode(FASTFB);
+	Displays_mode(SOFTWAREOCTOFB);
 	Displays_frameSkip(FS);
 	pongSprites_init();
 	Displays_clearScreen();

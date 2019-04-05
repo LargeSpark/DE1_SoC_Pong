@@ -10,9 +10,11 @@
 #define SOFTWAREQUADFB 2
 #define SOFTWAREOCTOFB 3
 #define HARDWAREFB 4
+#define FASTFB 5
 
 void Displays_init(volatile short vga_PixelAddress, unsigned volatile int vga_CharacterAddress, unsigned volatile int lcd_pio_base, unsigned volatile int lcd_hw_base);
 void Displays_drawPixel(int x, int y, short colour);
+void Displays_frameSkip(int skipamount);
 void Displays_clearScreen();
 void Displays_Refresh();
 void Displays_setPixel(int x, int y, short colour);
@@ -24,4 +26,6 @@ void Displays_mode(int mode);
 void DisplaysLocal_singleRefresh();
 void DisplaysLocal_quadRefresh();
 void DisplaysLocal_octoRefresh();
+void DisplaysLocal_FFBRefresh();
+void DisplaysLocal_FFBSetFB(int x, int y, short colour);
 #endif

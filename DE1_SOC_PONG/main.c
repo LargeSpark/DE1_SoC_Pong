@@ -6,7 +6,7 @@ int main(void){
 	int x;
 	int FS = 0;
 	Displays_init(0xC8000000,0xC9000000,0xFF200060,0xFF200080);
-	Displays_mode(SOFTWAREOCTOFB);
+	Displays_mode(FASTFB);
 	Displays_frameSkip(FS);
 	pongSprites_init();
 	Displays_clearScreen();
@@ -24,7 +24,9 @@ int main(void){
 		Displays_Refresh();
 		pongSprites_renderBall(x, 70,0x0000);
 	}
+	/*
 	FS++;
 	Displays_frameSkip(FS);
+	*/
 	}
 }

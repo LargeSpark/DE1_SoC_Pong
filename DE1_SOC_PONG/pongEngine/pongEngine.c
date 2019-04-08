@@ -14,6 +14,11 @@ int ballAngle = 361; //Set to impossible angle to ensure on initialisation there
 short ballColour = 0xFFFF; //Ball colour
 int ballX = centre_x; //ball defaults
 int ballY = centre_y; //ball defaults
+//Thresholds
+int ballMinX = 8;
+int ballMaxX = 312;
+int ballMinY = 23;
+int ballMaxY = 232;
 
 /*############ Paddle Globals ############*/
 //Paddle thresholds
@@ -167,7 +172,7 @@ void pongEngine_calcBallPathInst(int angle){
 			newangle = pongEngine_calcAngle(ballX,ballY,320,x);
 			if(newangle == angle){
 				foundAngle = 1;
-				angleX = 0;
+				angleX = 320;
 				angleY = x;
 			}
 		}
@@ -188,7 +193,7 @@ void pongEngine_calcBallPathInst(int angle){
 			if(newangle == angle){
 				foundAngle = 1;
 				angleX = x;
-				angleY = 0;
+				angleY = 240;
 			}
 		}
 	}

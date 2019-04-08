@@ -21,22 +21,26 @@ int main(void){
 
 void testScreen(){
 	int x;
-	pongSprites_writeText(90, 80, 1, "TEST SCREEN", 0xFFFF);
+	int variable = 240; //240
+	pongEngine_createBall();
+	pongSprites_writeText(96, 60, 1, "TEST SCREEN", 0xFFFF);
 		while(1){
 			//pongEngine_moveBall(0,1);
 
 			ResetWDT();
 			Displays_Refresh();
 
-			for(x=0;x<240;x++){
+			for(x=0;x<variable;x++){
 				pongEngine_paddleMove(1, UP, 1);
 				pongEngine_paddleMove(2, DOWN, 2);
+				pongEngine_moveBall(180, 1);
 				Displays_Refresh();
 			}
 			pongEngine_addPoint(1);
-			for(x=240;x>=0;x--){
+			for(x=variable;x>=0;x--){
 					pongEngine_paddleMove(1, DOWN, 1);
 					pongEngine_paddleMove(2, UP, 2);
+					pongEngine_moveBall(0, 1);
 					Displays_Refresh();
 			}
 			pongEngine_addPoint(2);

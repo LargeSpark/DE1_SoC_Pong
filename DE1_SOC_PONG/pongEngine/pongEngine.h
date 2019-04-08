@@ -19,7 +19,7 @@ int pongEngine_getBallLocation_y();
 
 //used within library
 int pongEngine_calcAngle(int x1, int y1, int x2, int y2);
-void pongEngine_calcBallPathInst(int current_x, int current_y, int angle);
+void pongEngine_calcBallPathInst(int angle);
 void pongEngine_genBallPathInst(int x1, int y1, int x2, int y2);
 
 #endif

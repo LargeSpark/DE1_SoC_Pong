@@ -15,7 +15,7 @@ void pongEngine_destroyBall();
 void pongEngine_setBallLocation(int x, int y);
 int pongEngine_getBallAngle();
 int pongEngine_getBallLocation_x();
-int pongEngine_getBallLocation_Y();
+int pongEngine_getBallLocation_y();
 
 //used within library
 int pongEngine_calcAngle(int x1, int y1, int x2, int y2);

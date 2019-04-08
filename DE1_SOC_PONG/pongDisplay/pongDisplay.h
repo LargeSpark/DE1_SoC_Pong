@@ -18,6 +18,7 @@ void Displays_frameSkip(int skipamount);
 void Displays_clearScreen();
 void Displays_Refresh();
 void Displays_setPixel(int x, int y, short colour);
+void Displays_setWindow(int minx, int miny, int maxx, int maxy);
 short Displays_getPixel(int x, int y);
 void Displays_mode(int mode);
 

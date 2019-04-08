@@ -61,7 +61,7 @@ int pongEngine_getBallLocation_x(){
 	return ballX;
 }
 
-int pongEngine_getBallLocation_Y(){
+int pongEngine_getBallLocation_y(){
 	return ballY;
 }
 

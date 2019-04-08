@@ -90,6 +90,21 @@ void pongEngine_refreshScore(){
 /*############ Ball Functions ############*/
 void pongEngine_moveBall(int angle, int speed){
 	ResetWDT();
+	if(ballX < ballMinX){
+		ballCurrentPosPath = ballCurrentPosPath-speed;
+	}
+	if(ballX > ballMaxX){
+		ballX = ballMaxX;
+		ballCurrentPosPath = ballCurrentPosPath-speed;
+	}
+	if(ballY < ballMinY){
+		ballY = ballMinY;
+		ballCurrentPosPath = ballCurrentPosPath-speed;
+	}
+	if(ballY > ballMaxY){
+		ballY = ballMaxY;
+		ballCurrentPosPath = ballCurrentPosPath-speed;
+	}
 	//Add speed here
 	//If angle change then calculate new instructions
 	pongEngine_destroyBall(); //Destroy ball to stop ghosting

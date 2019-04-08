@@ -14,16 +14,19 @@
 //Publicly used
 /*############ Ball Functions ############*/
 void pongEngine_moveBall(int angle, int speed);
-void pongEngine_destroyBall();
+void pongEngine_createBall(void);
+void pongEngine_destroyBall(void);
 void pongEngine_setBallLocation(int x, int y);
-int pongEngine_getBallAngle();
-int pongEngine_getBallLocation_x();
-int pongEngine_getBallLocation_y();
+int pongEngine_getBallAngle(void);
+int pongEngine_getBallLocation_x(void);
+int pongEngine_getBallLocation_y(void);
 /*############ Paddle Functions ############*/
-pongEngine_paddleMove(int player, int direction, int speed);
+void pongEngine_paddleMove(int player, int direction, int speed);
 void pongEngine_paddleSetYLimits(int maxy, int miny);
 void pongEngine_paddleSetYLocation(int player, int y);
 void pongEngine_paddleSetXLocation(int player, int x);
+void pongEngine_paddleCreate(int player);
+void pongEngine_paddleDestory(int player);
 
 //used within library
 /*############ Ball Functions ############*/

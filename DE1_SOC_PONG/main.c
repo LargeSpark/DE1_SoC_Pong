@@ -13,9 +13,12 @@ int main(void){
 	Displays_clearScreen();
 
 	while(1){
-		pongEngine_moveBall(0,1);
+		//pongEngine_moveBall(0,1);
+		pongEngine_paddleCreate(1);
+		pongEngine_paddleCreate(2);
+		ResetWDT();
 		Displays_Refresh();
-		pongEngine_destroyBall();
+		//pongEngine_destroyBall();
 	/*for (x=8;x<320-9;x++)
 	{
 		pongSprites_renderBall(x, 70,LT24_BLUE);

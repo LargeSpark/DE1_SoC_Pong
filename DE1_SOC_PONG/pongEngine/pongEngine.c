@@ -33,6 +33,7 @@ void pongEngine_moveBall(int angle, int speed){
 	ResetWDT();
 	//Add speed here
 	//If angle change then calculate new instructions
+	pongEngine_destroyBall();
 	if(angle == ballAngle){
 
 		//To prevent overflow
@@ -67,19 +68,23 @@ void pongEngine_setBallLocation(int x, int y){
 	ballCurrentPosPath++;
 }
 
-int pongEngine_getBallAngle(){
+int pongEngine_getBallAngle(void){
 	return ballAngle;
 }
 
-int pongEngine_getBallLocation_x(){
+int pongEngine_getBallLocation_x(void){
 	return ballX;
 }
 
-int pongEngine_getBallLocation_y(){
+int pongEngine_getBallLocation_y(void){
 	return ballY;
 }
 
-void pongEngine_destroyBall(){
+void pongEngine_createBall(void){
+	pongSprites_renderBall(ballX, ballY, ballColour);
+}
+
+void pongEngine_destroyBall(void){
 	pongSprites_renderBall(ballX, ballY, 0x0000);
 }
 
@@ -241,6 +246,15 @@ void pongEngine_paddleMove(int player, int direction, int speed){
 		if(direction == DOWN){
 			pongEngine_paddleSetYLocation(1, paddle2Y-speed);
 		}
+	}
+}
+
+void pongEngine_paddleCreate(int player){
+	if(player == 1){
+		pongSprites_renderPaddle(paddle1X, paddle1Y, paddle1Colour);
+	}
+	if(player == 2){
+		pongSprites_renderPaddle(paddle2X, paddle2Y, paddle2Colour);
 	}
 }
 

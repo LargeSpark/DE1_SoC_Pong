@@ -45,7 +45,7 @@ void pongEngine_moveBall(int angle, int speed){
 		ballY = BallPath[ballCurrentPosPath].y;
 		pongSprites_renderBall(ballX, ballY, ballColour);
 		ResetWDT();
-		ballCurrentPosPath++;
+		ballCurrentPosPath = ballCurrentPosPath+speed;
 	}
 	else{
 		ballAngle = angle;
@@ -54,7 +54,7 @@ void pongEngine_moveBall(int angle, int speed){
 		ballX = BallPath[ballCurrentPosPath].x;
 		ballY = BallPath[ballCurrentPosPath].y;
 		pongSprites_renderBall(ballX, ballY, ballColour);
-		ballCurrentPosPath++;
+		ballCurrentPosPath = ballCurrentPosPath+speed;
 	}
 }
 

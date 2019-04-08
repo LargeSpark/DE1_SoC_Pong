@@ -41,6 +41,10 @@ void pongSprites_initBall(){
 void pongSprites_renderBall(int x, int y, short colour){
 	int yl;
 	int xl;
+	//adjust so called at centre of ball
+	x = x-8;
+	y = y-8;
+
 	for(yl = 0; yl < 17; yl++){
 		for(xl = 0; xl < 17; xl++){
 			if(sprite_Ball[yl][xl] == 1){

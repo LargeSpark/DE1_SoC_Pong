@@ -2,8 +2,13 @@
 
 volatile int sprite_Ball[17][17];
 
+int paddlesize_x;
+int paddlesize_y;
+
 void pongSprites_init(){
 	pongSprites_initBall();
+	paddlesize_x = 5;
+	paddlesize_y = 60;
 }
 
 void pongSprites_initBall(){
@@ -36,6 +41,10 @@ void pongSprites_initBall(){
 void pongSprites_renderBall(int x, int y, short colour){
 	int yl;
 	int xl;
+	//adjust so called at centre of ball
+	x = x-8;
+	y = y-8;
+
 	for(yl = 0; yl < 17; yl++){
 		for(xl = 0; xl < 17; xl++){
 			if(sprite_Ball[yl][xl] == 1){
@@ -46,5 +55,12 @@ void pongSprites_renderBall(int x, int y, short colour){
 }
 
 void pongSprites_renderPaddle(int x, int y, short colour){
-
+	//taken from assignment 1 - graphics library
+	int lly;
+	int llx;
+	for(lly=0; lly <= paddlesize_y; lly++){
+		for(llx=0; llx<=paddlesize_x; llx++){
+			Displays_setPixel(x+llx,y+lly,colour);
+		}
+	}
 }

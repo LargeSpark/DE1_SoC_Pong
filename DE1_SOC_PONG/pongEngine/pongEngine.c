@@ -1,5 +1,6 @@
 #include "pongEngine.h"
 //320x240
+/*############ Ball Globals ############*/
 //Calculated ball path
 struct ballPathInst{
 	int x;
@@ -10,11 +11,24 @@ int ballCurrentPosPath = 0;
 struct ballPathInst BallPath[1000];
 
 int ballAngle = 361; //Set to impossible angle to ensure on initialisation there
-short ballColour = 0xFFFF;
-int ballX = centre_x+1;
-int ballY = centre_y+1;
+short ballColour = 0xFFFF; //Ball colour
+int ballX = centre_x; //ball defaults
+int ballY = centre_y; //ball defaults
 
-//BALL FUNCTIONS
+/*############ Paddle Globals ############*/
+//Paddle thresholds
+int paddleMinY = 30;
+int paddleMaxY = 210;
+//Paddle Locations
+int paddle1Y = centre_y;
+int paddle1X = 50;
+int paddle2Y = centre_y;
+int paddle2X = 270;
+//Paddle Colours
+int paddle1Colour = 0xFFFF;
+int paddle2Colour = 0xFFFF;
+
+/*############ Ball Functions ############*/
 void pongEngine_moveBall(int angle, int speed){
 	ResetWDT();
 	//Add speed here
@@ -149,7 +163,6 @@ void pongEngine_genBallPathInst(int x1, int y1, int x2, int y2){
 	}
 	//Loop though and calculate line pixels
 	while(1){
-		//Graphics_drawPixel(colour,x1,y1);
 		//Generate Instructions
 		BallPath[ballPathInstCounter].x = x1;
 		BallPath[ballPathInstCounter].y = y1;
@@ -176,4 +189,66 @@ int pongEngine_calcAngle(int x1, int y1, int x2, int y2){
 	float ang_d = angle * 180/PI;
 	int ang_dint = ang_d;
 	return ang_dint;
+}
+/*############ Paddle Functions ############*/
+void pongEngine_paddleSetYLimits(int maxy, int miny){
+	paddleMinY = miny;
+	paddleMaxY = maxy;
+}
+
+void pongEngine_paddleSetYLocation(int player, int y){
+	if(y>paddleMaxY){
+		y = paddleMaxY;
+	}
+	if(player == 1){
+		paddle1Y = y;
+		pongSprites_renderPaddle(paddle1X, y, paddle1Colour);
+	}
+	if(player == 2){
+		paddle2Y = y;
+		pongSprites_renderPaddle(paddle2X, y, paddle2Colour);
+	}
+}
+
+void pongEngine_paddleSetXLocation(int player, int x){
+	if(player == 1){
+		paddle1X = x;
+		pongSprites_renderPaddle(x, paddle1Y, paddle1Colour);
+	}
+	if(player == 2){
+		paddle2X = x;
+		pongSprites_renderPaddle(x, paddle1Y, paddle2Colour);
+	}
+}
+
+void pongEngine_paddleMove(int player, int direction, int speed){
+	/*
+	UP - 1
+	DOWN - 0
+	*/
+	if(player == 1){
+		if(direction == UP){
+			pongEngine_paddleSetYLocation(1, paddle1Y+speed);
+		}
+		if(direction == DOWN){
+			pongEngine_paddleSetYLocation(1, paddle1Y-speed);
+		}
+	}
+	if(player == 2){
+		if(direction == UP){
+			pongEngine_paddleSetYLocation(1, paddle2Y+speed);
+		}
+		if(direction == DOWN){
+			pongEngine_paddleSetYLocation(1, paddle2Y-speed);
+		}
+	}
+}
+
+void pongEngine_paddleDestory(int player){
+	if(player == 1){
+		pongSprites_renderPaddle(paddle1X, paddle1Y, 0x0000);
+	}
+	if(player == 2){
+		pongSprites_renderPaddle(paddle2X, paddle2Y, 0x0000);
+	}
 }

@@ -58,6 +58,9 @@ void pongSprites_renderPaddle(int x, int y, short colour){
 	//taken from assignment 1 - graphics library
 	int lly;
 	int llx;
+	//adjust for centre
+	x = x - (paddlesize_x/2);
+	y = y - (paddlesize_y/2);
 	for(lly=0; lly <= paddlesize_y; lly++){
 		for(llx=0; llx<=paddlesize_x; llx++){
 			Displays_setPixel(x+llx,y+lly,colour);

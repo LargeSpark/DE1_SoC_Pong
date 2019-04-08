@@ -13,7 +13,11 @@ int main(void){
 	Displays_clearScreen();
 
 	while(1){
-	for (x=0;x<320-17;x++)
+
+		pongEngine_moveBall(90,1);
+		Displays_Refresh();
+		pongEngine_destroyBall();
+	/*for (x=8;x<320-9;x++)
 	{
 		pongSprites_renderBall(x, 70,LT24_BLUE);
 		if(x<180){ paddleX = x; }
@@ -24,7 +28,7 @@ int main(void){
 		pongSprites_renderPaddle(50, 180-x, 0x0000);
 		pongSprites_renderPaddle(270, x, 0x0000);
 	}
-	for (x=320-17;x>0;x--)
+	for (x=320-9;x>8;x--)
 	{
 		pongSprites_renderBall(x, 70,LT24_RED);
 		if(x<180){ paddleX = x; }
@@ -34,7 +38,7 @@ int main(void){
 		pongSprites_renderBall(x, 70,0x0000);
 		pongSprites_renderPaddle(50, 180-x, 0x0000);
 		pongSprites_renderPaddle(270, x, 0x0000);
-	}
+	}*/
 	/*
 	FS++;
 	Displays_frameSkip(FS);

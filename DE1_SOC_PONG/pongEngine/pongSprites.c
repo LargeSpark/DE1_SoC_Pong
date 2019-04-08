@@ -55,7 +55,7 @@ void pongSprites_renderBall(int x, int y, short colour){
 }
 
 void pongSprites_renderPaddle(int x, int y, short colour){
-	//taken from assignment 1 - graphics library
+	//taken from assignment 1 - graphics library and modified for paddle
 	int lly;
 	int llx;
 	//adjust for centre
@@ -67,3 +67,4 @@ void pongSprites_renderPaddle(int x, int y, short colour){
 		}
 	}
 }
+

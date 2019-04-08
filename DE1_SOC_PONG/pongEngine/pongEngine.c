@@ -27,15 +27,15 @@ int paddle2X = 270;
 //Paddle Colours
 int paddle1Colour = 0xFFFF;
 int paddle2Colour = 0xFFFF;
+/*############ General Functions ############*/
 
 /*############ Ball Functions ############*/
 void pongEngine_moveBall(int angle, int speed){
 	ResetWDT();
 	//Add speed here
 	//If angle change then calculate new instructions
-	pongEngine_destroyBall();
+	pongEngine_destroyBall(); //Destroy ball to stop ghosting
 	if(angle == ballAngle){
-
 		//To prevent overflow
 		if(ballCurrentPosPath > ballPathInstCounter){
 			ballCurrentPosPath = ballPathInstCounter;
@@ -45,15 +45,20 @@ void pongEngine_moveBall(int angle, int speed){
 		ballY = BallPath[ballCurrentPosPath].y;
 		pongSprites_renderBall(ballX, ballY, ballColour);
 		ResetWDT();
+		//Move ball speed amount
 		ballCurrentPosPath = ballCurrentPosPath+speed;
 	}
+	//if ball is at a different angle
 	else{
-		ballAngle = angle;
+		ballAngle = angle; //set ballAngle to angle
 		ResetWDT();
+		//Calculate new path
 		pongEngine_calcBallPathInst(angle);
+		//render ball and move position
 		ballX = BallPath[ballCurrentPosPath].x;
 		ballY = BallPath[ballCurrentPosPath].y;
 		pongSprites_renderBall(ballX, ballY, ballColour);
+		//Move ball speed amount
 		ballCurrentPosPath = ballCurrentPosPath+speed;
 	}
 }

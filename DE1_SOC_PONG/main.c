@@ -10,10 +10,9 @@ int main(void){
 	Displays_init(0xC8000000,0xC9000000,0xFF200060,0xFF200080);
 	Displays_mode(SOFTWAREOCTOFB);
 	Displays_frameSkip(FS);
-	pongSprites_init();
-	Displays_clearScreen();
-	pongEngine_paddleCreate(1);
-	pongEngine_paddleCreate(2);
+	pongEngine_init();
+	pongSprites_writeText(80, 70, 1, "TEST", 0xFFFF);
+	pongEngine_refreshScore();
 	while(1){
 		//pongEngine_moveBall(0,1);
 
@@ -25,12 +24,13 @@ int main(void){
 			pongEngine_paddleMove(2, DOWN, 2);
 			Displays_Refresh();
 		}
-
+		pongEngine_addPoint(1);
 		for(x=240;x>=0;x--){
 				pongEngine_paddleMove(1, DOWN, 1);
 				pongEngine_paddleMove(2, UP, 2);
 				Displays_Refresh();
 		}
+		pongEngine_addPoint(2);
 		//pongEngine_destroyBall();
 	/*for (x=8;x<320-9;x++)
 	{

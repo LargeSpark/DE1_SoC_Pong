@@ -27,8 +27,36 @@ int paddle2X = 270;
 //Paddle Colours
 int paddle1Colour = 0xFFFF;
 int paddle2Colour = 0xFFFF;
+/*############ Score Keeping Globals############*/
+int player1Score = 0;
+int player2Score = 0;
 /*############ General Functions ############*/
-
+void pongEngine_init(){
+	pongSprites_init();
+	Displays_clearScreen();
+	pongEngine_paddleCreate(1);
+	pongEngine_paddleCreate(2);
+	pongEngine_refreshScore();
+}
+/*############ Score Keeping ############*/
+void pongEngine_addPoint(int player){
+	if(player == 1){
+		player1Score++;
+	}
+	if(player == 2){
+		player2Score++;
+	}
+	pongEngine_refreshScore();
+}
+void pongEngine_resetScore(){
+	player1Score = 0;
+	player1Score = 0;
+	pongEngine_refreshScore();
+}
+void pongEngine_refreshScore(){
+	SDisplay_PNum(player1Score,2);
+	SDisplay_PNum(player2Score,0);
+}
 /*############ Ball Functions ############*/
 void pongEngine_moveBall(int angle, int speed){
 	ResetWDT();

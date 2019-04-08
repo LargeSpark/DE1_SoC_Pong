@@ -68,3 +68,38 @@ void pongSprites_renderPaddle(int x, int y, short colour){
 	}
 }
 
+void pongSprites_writeText(int x, int y, int size, char *text, short colour){
+	int letter[5][7];
+	int stringLength = strlen(text);
+	int character;
+	int line;
+	int pixel;
+	int xp , yp;
+	for(character = 0; character < stringLength; character++){
+		int charX;
+		if(size == SMALL){charX = x+((character)*6);}
+		if(size == LARGE){charX = x+((character)*12);}
+		for(line = 0; line < 5; line++){
+			for(pixel = 0; pixel < 7; pixel++){
+				int pixelon = BF_fontMap[text[character] - ' '][line];
+				int shiftedbit = 0;
+				shiftedbit = (pixelon >> pixel) & 1;
+				letter[line][pixel] = shiftedbit;
+			}
+		}
+		//render character
+		for(yp = 0; yp < 7; yp++){
+			for(xp = 0; xp < 5; xp++){
+				if(letter[xp][yp] == 1){
+					if(size == SMALL){Displays_setPixel(charX+xp, y+yp, colour);}
+					if(size == LARGE){
+						Displays_setPixel(charX+(xp*2), y+(yp*2), colour);
+						Displays_setPixel(charX+(xp*2)+1, y+(yp*2), colour);
+						Displays_setPixel(charX+(xp*2), y+(yp*2)+1, colour);
+						Displays_setPixel(charX+(xp*2)+1, y+(yp*2)+1, colour);
+					}
+				}
+			}
+		}
+	}
+}

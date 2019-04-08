@@ -11,7 +11,7 @@ void pongSprites_init(){
 	paddlesize_y = 60;
 }
 
-void pongSprites_initBall(){
+void pongSprites_initBall(void){
 	int x = 8;
 	int y = 8;
 	//Radius as signed int
@@ -68,6 +68,52 @@ void pongSprites_renderPaddle(int x, int y, short colour){
 	}
 }
 
+void pongSprites_renderRectangle(int x1,int x2, int y1, int y2, short colour){
+	//taken from assignment 1 - graphics library and modified for paddle
+	int height = abs(y2-y1);
+	int width = abs(x1-x2);
+
+	int y=0;
+	int x=0;
+	int oy=0;
+	int ox=0;
+
+
+	//find bottom left value
+	int llx = 0;
+	int lly = 0;
+	if(x1<x2){
+		llx = x1;
+	}
+	else{
+		llx = x2;
+	}
+
+	if(y1<y2){
+		lly = y1;
+	}
+	else{
+		lly = y2;
+	}
+
+
+	for(y=0; y <= height; y++){
+		for(x=0; x<=width; x++){
+			Displays_setPixel(x+llx,y+lly,colour);
+		}
+	}
+	/*int lly;
+	int llx;
+	//adjust for centre
+	x = x - x2;
+	y = y - y2;
+	for(lly=0; lly <= paddlesize_y; lly++){
+		for(llx=0; llx<=paddlesize_x; llx++){
+			Displays_setPixel(x+llx,y+lly,colour);
+		}
+	}*/
+}
+
 void pongSprites_writeText(int x, int y, int size, char *text, short colour){
 	int letter[5][7];
 	int stringLength = strlen(text);
@@ -77,8 +123,8 @@ void pongSprites_writeText(int x, int y, int size, char *text, short colour){
 	int xp , yp;
 	for(character = 0; character < stringLength; character++){
 		int charX;
-		if(size == SMALL){charX = x+((character)*6);}
-		if(size == LARGE){charX = x+((character)*12);}
+		if(size == 0){charX = x+((character)*6);}
+		if(size == 1){charX = x+((character)*12);}
 		for(line = 0; line < 5; line++){
 			for(pixel = 0; pixel < 7; pixel++){
 				int pixelon = BF_fontMap[text[character] - ' '][line];
@@ -91,8 +137,8 @@ void pongSprites_writeText(int x, int y, int size, char *text, short colour){
 		for(yp = 0; yp < 7; yp++){
 			for(xp = 0; xp < 5; xp++){
 				if(letter[xp][yp] == 1){
-					if(size == SMALL){Displays_setPixel(charX+xp, y+yp, colour);}
-					if(size == LARGE){
+					if(size == 0){Displays_setPixel(charX+xp, y+yp, colour);}
+					if(size == 1){
 						Displays_setPixel(charX+(xp*2), y+(yp*2), colour);
 						Displays_setPixel(charX+(xp*2)+1, y+(yp*2), colour);
 						Displays_setPixel(charX+(xp*2), y+(yp*2)+1, colour);

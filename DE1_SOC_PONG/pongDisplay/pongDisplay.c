@@ -179,6 +179,44 @@ void Displays_Refresh(){
 	}
 }
 
+void Displays_forceRefresh(){
+	if(modeSet == 0){
+
+			}
+		else if(modeSet == SOFTWAREFB){
+			DisplaysLocal_singleRefresh();
+		}
+		else if(modeSet == SOFTWAREQUADFB){
+			DisplaysLocal_quadRefresh();
+		}
+		else if(modeSet == SOFTWAREOCTOFB){
+			DisplaysLocal_octoRefresh();
+		}
+		else if(modeSet == HARDWAREFB){
+			VGA_BufferSwap();
+		}
+		else if(modeSet == FASTFB){
+			DisplaysLocal_FFBRefresh();
+		}
+		else{
+			if(modeSet == 0){
+
+			}
+			else if(modeSet == SOFTWAREFB){
+				DisplaysLocal_singleRefresh();
+			}
+			else if(modeSet == SOFTWAREQUADFB){
+				DisplaysLocal_quadRefresh();
+			}
+			else if(modeSet == SOFTWAREOCTOFB){
+				DisplaysLocal_octoRefresh();
+			}
+			else if(modeSet == HARDWAREFB){
+				VGA_BufferSwap();
+			}
+		}
+}
+
 void Displays_setWindow(int minx, int miny, int maxx, int maxy){
 	minX = minx;
 	minY = miny;

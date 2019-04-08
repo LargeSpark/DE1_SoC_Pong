@@ -1,10 +1,10 @@
 #ifndef PONGENGINE_H
 #define PONGENGINE_H
 
-#include "pongSprites.h"
 #include <cmath>
+#include "pongSprites.h"
 #include "../HPS_Watchdog/HPS_Watchdog.h"
-
+#include "../pongDisplay/pongDisplay.h"
 #define PI 3.14159265359
 #define centre_x 160
 #define centre_y 120
@@ -12,6 +12,7 @@
 #define DOWN 1
 
 //Publicly used
+void pongEngine_init();
 /*############ Ball Functions ############*/
 void pongEngine_moveBall(int angle, int speed);
 void pongEngine_createBall(void);
@@ -29,7 +30,7 @@ void pongEngine_paddleCreate(int player);
 void pongEngine_paddleDestory(int player);
 /*############ Score Keeping ############*/
 void pongEngine_addPoint(int player);
-void pongEngine_refreshScore();
+void pongEngine_clearScore();
 
 //used within library
 /*############ Ball Functions ############*/

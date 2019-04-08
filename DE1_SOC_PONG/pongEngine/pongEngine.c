@@ -32,11 +32,18 @@ int player1Score = 0;
 int player2Score = 0;
 /*############ General Functions ############*/
 void pongEngine_init(){
+	int topAdjust = 15; //VGA Pixel faults from y
 	pongSprites_init();
 	Displays_clearScreen();
 	pongEngine_paddleCreate(1);
 	pongEngine_paddleCreate(2);
 	pongEngine_refreshScore();
+
+	//create arena
+	//create green area
+	pongSprites_renderRectangle(320,0, topAdjust, 0, (0x1F << 11));
+	pongEngine_paddleSetYLimits(paddleMaxY, paddleMinY+topAdjust+1);
+
 }
 /*############ Score Keeping ############*/
 void pongEngine_addPoint(int player){
@@ -48,15 +55,33 @@ void pongEngine_addPoint(int player){
 	}
 	pongEngine_refreshScore();
 }
+
 void pongEngine_resetScore(){
 	player1Score = 0;
 	player1Score = 0;
 	pongEngine_refreshScore();
 }
+
 void pongEngine_refreshScore(){
+	char playerscorech[5];
+	int P1number0 = player1Score/10; //1
+	int P1number1 = player1Score % 10; //5
+	int P2number0 = player2Score/10; //1
+	int P2number1 = player2Score % 10; //5
 	SDisplay_PNum(player1Score,2);
 	SDisplay_PNum(player2Score,0);
+	playerscorech[0] = P1number0 + '0';
+	playerscorech[1] = P1number1 + '0';
+	playerscorech[2] = ' ';
+	playerscorech[3] = P2number0 + '0';
+	playerscorech[4] = P2number1 + '0';
+
+	pongSprites_renderRectangle(centre_x - 28,centre_x+ 28 , 17, 17+14, 0x00);
+	pongSprites_renderRectangle(0,320 , 17, 17+14, 0x00);
+	pongSprites_writeText(centre_x - 28, 17, 1, playerscorech, 0xFFFF);
+	//Displays_forceRefresh();
 }
+
 /*############ Ball Functions ############*/
 void pongEngine_moveBall(int angle, int speed){
 	ResetWDT();

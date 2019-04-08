@@ -202,8 +202,12 @@ void pongEngine_paddleSetYLimits(int maxy, int miny){
 }
 
 void pongEngine_paddleSetYLocation(int player, int y){
+	pongEngine_paddleDestory(player);
 	if(y>paddleMaxY){
 		y = paddleMaxY;
+	}
+	if(y<paddleMinY){
+		y = paddleMinY;
 	}
 	if(player == 1){
 		paddle1Y = y;
@@ -216,6 +220,7 @@ void pongEngine_paddleSetYLocation(int player, int y){
 }
 
 void pongEngine_paddleSetXLocation(int player, int x){
+	pongEngine_paddleDestory(player);
 	if(player == 1){
 		paddle1X = x;
 		pongSprites_renderPaddle(x, paddle1Y, paddle1Colour);
@@ -231,20 +236,25 @@ void pongEngine_paddleMove(int player, int direction, int speed){
 	UP - 1
 	DOWN - 0
 	*/
+	int moveto;
 	if(player == 1){
 		if(direction == UP){
-			pongEngine_paddleSetYLocation(1, paddle1Y+speed);
+			moveto = paddle1Y+speed;
+			pongEngine_paddleSetYLocation(1, moveto);
 		}
 		if(direction == DOWN){
-			pongEngine_paddleSetYLocation(1, paddle1Y-speed);
+			moveto = paddle1Y-speed;
+			pongEngine_paddleSetYLocation(1, moveto);
 		}
 	}
 	if(player == 2){
 		if(direction == UP){
-			pongEngine_paddleSetYLocation(1, paddle2Y+speed);
+			moveto = paddle2Y+speed;
+			pongEngine_paddleSetYLocation(2, moveto);
 		}
 		if(direction == DOWN){
-			pongEngine_paddleSetYLocation(1, paddle2Y-speed);
+			moveto = paddle2Y-speed;
+			pongEngine_paddleSetYLocation(2, moveto);
 		}
 	}
 }

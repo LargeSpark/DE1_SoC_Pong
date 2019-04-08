@@ -1,6 +1,7 @@
 #include "DE1Soc_VGA/DE1SoC_VGA.h"
 #include "pongDisplay/pongDisplay.h"
 #include "pongEngine/pongSprites.h"
+#include "pongEngine/pongEngine.h"
 int main(void){
 //VGA TESTCODE
 	int x;
@@ -11,13 +12,25 @@ int main(void){
 	Displays_frameSkip(FS);
 	pongSprites_init();
 	Displays_clearScreen();
-
+	pongEngine_paddleCreate(1);
+	pongEngine_paddleCreate(2);
 	while(1){
 		//pongEngine_moveBall(0,1);
-		pongEngine_paddleCreate(1);
-		pongEngine_paddleCreate(2);
+
 		ResetWDT();
 		Displays_Refresh();
+
+		for(x=0;x<240;x++){
+			pongEngine_paddleMove(1, UP, 1);
+			pongEngine_paddleMove(2, DOWN, 2);
+			Displays_Refresh();
+		}
+
+		for(x=240;x>=0;x--){
+				pongEngine_paddleMove(1, DOWN, 1);
+				pongEngine_paddleMove(2, UP, 2);
+				Displays_Refresh();
+		}
 		//pongEngine_destroyBall();
 	/*for (x=8;x<320-9;x++)
 	{

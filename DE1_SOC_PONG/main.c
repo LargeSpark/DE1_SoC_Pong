@@ -13,8 +13,7 @@ int main(void){
 	Displays_clearScreen();
 
 	while(1){
-
-		pongEngine_moveBall(90,1);
+		pongEngine_moveBall(0,1);
 		Displays_Refresh();
 		pongEngine_destroyBall();
 	/*for (x=8;x<320-9;x++)

@@ -50,6 +50,11 @@ int FFB4_Counter = 0;
 int modeSet = 1;
 int frameskip = 0;
 int framecount = 0;
+//Safety Window
+int minX = 0;
+int minY = 0;
+int maxX = 320;
+int maxY = 240;
 
 void Displays_init(volatile short vga_PixelAddress, unsigned volatile int vga_CharacterAddress, unsigned volatile int lcd_pio_base, unsigned volatile int lcd_hw_base){
 
@@ -174,95 +179,106 @@ void Displays_Refresh(){
 	}
 }
 
+void Displays_setWindow(int minx, int miny, int maxx, int maxy){
+	minX = minx;
+	minY = miny;
+	maxX = maxx;
+	maxY = maxy;
+}
+
 void Displays_setPixel(int x, int y, short colour){
+	//check if within window
 	int z;
 	int found = 0;
-	if(modeSet == NOFRAMEBUFFER){
-		Displays_drawPixel(x,y,colour);
-	}
-	else if(modeSet == SOFTWAREFB){
-		frontFrameBuffer[x][y] = colour;
-		ResetWDT();
-	}
-	else if(modeSet == SOFTWAREQUADFB){
-		if(x<160 && y<120){
-			frontFrameBuffer1[x][y] = colour;
+
+	if(x >= minX && x < maxX && y >= minY && y < maxY){
+		if(modeSet == NOFRAMEBUFFER){
+			Displays_drawPixel(x,y,colour);
 		}
-		else if(x>=160 && y<120){
-			frontFrameBuffer2[x-160][y] = colour;
+		else if(modeSet == SOFTWAREFB){
+			frontFrameBuffer[x][y] = colour;
+			ResetWDT();
 		}
-		else if(x<160 && y>=120){
-			frontFrameBuffer3[x][y-120] = colour;
+		else if(modeSet == SOFTWAREQUADFB){
+			if(x<160 && y<120){
+				frontFrameBuffer1[x][y] = colour;
+			}
+			else if(x>=160 && y<120){
+				frontFrameBuffer2[x-160][y] = colour;
+			}
+			else if(x<160 && y>=120){
+				frontFrameBuffer3[x][y-120] = colour;
+			}
+			else if(x>=160 && y>=120){
+				frontFrameBuffer4[x-160][y-120] = colour;
+			}
 		}
-		else if(x>=160 && y>=120){
-			frontFrameBuffer4[x-160][y-120] = colour;
+		else if(modeSet == SOFTWAREOCTOFB){
+			if(x<80 && y<120){
+				OCTOfrontFrameBuffer1[x][y] = colour;
+			}
+			else if(x>=80 && y<120 && x<160){
+				OCTOfrontFrameBuffer2[x-80][y] = colour;
+			}
+			else if(x>=160 && y<120 && x<240){
+				OCTOfrontFrameBuffer3[x-160][y] = colour;
+			}
+			else if(x>=240 && y<120){
+				OCTOfrontFrameBuffer4[x-240][y] = colour;
+			}
+			else if(x<80 && y>=120){
+				OCTOfrontFrameBuffer5[x][y-120] = colour;
+			}
+			else if(x>=80 && y>=120 && x<160){
+				OCTOfrontFrameBuffer6[x-80][y-120] = colour;
+			}
+			else if(x>=160 && y>=120 && x<240){
+				OCTOfrontFrameBuffer7[x-160][y-120] = colour;
+			}
+			else if(x>=240 && y>=120){
+				OCTOfrontFrameBuffer8[x-240][y-120] = colour;
+			}
 		}
-	}
-	else if(modeSet == SOFTWAREOCTOFB){
-		if(x<80 && y<120){
-			OCTOfrontFrameBuffer1[x][y] = colour;
+		else if(modeSet == HARDWAREFB){
+			VGA_drawPixelToHwBuffer(x, y, colour);
 		}
-		else if(x>=80 && y<120 && x<160){
-			OCTOfrontFrameBuffer2[x-80][y] = colour;
-		}
-		else if(x>=160 && y<120 && x<240){
-			OCTOfrontFrameBuffer3[x-160][y] = colour;
-		}
-		else if(x>=240 && y<120){
-			OCTOfrontFrameBuffer4[x-240][y] = colour;
-		}
-		else if(x<80 && y>=120){
-			OCTOfrontFrameBuffer5[x][y-120] = colour;
-		}
-		else if(x>=80 && y>=120 && x<160){
-			OCTOfrontFrameBuffer6[x-80][y-120] = colour;
-		}
-		else if(x>=160 && y>=120 && x<240){
-			OCTOfrontFrameBuffer7[x-160][y-120] = colour;
-		}
-		else if(x>=240 && y>=120){
-			OCTOfrontFrameBuffer8[x-240][y-120] = colour;
-		}
-	}
-	else if(modeSet == HARDWAREFB){
-		VGA_drawPixelToHwBuffer(x, y, colour);
-	}
-	else if(modeSet == FASTFB){
-		if(x<160 && y<120){
-			//FB1
-			found = 0;
-			for(z = 0; z<FFB1_Counter ; z++){
-				if(x == FFB1[z].x && y == FFB1[z].y){
-					FFB1[z].colour = colour;
-					found = 1;
+		else if(modeSet == FASTFB){
+			if(x<160 && y<120){
+				//FB1
+				found = 0;
+				for(z = 0; z<FFB1_Counter ; z++){
+					if(x == FFB1[z].x && y == FFB1[z].y){
+						FFB1[z].colour = colour;
+						found = 1;
+					}
+				}
+				if(found == 0){
+					FFB1[FFB1_Counter].x = x;
+					FFB1[FFB1_Counter].y = y;
+					FFB1_Counter++;
 				}
 			}
-			if(found == 0){
-				FFB1[FFB1_Counter].x = x;
-				FFB1[FFB1_Counter].y = y;
-				FFB1_Counter++;
+			else if(x>=160 && y<120){
+				//FB2
+				FFB2[FFB2_Counter].x = x;
+				FFB2[FFB2_Counter].y = y;
+				FFB2[FFB2_Counter].colour = colour;
+				FFB2_Counter++;
 			}
-		}
-		else if(x>=160 && y<120){
-			//FB2
-			FFB2[FFB2_Counter].x = x;
-			FFB2[FFB2_Counter].y = y;
-			FFB2[FFB2_Counter].colour = colour;
-			FFB2_Counter++;
-		}
-		else if(x<160 && y>=120){
-			//FB3
-			FFB3[FFB3_Counter].x = x;
-			FFB3[FFB3_Counter].y = y;
-			FFB3[FFB3_Counter].colour = colour;
-			FFB3_Counter++;
-		}
-		else if(x>=160 && y>=120){
-			//FB4
-			FFB4[FFB4_Counter].x = x;
-			FFB4[FFB4_Counter].y = y;
-			FFB4[FFB4_Counter].colour = colour;
-			FFB4_Counter++;
+			else if(x<160 && y>=120){
+				//FB3
+				FFB3[FFB3_Counter].x = x;
+				FFB3[FFB3_Counter].y = y;
+				FFB3[FFB3_Counter].colour = colour;
+				FFB3_Counter++;
+			}
+			else if(x>=160 && y>=120){
+				//FB4
+				FFB4[FFB4_Counter].x = x;
+				FFB4[FFB4_Counter].y = y;
+				FFB4[FFB4_Counter].colour = colour;
+				FFB4_Counter++;
+			}
 		}
 	}
 }

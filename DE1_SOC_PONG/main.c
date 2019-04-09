@@ -24,6 +24,7 @@ void testScreen(){
 	int variable = 240; //240
 	pongEngine_createBall();
 	pongSprites_writeText(96, 60, 1, "TEST SCREEN", 0xFFFF);
+	pongSprites_writeText(96, 90, 0, "TEST SCREEN", 0xFFFF);
 		while(1){
 			//pongEngine_moveBall(0,1);
 

@@ -172,6 +172,29 @@ void pongEngine_calcBallPathInst(int angle){
 	int foundAngle = 0;
 	int angleX;
 	int angleY;
+	//Prevent floating point error at right angles.
+	if(angle == 0){
+		foundAngle = 1;
+		angleX = 0;
+		angleY = ballY;
+	}
+	if(angle == 90){
+		foundAngle = 1;
+		angleX = ballX;
+		angleY = 0;
+	}
+	if(angle == 180){
+		foundAngle = 1;
+		angleX = 320;
+		angleY = ballY;
+	}
+	if(angle == 270){
+		foundAngle = 1;
+		angleX = ballX;
+		angleY = 240;
+	}
+	//Calc code
+
 	if(foundAngle == 0){
 		for(x = 0; x<240; x++){
 			newangle = pongEngine_calcAngle(ballX,ballY,0,x);

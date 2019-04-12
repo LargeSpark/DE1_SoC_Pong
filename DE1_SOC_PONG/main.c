@@ -41,7 +41,7 @@ void testScreen(){
 			for(x=variable;x>=0;x--){
 					pongEngine_paddleMove(1, DOWN, 1);
 					pongEngine_paddleMove(2, UP, 2);
-					pongEngine_moveBall(0, 1);
+					pongEngine_moveBall(0, 2);
 					Displays_Refresh();
 			}
 			pongEngine_addPoint(2);

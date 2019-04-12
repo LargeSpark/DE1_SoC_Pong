@@ -92,6 +92,7 @@ void pongEngine_moveBall(int angle, int speed){
 	ResetWDT();
 	pongEngine_destroyBall();
 	if(ballX < ballMinX){
+		ballX = ballMinX;
 		ballCurrentPosPath = ballCurrentPosPath-speed;
 	}
 	if(ballX > ballMaxX){

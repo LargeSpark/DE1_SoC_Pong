@@ -90,6 +90,7 @@ void pongEngine_refreshScore(){
 /*############ Ball Functions ############*/
 void pongEngine_moveBall(int angle, int speed){
 	ResetWDT();
+	pongEngine_destroyBall();
 	if(ballX < ballMinX){
 		ballCurrentPosPath = ballCurrentPosPath-speed;
 	}
@@ -107,7 +108,7 @@ void pongEngine_moveBall(int angle, int speed){
 	}
 	//Add speed here
 	//If angle change then calculate new instructions
-	pongEngine_destroyBall(); //Destroy ball to stop ghosting
+	 //Destroy ball to stop ghosting
 	if(angle == ballAngle){
 		//To prevent overflow
 		if(ballCurrentPosPath > ballPathInstCounter){

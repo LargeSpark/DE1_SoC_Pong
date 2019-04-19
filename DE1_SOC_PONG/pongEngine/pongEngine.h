@@ -12,7 +12,7 @@
 #define DOWN 1
 
 //Publicly used
-void pongEngine_init();
+void pongEngine_init( void );
 /*############ Ball Functions ############*/
 void pongEngine_moveBall(int angle, int speed);
 void pongEngine_createBall(void);

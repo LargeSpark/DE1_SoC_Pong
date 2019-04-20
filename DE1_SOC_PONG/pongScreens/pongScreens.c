@@ -34,6 +34,7 @@ void gameMenu(){
 }
 
 void testScreen( void ){
+	int dir = 0;
 	int x;
 	int variable = 240; //240
 
@@ -48,28 +49,31 @@ void testScreen( void ){
 
 	pongEngine_createBall();
 	pongSprites_writeText(96, 60, 1, "TEST SCREEN", 0xFFFF);
-	pongSprites_writeText(96, 90, 2, "TEST SCREEN", 0xFFFF);
-	while(getInputMode() == GAME){
+	pongSprites_writeText(96, 90, 2, "TESTICLES", 0xFFFF);
+	while (getInputMode() == GAME){
 		ResetWDT();
 		Displays_Refresh();
 
-		for(x=0;x<2*variable;x++){
-			pongEngine_moveBall(180, 1);
-			Displays_Refresh();
+		if ( pongEngine_getBallLocation_x() <= 8 ) {
+			pongEngine_addPoint(2);
+			enableInputs(0);
+			Sound(1000,100);
+			enableInputs(1);
+			dir = 180;
+			pongEngine_moveBall(dir, 1);
+		} else if ( pongEngine_getBallLocation_x() >= 312 ){
+			pongEngine_addPoint(1);
+			enableInputs(0);
+			Sound(250,100);
+			enableInputs(1);
+			dir = 0;
+			pongEngine_moveBall(dir, 1);
 		}
-		pongEngine_addPoint(1);
-		enableInputs(0);
-		Sound(1000,100);
-		enableInputs(1);
-		for(x=variable;x>=0;x--){
-			pongEngine_moveBall(0, 2);
-			Displays_Refresh();
-		}
-		pongEngine_addPoint(2);
-		enableInputs(0);
-		Sound(250,100);
-		enableInputs(1);
+		pongEngine_moveBall(dir, 1);
+		Displays_Refresh();
 	}
+	//gameEngine_paddleDestroy(1);
+	//gameEngine_paddleDestroy(2);
 }
 
 

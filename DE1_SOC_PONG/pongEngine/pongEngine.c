@@ -1,4 +1,6 @@
 #include "pongEngine.h"
+
+int engine_isInit = 0;
 //320x240
 /*############ Ball Globals ############*/
 //Calculated ball path
@@ -47,8 +49,10 @@ void pongEngine_init(){
 	//create arena
 	//create green area
 	pongSprites_renderRectangle(320,0, topAdjust, 0, (0x1F << 11));
-	pongEngine_paddleSetYLimits(paddleMaxY, paddleMinY+topAdjust+1);
-
+	if (engine_isInit == 0){
+		pongEngine_paddleSetYLimits(paddleMaxY, paddleMinY+topAdjust+1);
+		engine_isInit = 1;
+	}
 }
 /*############ Score Keeping ############*/
 void pongEngine_addPoint(int player){

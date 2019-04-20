@@ -1,21 +1,13 @@
-#include "./PS2_Keyboard.h"
-#include "../HPS_IRQ/HPS_IRQ.h"
-#include "../pongEngine/pongEngine.h"
-#include "../pongDisplay/pongDisplay.h"
-#include "../InputControl/InputControl.h"
+#include "pongInputs.h"
+//#include "../HPS_IRQ/HPS_IRQ.h"
+//#include "../pongEngine/pongEngine.h"
+//#include "../pongDisplay/pongDisplay.h"
 
 
-#define batSpeed 10
-// http://www-ug.eecg.utoronto.ca/msl/nios_devices_SoC/datasheets/PS2%20Keyboard%20Protocol.htm
-
-/* Notes: Add option for key input
- * 		  Add audio output
- * 		  Integrate inputs with bat motions
+/* Notes: Add audio output
  * 		  */
 
-
-
-/* To set function running, simply include PS2_Keyboard.h and then call keyboardInitialise */
+/* To set function running, simply include PS2_Keyboard.h and then call inputsInitialise */
 /* Requires scatter file change to FPGARomRamIRQ.scat */
 
 
@@ -23,15 +15,16 @@ volatile unsigned int *PS2_DATA = (unsigned int *) 0xFF200100; 		// PS2 base add
 volatile unsigned int *PS2_CONTROL = (unsigned int *) 0xFF200104;	// PS2 control address
 volatile unsigned int *KEY_ptr       = (unsigned int *) 0xFF200050; // Keys
 
-volatile unsigned int keyBuffer[5] = {0,0,0};
+volatile unsigned int keyBuffer[3] = {0,0,0};
 
-bool keyboardIsInit = false;
+bool inputsIsInit = false;
 
-volatile signed int paddleDirs[2] = {-1,-1};
+volatile unsigned mode = GAME;
 
-// Size of FIFO = 256byte, 8 bit
 // https://www.avrfreaks.net/sites/default/files/PS2%20Keyboard.pdf
 
+
+/* IRQ handlers */
 void keyboardISR(HPSIRQSource interruptID, bool isInit, void* initParams){
 	if (!isInit){
 		*PS2_CONTROL |= 0x0;
@@ -59,18 +52,21 @@ void pushbuttonISR(HPSIRQSource interruptID, bool isInit, void* initParams) {
         	Input(4, keySpeed);
         }
         else if (press == 4){
-        	Input(2, keySpeed);
+        	Input(1, keySpeed);
         }
         else if (press == 8){
-        	Input(1, keySpeed);
+        	Input(2, keySpeed);
         }
     }
     //Reset watchdog.
     HPS_ResetWatchdog();
 }
 
-void keyboardInitialise(void) {
-	if (!keyboardIsInit){
+
+/* Actual functions */
+
+void inputsInitialise(void) {
+	if (!inputsIsInit){
 		// Initialise interrupts
 		HPS_IRQ_initialise(NULL);
 		HPS_ResetWatchdog();
@@ -86,7 +82,7 @@ void keyboardInitialise(void) {
 		*PS2_CONTROL |= 0x1; 	// Set interrupt on PS2
 
 		// Flag keyboard as initialised
-		keyboardIsInit = true;
+		inputsIsInit = true;
 		HPS_ResetWatchdog();
 	}
 }
@@ -110,20 +106,23 @@ void inputKeyboard( void ) {
 	keyBuffer[1] = keyBuffer[2];
 	keyBuffer[2] = PS2Scan();
 
-	if (key == _W) 	{ keyBuffer[2] = 1; paddleDirs[0] = UP;  Input(1, keyBSpeed);} else if (key == _S)		{ keyBuffer[2] = 2; paddleDirs[0] = DOWN; Input(2, keyBSpeed);} else { paddleDirs[0] = -1; }
-	if (key == _UP) { keyBuffer[2] = 3; paddleDirs[1] = UP;  Input(3, keyBSpeed);} else if (key == _DOWN) 	{ keyBuffer[2] = 4; paddleDirs[1] = DOWN; Input(4, keyBSpeed);} else { paddleDirs[1] = -1; }
-	if ((key == 0xF0) || (key == 0xE0)) keyBuffer[2] = 0; 							// Ignore make/break signals
-	if ((keyBuffer[2] == keyBuffer[0]) && (keyBuffer[1] == 0)) keyBuffer[2] = 0; 	// Avoid doubling motions on single press due to make/break
-	HPS_ResetWatchdog();
-	// Put a state machine here which acts on different values of keyBuffer[2]
-}
-
-signed int paddleDir(int paddle){
-	if (paddle == 1){
-		return paddleDirs[0];
-	} else {
-		return paddleDirs[1];
+	if (key == _W) 				{
+		keyBuffer[2] = 1; Input(1, keyBSpeed);
+	} else if (key == _S)		{
+		keyBuffer[2] = 2; Input(2, keyBSpeed);
+	} else if (key == _UP) 		{
+		keyBuffer[2] = 3; Input(3, keyBSpeed);
+	} else if (key == _DOWN) 	{
+		keyBuffer[2] = 4; Input(4, keyBSpeed);
 	}
+
+	// Ignore make/break signals
+	if ((key == 0xF0) || (key == 0xE0)) keyBuffer[2] = 0;
+
+	// Avoid doubling motions on single press due to make/break
+	if ((keyBuffer[2] == keyBuffer[0]) && (keyBuffer[1] == 0)) keyBuffer[2] = 0;
+
+	HPS_ResetWatchdog();
 }
 
 void emptyFIFO( void ){
@@ -133,4 +132,25 @@ void emptyFIFO( void ){
 		temp = *(PS2_DATA) & 0xFF;
 		RAVAIL = *(PS2_DATA) & 0xFFFF0000;
 	}
+}
+
+void Input(unsigned int key, unsigned int speed){
+	if (mode == GAME){
+		if (key == 1){
+			pongEngine_paddleMove(1, DOWN, 	speed);
+		}
+		else if (key == 2){
+			pongEngine_paddleMove(1, UP, 	speed);
+		}
+		else if (key == 3){
+			pongEngine_paddleMove(2, DOWN, 	speed);
+		}
+		else if (key == 4){
+			pongEngine_paddleMove(2, UP, 	speed);
+		}
+	}
+}
+
+void InputMode(unsigned int _mode){
+	if (_mode == MENUS) { mode = MENUS; } else { mode = GAME; }
 }

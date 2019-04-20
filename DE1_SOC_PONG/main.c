@@ -2,8 +2,9 @@
 #include "pongDisplay/pongDisplay.h"
 #include "pongEngine/pongSprites.h"
 #include "pongEngine/pongEngine.h"
+#include "pongInputs/pongInputs.h"
 #include "HPS_Watchdog/HPS_Watchdog.h"
-#include "PS2_Keyboard/PS2_Keyboard.h"
+
 
 void testScreen( void ){
 	int x;
@@ -82,7 +83,7 @@ int main(void) {
 	pongEngine_refreshScore();
 	ResetWDT();
 
-	keyboardInitialise();
+	inputsInitialise();
 	testScreen();
 }
 

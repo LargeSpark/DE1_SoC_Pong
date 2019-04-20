@@ -77,9 +77,7 @@ void inputsInitialise(void) {
 		HPS_IRQ_registerHandler(IRQ_LSC_KEYS, pushbuttonISR);
 		HPS_ResetWatchdog();
 
-		// Enable interrupts
-		KEY_ptr[2] = 0xF; 		// Set key interrupts
-		*PS2_CONTROL |= 0x1; 	// Set interrupt on PS2
+		enableInputs(1);
 
 		// Flag keyboard as initialised
 		inputsIsInit = true;
@@ -129,7 +127,8 @@ void emptyFIFO( void ){
 	int RAVAIL = *(PS2_DATA) & 0xFFFF0000;
 	char temp;
 	while (RAVAIL > 0x1000){
-		temp = *(PS2_DATA) & 0xFF;
+		//temp = *(PS2_DATA) & 0xFF;
+		temp = *(PS2_DATA) & 0xFF; // Read necessary to clear FIFO
 		RAVAIL = *(PS2_DATA) & 0xFFFF0000;
 	}
 }
@@ -138,16 +137,34 @@ void Input(unsigned int key, unsigned int speed){
 	if (mode == GAME){
 		if (key == 1){
 			pongEngine_paddleMove(1, DOWN, 	speed);
+			pongEngine_destroyBall(); // Partially repairs artifacts - constrains them to path of ball
 		}
 		else if (key == 2){
 			pongEngine_paddleMove(1, UP, 	speed);
+			pongEngine_destroyBall();
 		}
 		else if (key == 3){
 			pongEngine_paddleMove(2, DOWN, 	speed);
+			pongEngine_destroyBall();
 		}
 		else if (key == 4){
 			pongEngine_paddleMove(2, UP, 	speed);
+			pongEngine_destroyBall();
 		}
+	}
+}
+
+void enableInputs(int enable){
+	if (enable == 1){
+		// Enable interrupts
+		KEY_ptr[2] = 0xF; 		// Set key interrupts
+		//*PS2_CONTROL |= 0x1; 	// Set interrupt on PS2
+		*PS2_CONTROL = (1<<0);
+	} else {
+		// Disable interrupts
+		KEY_ptr[2] = 0x00; 		// Set key interrupts
+		//*PS2_CONTROL &= 0x0; 	// Set interrupt on PS2
+		*PS2_CONTROL = (0<<0);
 	}
 }
 

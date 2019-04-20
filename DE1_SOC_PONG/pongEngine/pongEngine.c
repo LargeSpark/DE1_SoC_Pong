@@ -305,7 +305,7 @@ void pongEngine_paddleSetYLimits(int maxy, int miny){
 }
 
 void pongEngine_paddleSetYLocation(int player, int y){
-	pongEngine_paddleDestory(player);
+	pongEngine_paddleDestroy(player);
 	if(y>paddleMaxY){
 		y = paddleMaxY;
 	}
@@ -323,7 +323,7 @@ void pongEngine_paddleSetYLocation(int player, int y){
 }
 
 void pongEngine_paddleSetXLocation(int player, int x){
-	pongEngine_paddleDestory(player);
+	pongEngine_paddleDestroy(player);
 	if(player == 1){
 		paddle1X = x;
 		pongSprites_renderPaddle(x, paddle1Y, paddle1Colour);
@@ -371,7 +371,7 @@ void pongEngine_paddleCreate(int player){
 	}
 }
 
-void pongEngine_paddleDestory(int player){
+void pongEngine_paddleDestroy(int player){
 	if(player == 1){
 		pongSprites_renderPaddle(paddle1X, paddle1Y, 0x0000);
 	}

@@ -57,4 +57,7 @@ void Input(unsigned int key, unsigned int speed);
 // Set screen mode. Add switching between menus?
 void InputMode(unsigned int _mode);
 
+// Enable/Disable inputs
+void enableInputs(int enable);
+
 #endif /* PONGINPUTS_PONGINPUTS_H_ */

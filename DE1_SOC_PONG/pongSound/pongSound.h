@@ -24,7 +24,18 @@ void pongSound_Init( void );
 // Play a sound of frequency _freq Hz for _duration milliseconds
 void Sound(int _freq, float _duration);
 
+// Enable (1) or disable (0) sounds
+void enableSound(unsigned int _onoff);
+
+// Toggle sound
+void toggleSound( void );
+
 // Fast sin implementation using lookup table(0-90*), characteristics of sin and fixed point(ish) storage
 float lookupSin(unsigned int degree);
+
+// Should probably add volume control too
+
+
+
 
 #endif /* PONGSOUND_PONGSOUND_H */

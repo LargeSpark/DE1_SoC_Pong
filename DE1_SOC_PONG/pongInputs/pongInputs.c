@@ -19,7 +19,7 @@ volatile unsigned int keyBuffer[3] = {0,0,0};
 
 bool inputsIsInit = false;
 
-volatile unsigned mode = GAME;
+volatile unsigned int mode;
 
 // https://www.avrfreaks.net/sites/default/files/PS2%20Keyboard.pdf
 
@@ -77,8 +77,6 @@ void inputsInitialise(void) {
 		HPS_IRQ_registerHandler(IRQ_LSC_KEYS, pushbuttonISR);
 		HPS_ResetWatchdog();
 
-		enableInputs(1);
-
 		// Flag keyboard as initialised
 		inputsIsInit = true;
 		HPS_ResetWatchdog();
@@ -95,6 +93,7 @@ char PS2Scan( void ) {
 		inputKey = keyboard_data & 0xFF; HPS_ResetWatchdog();
 	} else { inputKey = 0; }//Handle any odd errors
 	HPS_ResetWatchdog();
+	//printf("%X \n", inputKey); //Debug for checking scancodes
 	return inputKey;
 }
 
@@ -112,8 +111,13 @@ void inputKeyboard( void ) {
 		keyBuffer[2] = 3; Input(3, keyBSpeed);
 	} else if (key == _DOWN) 	{
 		keyBuffer[2] = 4; Input(4, keyBSpeed);
+	} else if (key == _ESC)		{
+		keyBuffer[2] = 5; Input(5, keyBSpeed);
+	} else if (key == _RETURN)	{
+		keyBuffer[2] = 6; Input(6, keyBSpeed);
+	} else if ((key == _BKSPACE) && (keyBuffer[0] != 7)) {
+		keyBuffer[2] = 7; toggleSound();//Input(7, keyBSpeed);
 	}
-
 	// Ignore make/break signals
 	if ((key == 0xF0) || (key == 0xE0)) keyBuffer[2] = 0;
 
@@ -151,6 +155,19 @@ void Input(unsigned int key, unsigned int speed){
 			pongEngine_paddleMove(2, UP, 	speed);
 			pongEngine_destroyBall();
 		}
+		else if (key == 5){
+			setInputMode(MENUS); // Need a way to break instantly
+		}
+	}
+	if (mode == MENUS){
+		if ((key == 6) || ((key == 2) && (speed == keySpeed))){
+			setInputMode(GAME);
+		}
+	}
+
+
+	if (key == 7){
+		toggleSound();
 	}
 }
 
@@ -168,6 +185,10 @@ void enableInputs(int enable){
 	}
 }
 
-void InputMode(unsigned int _mode){
-	if (_mode == MENUS) { mode = MENUS; } else { mode = GAME; }
+void setInputMode(unsigned int _mode){
+	if (_mode == MENUS) { mode = MENUS; } else if (_mode == GAME){ mode = GAME; }
+}
+
+int getInputMode( void ){
+	return mode;
 }

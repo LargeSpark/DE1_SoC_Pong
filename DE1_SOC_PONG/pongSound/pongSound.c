@@ -7,6 +7,10 @@
 
 #include "pongSound.h"
 
+
+volatile unsigned int SoundOn = 1;
+
+// Variables
 volatile int sound = 1;
 int freq = 1000;
 float duration = 1;
@@ -48,51 +52,61 @@ void pongSound_Init(){
 
 void Sound(int _freq, float _duration){
 	//Duration in milliseconds
-	freq = _freq; duration = _duration;
-	sound = 1;
+	if (SoundOn){
+		freq = _freq; duration = _duration;
+		sound = 1;
 
 
-	HPS_timer_ptr[2] = 0; // write to control register to stop timer
-	// Set the timer period
-	HPS_timer_ptr[0] = duration * 100000; // period = 1/(100 MHz) x (100 x 10^6) = 1 sec
-	// Write to control register to start timer, with interrupts
-	HPS_timer_ptr[2] = 0x03; // mode = 1, enable = 1
-	// Register interrupt handler for timer
-	HPS_IRQ_registerHandler(IRQ_TIMER_L4SP_0, timerISR);
-	HPS_ResetWatchdog();
+		HPS_timer_ptr[2] = 0; // write to control register to stop timer
+		// Set the timer period
+		HPS_timer_ptr[0] = duration * 100000; // period = 1/(100 MHz) x (100 x 10^6) = 1 sec
+		// Write to control register to start timer, with interrupts
+		HPS_timer_ptr[2] = 0x03; // mode = 1, enable = 1
+		// Register interrupt handler for timer
+		HPS_IRQ_registerHandler(IRQ_TIMER_L4SP_0, timerISR);
+		HPS_ResetWatchdog();
 
-	//Clear both FIFOs
-	WM8731_clearFIFO(true,true);
-	//Grab the FIFO Space and Audio Channel Pointers
-	fifospace_ptr = WM8731_getFIFOSpacePtr();
-	audio_left_ptr = WM8731_getLeftFIFOPtr();
-	audio_right_ptr = WM8731_getRightFIFOPtr();
-	//Initialise Phase Accumulator
-	inc   = ((float) freq) * 360.0 / F_SAMPLE;  // Calculate the phase increment based on desired frequency - e.g. 440Hz
-	baseampl  = 8388608.0;               // Pick desired amplitude (e.g. 2^23). WARNING: If too high = deafening!
-	phase = 0.0;
-	// Primary function while loop
-	while(sound == 1){
-		//Always check the FIFO Space before writing or reading left/right channel pointers
-		if ((fifospace_ptr[2] > 0) && (fifospace_ptr[3] > 0)) {
-			//If there is space in the write FIFO for both channels:
-			//Increment the phase
-			phase = phase + inc;
-			//Ensure phase is wrapped to range 0 to 2Pi (range of sin function)
-			while (phase >= 360.0) {
-				phase = phase - 360.0;
+		//Clear both FIFOs
+		WM8731_clearFIFO(true,true);
+		//Grab the FIFO Space and Audio Channel Pointers
+		fifospace_ptr = WM8731_getFIFOSpacePtr();
+		audio_left_ptr = WM8731_getLeftFIFOPtr();
+		audio_right_ptr = WM8731_getRightFIFOPtr();
+		//Initialise Phase Accumulator
+		inc   = ((float) freq) * 360.0 / F_SAMPLE;  // Calculate the phase increment based on desired frequency - e.g. 440Hz
+		baseampl  = 8388608.0;               // Pick desired amplitude (e.g. 2^23). WARNING: If too high = deafening!
+		phase = 0.0;
+		// Primary function while loop
+		while(sound == 1){
+			//Always check the FIFO Space before writing or reading left/right channel pointers
+			if ((fifospace_ptr[2] > 0) && (fifospace_ptr[3] > 0)) {
+				//If there is space in the write FIFO for both channels:
+				//Increment the phase
+				phase = phase + inc;
+				//Ensure phase is wrapped to range 0 to 2Pi (range of sin function)
+				while (phase >= 360.0) {
+					phase = phase - 360.0;
+				}
+				// Calculate next sample of the output tone.
+				audio_sample = (signed int)( (1<<VOLUME)*baseampl * lookupSin((int) phase) );
+				// Output tone to left and right channels.
+				*audio_left_ptr = audio_sample;
+				*audio_right_ptr = audio_sample;
 			}
-			// Calculate next sample of the output tone.
-			audio_sample = (signed int)( (1<<VOLUME)*baseampl * lookupSin((int) phase) );
-			// Output tone to left and right channels.
-			*audio_left_ptr = audio_sample;
-			*audio_right_ptr = audio_sample;
 		}
+		// Disable timer ISR
+		HPS_timer_ptr[2] = 0x02; // mode = 1, enable = 0
+		//Finally reset the watchdog.
+		HPS_ResetWatchdog();
 	}
-	// Disable timer ISR
-	HPS_timer_ptr[2] = 0x02; // mode = 1, enable = 0
-	//Finally reset the watchdog.
-	HPS_ResetWatchdog();
+}
+
+void enableSound(unsigned int _onoff){
+	SoundOn = _onoff;
+}
+
+void toggleSound(){
+	if (SoundOn == 1) { SoundOn = 0; } else SoundOn = 1;
 }
 
 

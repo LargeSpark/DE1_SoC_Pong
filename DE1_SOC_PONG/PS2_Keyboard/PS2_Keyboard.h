@@ -24,9 +24,10 @@
 #define _UP		0x75
 #define _DOWN	0x72
 
+// These are all pretty much used exclusively by this library. Interrupts handle everything and pass to InputControl.
 void keyboardInitialise(void);
 char getKey(void);
-void inputKeys( void );
+void inputKeyboard( void );
 char PS2Scan(void);
 signed int paddleDir(int paddle);
 void emptyFIFO( void );

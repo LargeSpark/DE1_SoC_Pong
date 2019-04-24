@@ -41,15 +41,16 @@ void startScreen(){
 
 void gameMenu(){
 	setInputMode(MENUS);
+	Displays_mode(0);
 
+	Displays_clearScreen();
 	Displays_fillColour(_WHITE);
 
 	enableInputs(1);
 
-	pongSprites_writeText(90, 20, 1, "Main menu", _RED); ResetWDT();
-
 	// Menu items
 	pongSprites_renderBall(50, 73, _BLACK); ResetWDT();
+	pongSprites_writeText(90, 20, 1, "Main menu", 0x1F << 11); ResetWDT();
 	pongSprites_writeText(75, 65, 1, "Mode: ", _BLACK); ResetWDT();
 	pongSprites_writeText(75, 90, 1, "Difficulty: ", _BLACK); ResetWDT();
 	pongSprites_writeText(75, 115, 1, "Volume: ", _BLACK); ResetWDT();
@@ -66,10 +67,9 @@ void gameMenu(){
 
 			enableInputs(1);
 
-			pongSprites_writeText(90, 20, 1, "Main menu", _RED); ResetWDT();
-
 			// Menu items
 			pongSprites_renderBall(50, 73, _BLACK); ResetWDT();
+			pongSprites_writeText(90, 20, 1, "Main menu", _RED); ResetWDT();
 			pongSprites_writeText(75, 65, 1, "Mode: ", _BLACK); ResetWDT();
 			pongSprites_writeText(75, 90, 1, "Difficulty: ", _BLACK); ResetWDT();
 			pongSprites_writeText(75, 115, 1, "Volume: ", _BLACK); ResetWDT();
@@ -80,6 +80,7 @@ void gameMenu(){
 		}
 	ResetWDT();
 	}
+	Displays_clearScreen();
 }
 
 void testScreen_AI( void ){
@@ -87,6 +88,7 @@ void testScreen_AI( void ){
 	int x;
 	int variable = 240; //240
 
+	Displays_mode(3);
 	// Clear screen and set input mode
 	Displays_clearScreen();
 	setInputMode(GAME_AI);
@@ -98,10 +100,10 @@ void testScreen_AI( void ){
 	pongEngine_createBall();
 	pongSprites_writeText(96, 60, 1, "TEST SCREEN", 0xFFFF);
 	pongSprites_writeText(96, 90, 0, "TESTICLES", 0xFFFF);
-	Displays_Refresh(); pongEngine_refreshScore();
+	Displays_forceRefresh(); pongEngine_refreshScore();
 	while (getInputMode() == GAME_AI){
 		ResetWDT();
-		Displays_Refresh();
+		Displays_forceRefresh();
 
 		if ( pongEngine_getBallLocation_y() <= 25 ) {
 			pongEngine_addPoint(2);
@@ -130,12 +132,14 @@ void testScreen_AI( void ){
 	}
 	//gameEngine_paddleDestroy(1);
 	//gameEngine_paddleDestroy(2);
+	Displays_clearScreen();
 }
 
 void testScreen( void ){
 	int dir = 0;
 	int x;
 	int variable = 240; //240
+	Displays_mode(3);
 
 	// Clear screen and set input mode
 	Displays_clearScreen();
@@ -148,10 +152,10 @@ void testScreen( void ){
 	pongEngine_createBall();
 	pongSprites_writeText(96, 60, 1, "TEST SCREEN", 0xFFFF);
 	pongSprites_writeText(96, 90, 0, "TESTICLES", 0xFFFF);
-	Displays_Refresh(); pongEngine_refreshScore();
+	Displays_forceRefresh(); pongEngine_refreshScore();
 	while (getInputMode() == GAME){
 		ResetWDT();
-		Displays_Refresh();
+		Displays_forceRefresh();
 
 		if ( pongEngine_getBallLocation_x() <= 8 ) {
 			pongEngine_addPoint(2);
@@ -172,6 +176,7 @@ void testScreen( void ){
 	}
 	//gameEngine_paddleDestroy(1);
 	//gameEngine_paddleDestroy(2);
+	Displays_clearScreen();
 }
 
 

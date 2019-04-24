@@ -129,6 +129,7 @@ void Displays_drawPixel(int x, int y, short colour){
 void Displays_clearScreen(){
 	VGA_clearScreen();
 	LT24_clearDisplay(0x000);
+	Displays_fillColour(0);
 }
 
 void Displays_Refresh(){
@@ -550,6 +551,14 @@ void DisplaysLocal_FFBSetFB(int x, int y, short colour){
 }
 
 void Displays_fillColour(short colour){
+
+	int x;
+	int y;
 	VGA_fillColour(colour);
 	LT24_clearDisplay(colour);
+	for(y = 0; y < 240; y++){
+		for(x = 0; x < 320; x++){
+			Displays_setPixel(x,y,colour);
+		}
+	}
 }

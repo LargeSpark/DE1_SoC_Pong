@@ -6,6 +6,7 @@
  */
 
 #include "pongSound.h"
+#include "notes.h"
 
 
 volatile unsigned int SoundOn = 1;
@@ -107,6 +108,24 @@ void enableSound(unsigned int _onoff){
 
 void toggleSound(){
 	if (SoundOn == 1) { SoundOn = 0; } else SoundOn = 1;
+}
+
+// Set sounds here
+void startSound(){
+	unsigned int i;
+	unsigned int sequence = {C4, D4, E4, F4, G4};
+	for (i=0; i<=4; i++){
+		Sound(sequence[i], 500);
+		ResetWDT();
+	}
+}
+
+void paddleBeep(){
+	Sound(B4, 100);
+}
+
+void ballOutBeep(){
+	Sound(B3, 100);
 }
 
 

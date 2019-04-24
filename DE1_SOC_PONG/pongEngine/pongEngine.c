@@ -383,3 +383,8 @@ void pongEngine_paddleDestroy(int player){
 		pongSprites_renderPaddle(paddle2X, paddle2Y, 0x0000);
 	}
 }
+
+void pongEngine_resetPaddles(){
+	pongEngine_paddleSetXLocation(1, paddle1X); pongEngine_paddleSetYLocation(1, centre_x);
+	pongEngine_paddleSetXLocation(2, paddle2X); pongEngine_paddleSetYLocation(1, centre_x);
+}

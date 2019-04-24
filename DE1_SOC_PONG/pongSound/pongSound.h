@@ -36,6 +36,12 @@ float lookupSin(unsigned int degree);
 // Should probably add volume control too
 
 
+// Custom sounds here
+void startSound( void );
+
+void paddleBeep( void );
+
+void ballBeep( void );
 
 
 #endif /* PONGSOUND_PONGSOUND_H */

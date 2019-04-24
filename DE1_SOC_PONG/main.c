@@ -14,7 +14,7 @@ int main(void) {
 
 	// Initialise displays
 	Displays_init(0xC8000000,0xC9000000,0xFF200060,0xFF200080);
-	Displays_mode(SOFTWAREOCTOFB);
+	Displays_mode(0);
 	Displays_frameSkip(FS);
 	ResetWDT();
 

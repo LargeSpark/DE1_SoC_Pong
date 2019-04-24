@@ -56,6 +56,9 @@ void pushbuttonISR(HPSIRQSource interruptID, bool isInit, void* initParams) {
         else if (press == 8){
         	Input(_S, keySpeed);
         }
+        else if (press == 10){
+        	Input(99, keySpeed);
+        }
     }
     //Reset watchdog.
     HPS_ResetWatchdog();
@@ -157,9 +160,21 @@ void Input(unsigned int key, unsigned int speed){
 		}
 	}
 
-
+//menuMove(unsigned int direction)
 	if (mode == MENUS){
-		if ((key == _RETURN) || ((key == _S) && (speed == keySpeed))){
+		if (key == _W){
+			menuMove(_UP);
+			pongEngine_destroyBall(); // Partially repairs artifacts - constrains them to path of ball
+		} else if (key == _S){
+			menuMove(_DOWN);
+		} else if (key == _UP){
+			menuMove(_LEFT);
+		} else if (key == _DOWN){
+			menuMove(_RIGHT);
+		} else if (key == _ESC){ // Escape
+			setInputMode(MENUS);
+		}
+		if ((key == _RETURN) || ((key == 99) && (speed == keySpeed))){
 			setInputMode(GAME_AI);
 		}
 	}

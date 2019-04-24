@@ -41,4 +41,5 @@ void pongEngine_genBallPathInst(int x1, int y1, int x2, int y2);
 /*############ Paddle Functions ############*/
 /*############ Score Keeping ############*/
 void pongEngine_refreshScore( void );
+void pongEngine_resetPaddles( void );
 #endif

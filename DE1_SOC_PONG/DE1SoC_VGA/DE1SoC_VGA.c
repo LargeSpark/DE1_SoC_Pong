@@ -56,3 +56,13 @@ void VGA_BufferSwap(){
 		}
 	}
 }
+
+void VGA_fillColour(short colour){
+	  int x, y;
+	  for (x = 0; x < 320; x++) {
+	    for (y = 0; y < 240; y++) {
+	    	//set all pixels to colour
+	    	VGA_drawPixel(x,y,colour);
+		}
+	  }
+}

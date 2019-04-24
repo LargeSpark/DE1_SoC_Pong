@@ -22,6 +22,7 @@ void Displays_setPixel(int x, int y, short colour);
 void Displays_setWindow(int minx, int miny, int maxx, int maxy);
 short Displays_getPixel(int x, int y);
 void Displays_mode(int mode);
+void Displays_fillColour(short colour);
 
 //Functions not intended to be used outside of pongDisplay.cpp
 

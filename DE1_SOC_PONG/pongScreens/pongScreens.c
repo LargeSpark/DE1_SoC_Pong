@@ -9,12 +9,12 @@
 
 void startScreen(){
 	// Clear screen and set input mode
-	Displays_clearScreen();
+	Displays_fillColour(_GREEN);
 	setInputMode(MENUS);
 
 
 	pongSprites_writeText(60, 120, 1, "Welcome to armPONG", _RED); ResetWDT();
-	usleep(1000000); ResetWDT();
+	startSound();
 	usleep(1000000); ResetWDT();
 	usleep(1000000); ResetWDT();
 }
@@ -57,14 +57,14 @@ void testScreen( void ){
 		if ( pongEngine_getBallLocation_x() <= 8 ) {
 			pongEngine_addPoint(2);
 			enableInputs(0);
-			Sound(1000,100);
+			paddleBeep();
 			enableInputs(1);
 			dir = 180;
 			pongEngine_moveBall(dir, 1);
 		} else if ( pongEngine_getBallLocation_x() >= 312 ){
 			pongEngine_addPoint(1);
 			enableInputs(0);
-			Sound(250,100);
+			ballOutBeep();
 			enableInputs(1);
 			dir = 0;
 			pongEngine_moveBall(dir, 1);

@@ -6,5 +6,6 @@ void VGA_drawPixel(int x, int y, short colour);
 void VGA_drawPixelToHwBuffer(int x, int y, short colour);
 void VGA_BufferSwap( void );
 void VGA_clearScreen( void );
+void VGA_fillColour(short colour);
 
 #endif

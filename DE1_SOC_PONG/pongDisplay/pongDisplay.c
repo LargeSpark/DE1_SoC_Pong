@@ -548,3 +548,8 @@ void DisplaysLocal_FFBSetFB(int x, int y, short colour){
 		frontFrameBuffer4[x-160][y-120] = colour;
 	}
 }
+
+void Displays_fillColour(short colour){
+	VGA_fillColour(colour);
+	LT24_clearDisplay(colour);
+}

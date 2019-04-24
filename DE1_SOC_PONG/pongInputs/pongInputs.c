@@ -159,7 +159,15 @@ void Input(unsigned int key, unsigned int speed){
 
 
 	if (mode == MENUS){
-		if ((key == _RETURN) || ((key == _S) && (speed == keySpeed))){
+		if (key == _W){
+			menuMove(_UP);
+		} else if (key == _S){
+			menuMove(_DOWN);
+		} else if (key == _UP){
+			menuMove(_LEFT);
+		} else if (key == _DOWN){
+			menuMove(_RIGHT);
+		} else if ((key == _RETURN) || ((key == 99) && (speed == keySpeed))){
 			setInputMode(GAME_AI);
 		}
 	}

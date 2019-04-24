@@ -33,7 +33,7 @@ int main(void) {
 
 	// Run loading screen
 	startScreen();
-
+	enableInputs(1);
 	while(1){
 		// Run start menu
 		gameMenu();

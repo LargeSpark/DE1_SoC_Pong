@@ -13,6 +13,7 @@ unsigned int menuSelectorOld = 0;
 unsigned int settingsOld[] = {0,0,0};
 unsigned int menuColours[] = {_BLUE, _BLACK, _BLACK, _BLACK};
 
+
 void menuMove(unsigned int direction){
 	unsigned int i;
 
@@ -24,13 +25,17 @@ void menuMove(unsigned int direction){
 	menuSelectorOld = menuSelector;
 
 	if (direction == _DOWN){
-		if (menuSelector == 3){ menuSelector = 0; } else menuSelector++;
+		//if (menuSelector == 3){ menuSelector = 0; } else menuSelector++;
+		menuSelector++;
 	} else if (direction == _UP){
-		if (menuSelector == 0){ menuSelector = 3; } else menuSelector--;
+		//if (menuSelector == 0){ menuSelector = 3; } else menuSelector--;
+		menuSelector--;
 	} else if (direction == _LEFT){
-		if (settings[menuSelector] == 0) { settings[menuSelector] = 99; } else settings[menuSelector]--;
+		//if (settings[menuSelector] == 0) { settings[menuSelector] = 99; } else settings[menuSelector]--;
+		settings[menuSelector]--;
 	} else if (direction == _RIGHT){
-		if (settings[menuSelector] == 99) { settings[menuSelector] = 0; } else settings[menuSelector]++;
+		//if (settings[menuSelector] == 99) { settings[menuSelector] = 0; } else settings[menuSelector]++;
+		settings[menuSelector]++;
 	}
 	menuColours[menuSelector] = _BLUE;
 	ResetWDT();
@@ -68,13 +73,14 @@ void gameMenu(){
 
 	enableInputs(1);
 
+	Displays_forceRefresh();
 	// Menu items
-	pongSprites_renderBall(50, 73, _BLACK); ResetWDT();
-	pongSprites_writeText(90, 20, 1, "Main menu", 0x1F << 11); ResetWDT();
-	pongSprites_writeText(75, 65, 1, "Mode: ", _BLACK); ResetWDT();
-	pongSprites_writeText(75, 90, 1, "Difficulty: ", _BLACK); ResetWDT();
-	pongSprites_writeText(75, 115, 1, "Volume: ", _BLACK); ResetWDT();
-	pongSprites_writeText(75, 140, 1, "Start!", _BLACK); ResetWDT();
+	pongSprites_renderBall(50, 71, _BLACK); ResetWDT();
+	pongSprites_writeText(90, 20, 1, "Main menu", _RED); ResetWDT();
+	pongSprites_writeText(75, 65, 1, "Mode: ", menuColours[0]); ResetWDT();
+	pongSprites_writeText(75, 90, 1, "Difficulty: ", menuColours[1]); ResetWDT();
+	pongSprites_writeText(75, 115, 1, "Volume: ", menuColours[2]); ResetWDT();
+	pongSprites_writeText(75, 140, 1, "Start!", menuColours[3]); ResetWDT();
 
 	pongSprites_writeText(30, 180, 1, "Press [Enter] or [PB3]", _MAGENTA); ResetWDT();
 	ResetWDT();

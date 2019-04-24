@@ -36,7 +36,6 @@ void keyboardISR(HPSIRQSource interruptID, bool isInit, void* initParams){
 	HPS_ResetWatchdog();
 }
 
-/* Requires fixing */
 void pushbuttonISR(HPSIRQSource interruptID, bool isInit, void* initParams) {
     if (!isInit) {
         unsigned int press;
@@ -160,7 +159,7 @@ void Input(unsigned int key, unsigned int speed){
 
 
 	if (mode == MENUS){
-		if ((key == _RETURN) || ((key == _W) && (speed == keySpeed))){
+		if ((key == _RETURN) || ((key == _S) && (speed == keySpeed))){
 			setInputMode(GAME_AI);
 		}
 	}

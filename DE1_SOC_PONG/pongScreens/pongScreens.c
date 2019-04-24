@@ -9,6 +9,20 @@
 
 unsigned int menuSelector = 0;
 unsigned int settings[] = {0,0,0};
+unsigned int menuSelectorOld = 0;
+unsigned int settingsOld[] = {0,0,0};
+
+void menuMove(unsigned int direction){
+	if (direction == _DOWN){
+		menuSelector++;
+	} else if (direction == _UP){
+		menuSelector--;
+	} else if (direction == _LEFT){
+		settings[menuSelector]--;
+	} else if (direction == _RIGHT){
+		settings[menuSelector]++;
+	}
+}
 
 void startScreen(){
 	// Clear screen and set input mode
@@ -17,6 +31,7 @@ void startScreen(){
 
 
 	pongSprites_writeText(60, 120, 1, "Welcome to armPONG", _RED); ResetWDT();
+	Displays_Refresh();
 	startSound();
 	usleep(1000000); ResetWDT();
 	usleep(1000000); ResetWDT();
@@ -24,23 +39,44 @@ void startScreen(){
 
 void gameMenu(){
 	setInputMode(MENUS);
+
+	Displays_fillColour(_WHITE);
+
+	enableInputs(1);
+
+	pongSprites_writeText(90, 20, 1, "Main menu", _RED); ResetWDT();
+
+	// Menu items
+	pongSprites_renderBall(50, 73, _BLACK); ResetWDT();
+	pongSprites_writeText(75, 65, 1, "Mode: ", _BLACK); ResetWDT();
+	pongSprites_writeText(75, 90, 1, "Difficulty: ", _BLACK); ResetWDT();
+	pongSprites_writeText(75, 115, 1, "Volume: ", _BLACK); ResetWDT();
+	pongSprites_writeText(75, 140, 1, "Start!", _BLACK); ResetWDT();
+
+	pongSprites_writeText(30, 180, 1, "Press [Enter] or [PB3]", _MAGENTA); ResetWDT();
+	ResetWDT();
+	Displays_Refresh();
 	while(getInputMode() == MENUS){
-		// Clear screen and set input mode
-		Displays_fillColour(_WHITE);
 
-		enableInputs(1);
+		if ((menuSelector != menuSelectorOld)){//(settings != settingsOld) ||
+			// Clear screen and set input mode
+			Displays_fillColour(_WHITE);
 
-		pongSprites_writeText(90, 20, 1, "Main menu", _RED); ResetWDT();
+			enableInputs(1);
 
-		// Menu items
-		pongSprites_renderBall(50, 73, _BLACK); ResetWDT();
-		pongSprites_writeText(75, 65, 1, "Mode: ", _BLACK); ResetWDT();
-		pongSprites_writeText(75, 90, 1, "Difficulty: ", _BLACK); ResetWDT();
-		pongSprites_writeText(75, 115, 1, "Volume: ", _BLACK); ResetWDT();
-		pongSprites_writeText(75, 140, 1, "Start!", _BLACK); ResetWDT();
+			pongSprites_writeText(90, 20, 1, "Main menu", _RED); ResetWDT();
 
-		pongSprites_writeText(30, 180, 1, "Press [Enter] or [PB3]", _MAGENTA); ResetWDT();
-		ResetWDT();
+			// Menu items
+			pongSprites_renderBall(50, 73, _BLACK); ResetWDT();
+			pongSprites_writeText(75, 65, 1, "Mode: ", _BLACK); ResetWDT();
+			pongSprites_writeText(75, 90, 1, "Difficulty: ", _BLACK); ResetWDT();
+			pongSprites_writeText(75, 115, 1, "Volume: ", _BLACK); ResetWDT();
+			pongSprites_writeText(75, 140, 1, "Start!", _BLACK); ResetWDT();
+
+			pongSprites_writeText(30, 180, 1, "Press [Enter] or [PB3]", _MAGENTA); ResetWDT();
+			Displays_Refresh();
+		}
+	ResetWDT();
 	}
 }
 

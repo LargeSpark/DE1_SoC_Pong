@@ -18,11 +18,18 @@ int main(void) {
 	Displays_frameSkip(FS);
 	ResetWDT();
 
+	// Initialise interrupts
+	HPS_IRQ_initialise(NULL);
+	HPS_ResetWatchdog();
+
     // Initialise keyboard/pushbuttons
 	inputsInitialise();
 
 	// Initialise sounds
 	pongSound_Init();
+
+	// Init ball for menu
+	pongSprites_initBall();
 
 	// Run loading screen
 	startScreen();
@@ -31,6 +38,6 @@ int main(void) {
 		// Run start menu
 		gameMenu();
 		// Run test screen
-		testScreen();
+		testScreen_AI();
 	}
 }

@@ -31,8 +31,9 @@
 #define _DOWN		0x72
 
 // Definitions for modes
-#define MENUS 0
-#define GAME  1
+#define MENUS 		0
+#define GAME  		1
+#define GAME_AI 	2
 
 // Set paddle speeds
 #define keySpeed  20

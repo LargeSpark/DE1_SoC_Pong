@@ -39,7 +39,7 @@
 							<tool id="com.arm.tool.c.linker.686831516" name="ARM Linker 5" superClass="com.arm.tool.c.linker">
 								<option id="com.arm.tool.c.linker.option.cpu.1471781402" name="Target CPU (--cpu)" superClass="com.arm.tool.c.linker.option.cpu" value="Cortex-A9.no_neon.no_vfp" valueType="string"/>
 								<option id="com.arm.tool.c.linker.option.entry.199602044" name="Image entry point (--entry)" superClass="com.arm.tool.c.linker.option.entry" value="__main" valueType="string"/>
-								<option id="com.arm.tool.c.linker.option.scatter.2121142090" name="Scatter file (--scatter)" superClass="com.arm.tool.c.linker.option.scatter" value="J:\DS-5 Workspace\Project_IO\DDRRomRamIRQ.scat" valueType="string"/>
+								<option id="com.arm.tool.c.linker.option.scatter.2121142090" name="Scatter file (--scatter)" superClass="com.arm.tool.c.linker.option.scatter" value="J:\DS-5 Workspace\DE1_SoC_Pong\DE1_SOC_PONG\DDRRomRamIRQ.scat" valueType="string"/>
 							</tool>
 							<tool id="com.arm.tool.librarian.1092711128" name="ARM Librarian 5" superClass="com.arm.tool.librarian"/>
 						</toolChain>

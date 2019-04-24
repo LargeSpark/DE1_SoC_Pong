@@ -44,7 +44,7 @@ void pongEngine_init(){
 	Displays_clearScreen();
 	pongEngine_paddleCreate(1);
 	pongEngine_paddleCreate(2);
-	pongEngine_refreshScore();
+
 
 	//create arena
 	//create green area
@@ -73,10 +73,17 @@ void pongEngine_resetScore(){
 
 void pongEngine_refreshScore(){
 	char playerscorech[5];
-	int P1number0 = player1Score/10; //1
-	int P1number1 = player1Score % 10; //5
-	int P2number0 = player2Score/10; //1
-	int P2number1 = player2Score % 10; //5
+	int P1number0, P1number1, P2number0, P2number1;
+
+	// Fix overflow past 100 - loops to zero
+	player1Score = player1Score %100;
+	player2Score = player2Score %100;
+
+	P1number0 = player1Score/10; //1
+	P1number1 = player1Score % 10; //5
+	P2number0 = player2Score/10; //1
+	P2number1 = player2Score % 10; //5
+
 	SDisplay_PNum(player1Score,2);
 	SDisplay_PNum(player2Score,0);
 	playerscorech[0] = P1number0 + '0';
@@ -387,4 +394,12 @@ void pongEngine_paddleDestroy(int player){
 void pongEngine_resetPaddles(){
 	pongEngine_paddleSetXLocation(1, paddle1X); pongEngine_paddleSetYLocation(1, centre_x);
 	pongEngine_paddleSetXLocation(2, paddle2X); pongEngine_paddleSetYLocation(1, centre_x);
+}
+
+unsigned int pongEngine_getPaddleY(unsigned int paddle){
+	if (paddle == 1){
+		return paddle1Y;
+	} else {
+		return paddle2Y;
+	}
 }

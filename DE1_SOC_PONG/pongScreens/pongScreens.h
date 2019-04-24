@@ -21,9 +21,9 @@
 #define _RED     (0x1F << 11)
 #define _GREEN   (0x1F << 6)
 #define _BLUE    (0x1F << 0)
-#define _YELLOW  (LT24_RED | LT24_GREEN)
-#define _CYAN    (LT24_GREEN | LT24_BLUE)
-#define _MAGENTA (LT24_BLUE | LT24_RED)
+#define _YELLOW  (_RED | _GREEN)
+#define _CYAN    (_GREEN | _BLUE)
+#define _MAGENTA (_BLUE | _RED)
 
 void testScreen( void );
 

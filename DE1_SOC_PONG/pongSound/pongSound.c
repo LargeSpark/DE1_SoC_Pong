@@ -84,12 +84,14 @@ void Sound(int _freq, float _duration){
 				//If there is space in the write FIFO for both channels:
 				//Increment the phase
 				phase = phase + inc;
-				//Ensure phase is wrapped to range 0 to 2Pi (range of sin function)
+
+				//Ensure phase is wrapped to range 0 to 360* (range of lookupSin function)
 				while (phase >= 360.0) {
 					phase = phase - 360.0;
 				}
 				// Calculate next sample of the output tone.
 				audio_sample = (signed int)( (1<<VOLUME)*baseampl * lookupSin((int) phase) );
+
 				// Output tone to left and right channels.
 				*audio_left_ptr = audio_sample;
 				*audio_right_ptr = audio_sample;

@@ -46,16 +46,16 @@ void pushbuttonISR(HPSIRQSource interruptID, bool isInit, void* initParams) {
         KEY_ptr[3] = press;
 
         if (press == 1){
-        	Input(3, keySpeed);
+        	Input(_UP, keySpeed);
         }
         else if (press == 2){
-        	Input(4, keySpeed);
+        	Input(_DOWN, keySpeed);
         }
         else if (press == 4){
-        	Input(1, keySpeed);
+        	Input(_W, keySpeed);
         }
         else if (press == 8){
-        	Input(2, keySpeed);
+        	Input(_S, keySpeed);
         }
     }
     //Reset watchdog.
@@ -67,10 +67,6 @@ void pushbuttonISR(HPSIRQSource interruptID, bool isInit, void* initParams) {
 
 void inputsInitialise(void) {
 	if (!inputsIsInit){
-		// Initialise interrupts
-		HPS_IRQ_initialise(NULL);
-		HPS_ResetWatchdog();
-
 		// Register IRQs
 		HPS_IRQ_registerHandler(IRQ_LSC_PS2_PRIMARY, keyboardISR);
 		HPS_ResetWatchdog();
@@ -104,17 +100,17 @@ void inputKeyboard( void ) {
 	keyBuffer[2] = PS2Scan();
 
 	if (key == _W) 				{
-		keyBuffer[2] = 1; Input(1, keyBSpeed);
+		keyBuffer[2] = 1; Input(_W, keyBSpeed);
 	} else if (key == _S)		{
-		keyBuffer[2] = 2; Input(2, keyBSpeed);
+		keyBuffer[2] = 2; Input(_S, keyBSpeed);
 	} else if (key == _UP) 		{
-		keyBuffer[2] = 3; Input(3, keyBSpeed);
+		keyBuffer[2] = 3; Input(_UP, keyBSpeed);
 	} else if (key == _DOWN) 	{
-		keyBuffer[2] = 4; Input(4, keyBSpeed);
+		keyBuffer[2] = 4; Input(_DOWN, keyBSpeed);
 	} else if (key == _ESC)		{
-		keyBuffer[2] = 5; Input(5, keyBSpeed);
+		keyBuffer[2] = 5; Input(_ESC, keyBSpeed);
 	} else if (key == _RETURN)	{
-		keyBuffer[2] = 6; Input(6, keyBSpeed);
+		keyBuffer[2] = 6; Input(_RETURN, keyBSpeed);
 	} else if ((key == _BKSPACE) && (keyBuffer[0] != 7)) {
 		keyBuffer[2] = 7; toggleSound();//Input(7, keyBSpeed);
 	}
@@ -138,35 +134,39 @@ void emptyFIFO( void ){
 }
 
 void Input(unsigned int key, unsigned int speed){
-	if (mode == GAME){
-		if (key == 1){
+	if ((mode == GAME) || (mode == GAME_AI)){ // Common to games
+		if (key == _W){
 			pongEngine_paddleMove(1, DOWN, 	speed);
 			pongEngine_destroyBall(); // Partially repairs artifacts - constrains them to path of ball
 		}
-		else if (key == 2){
+		else if (key == _S){
 			pongEngine_paddleMove(1, UP, 	speed);
 			pongEngine_destroyBall();
+		} else if (key == _ESC){ // Escape
+			setInputMode(MENUS);
 		}
-		else if (key == 3){
+	}
+
+	if (mode == GAME){ // 2P only
+		if (key == _UP){
 			pongEngine_paddleMove(2, DOWN, 	speed);
 			pongEngine_destroyBall();
 		}
-		else if (key == 4){
+		else if (key == _DOWN){
 			pongEngine_paddleMove(2, UP, 	speed);
 			pongEngine_destroyBall();
 		}
-		else if (key == 5){
-			setInputMode(MENUS); // Need a way to break instantly
-		}
 	}
+
+
 	if (mode == MENUS){
-		if ((key == 6) || ((key == 2) && (speed == keySpeed))){
-			setInputMode(GAME);
+		if ((key == _RETURN) || ((key == _W) && (speed == keySpeed))){
+			setInputMode(GAME_AI);
 		}
 	}
 
 
-	if (key == 7){
+	if (key == _BKSPACE){
 		toggleSound();
 	}
 }
@@ -186,7 +186,8 @@ void enableInputs(int enable){
 }
 
 void setInputMode(unsigned int _mode){
-	if (_mode == MENUS) { mode = MENUS; } else if (_mode == GAME){ mode = GAME; }
+	//if (_mode == MENUS) { mode = MENUS; } else if (_mode == GAME){ mode = GAME; } else if (_mode == GAME_AI){ mode = GAME; }
+	mode = _mode;
 }
 
 int getInputMode( void ){

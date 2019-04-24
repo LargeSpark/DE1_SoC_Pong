@@ -29,6 +29,7 @@ void pongEngine_paddleSetYLocation(int player, int y);
 void pongEngine_paddleSetXLocation(int player, int x);
 void pongEngine_paddleCreate(int player);
 void pongEngine_paddleDestroy(int player);
+unsigned int pongEngine_getPaddleY(unsigned int paddle);
 /*############ Score Keeping ############*/
 void pongEngine_addPoint(int player);
 void pongEngine_clearScore( void );

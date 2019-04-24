@@ -39,12 +39,14 @@ void menuMove(unsigned int direction){
 
 void startScreen(){
 	// Clear screen and set input mode
-	Displays_fillColour(_GREEN);
+	//Displays_fillColour(_GREEN);
+	Displays_fillColour(0x1F << 11);
 	setInputMode(MENUS);
 
+	pongSprites_writeText(60, 120, 1, "Welcome to armPONG", 0xFFFF);
+	Displays_forceRefresh();
+	ResetWDT();
 
-	pongSprites_writeText(60, 120, 1, "Welcome to armPONG", _RED); ResetWDT();
-	Displays_Refresh();
 	startSound();
 	usleep(1000000); ResetWDT();
 	usleep(1000000); ResetWDT();
@@ -78,7 +80,7 @@ void gameMenu(){
 
 	pongSprites_writeText(30, 180, 1, "Press [Enter] or [PB3]", _MAGENTA); ResetWDT();
 	ResetWDT();
-	Displays_Refresh();
+	Displays_forceRefresh();
 	while(getInputMode() == MENUS){
 
 		if ((menuSelector != menuSelectorOld) || memcmp(settings, settingsOld, sizeof(settings)) != 0){
@@ -97,13 +99,15 @@ void gameMenu(){
 			pongSprites_writeText(75, 140, 1, "Start!", menuColours[3]); ResetWDT();
 
 			pongSprites_writeText(30, 180, 1, "Press [Enter] or [PB3]", _MAGENTA); ResetWDT();
-			Displays_Refresh();
+			Displays_forceRefresh();
+
 
 			for (i = 0; i<sizeof(settings); i++){
 				settingsOld[i] = settings[i];
 			}
 
 			menuSelectorOld = menuSelector;
+
 		}
 	ResetWDT();
 	}

@@ -9,6 +9,7 @@
 #include "../pongEngine/pongEngine.h"
 #include "../pongDisplay/pongDisplay.h"
 #include "../pongSound/pongSound.h"
+#include "../pongScreens/pongScreens.h"
 #include <string.h>
 #include "../HPS_IRQ/HPS_IRQ.h"
 #include "../HPS_Watchdog/HPS_Watchdog.h"

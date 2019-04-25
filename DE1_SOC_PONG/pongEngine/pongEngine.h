@@ -32,7 +32,7 @@ void pongEngine_paddleDestroy(int player);
 unsigned int pongEngine_getPaddleY(unsigned int paddle);
 /*############ Score Keeping ############*/
 void pongEngine_addPoint(int player);
-void pongEngine_clearScore( void );
+void pongEngine_resetScore( unsigned int _Refresh );
 
 //used within library
 /*############ Ball Functions ############*/

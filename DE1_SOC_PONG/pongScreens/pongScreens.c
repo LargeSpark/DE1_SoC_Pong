@@ -7,17 +7,41 @@
 
 #include "pongScreens.h"
 
-unsigned int menuSelector = 0;
-unsigned int settings[] = {0,0,0,0};
-unsigned int menuSelectorOld = 0;
-unsigned int settingsOld[] = {0,0,0};
-unsigned int menuColours[] = {_BLUE, _BLACK, _BLACK, _BLACK};
+volatile unsigned int menuSelector = 0;
+volatile unsigned int settings[] = {0,0,4,0,0};
+volatile unsigned int menuSelectorOld = 0;
+volatile unsigned int settingsOld[] = {0,0,4,0,0};
+short menuColours[] = {_BLUE, _BLACK, _BLACK, _BLACK, _BLACK};
 
+unsigned int settingsMax[] = {1, 1, 9, 1, 1};
+
+unsigned int numMenuItems = sizeof(settings)/sizeof(int);
+volatile unsigned int gameMode = GAME_AI;
+
+/*
+signed int settingStore[4][4] = { { , , , },
+								{ , , , },
+								{ , , , },
+								{ , , , } };
+
+signed int settingStore[4][4] = { { , , , },
+								{ , , , },
+								{ , , , },
+								{ , , , } };
+*/
+
+void setMenu(unsigned int _menuSelector, unsigned int _setting){
+	menuSelectorOld = menuSelector;
+	settingsOld[_menuSelector] = settings[_menuSelector];
+
+	menuSelector = _menuSelector;
+	settings[_menuSelector] = _setting;
+}
 
 void menuMove(unsigned int direction){
 	unsigned int i;
 
-	for (i = 0; i<sizeof(settings); i++){
+	for (i = 0; i<numMenuItems; i++){
 		settingsOld[i] = settings[i];
 		menuColours[i] = _BLACK;
 	}
@@ -25,19 +49,38 @@ void menuMove(unsigned int direction){
 	menuSelectorOld = menuSelector;
 
 	if (direction == _DOWN){
-		if (menuSelector == 3){ menuSelector = 0; } else menuSelector++;
+		if (menuSelector == 4){ menuSelector = 0; } else menuSelector++;
 		//menuSelector++;
 	} else if (direction == _UP){
-		if (menuSelector == 0){ menuSelector = 3; } else menuSelector--;
+		if (menuSelector == 0){ menuSelector = 4; } else menuSelector--;
 		//menuSelector--;
 	} else if (direction == _LEFT){
-		if (settings[menuSelector] == 0) { settings[menuSelector] = 99; } else settings[menuSelector]--;
+		if (settings[menuSelector] == 0) { settings[menuSelector] = settingsMax[menuSelector]; } else settings[menuSelector]--;
 		//settings[menuSelector]--;
 	} else if (direction == _RIGHT){
-		if (settings[menuSelector] == 99) { settings[menuSelector] = 0; } else settings[menuSelector]++;
+		if (settings[menuSelector] == settingsMax[menuSelector]) { settings[menuSelector] = 0; } else settings[menuSelector]++;
 		//settings[menuSelector]++;
 	}
+	//printf("%d %d\n", menuSelector, settings[menuSelector]);// For debug only
+
+	// Instantaneous effects
+	if (menuSelector == 3){
+		if (settings[3] == 1){ 			// If press right on Reset
+			settings[3] = 0;			// Reset setting
+			pongEngine_resetScore(0); 	// Reset scores
+		}
+	}
+
+	if (menuSelector == 4){	// Start game
+		if (settings[4] == 1){ 		// If press right on start
+			settings[4] = 0;		// Reset start setting
+			setInputMode(gameMode); 	// Begin playing
+		}
+	}
+
 	menuColours[menuSelector] = _BLUE;
+	usleep(200000); //paddleBeep();  // Prevent keyboard bounce
+	emptyFIFO();
 	ResetWDT();
 }
 
@@ -58,52 +101,88 @@ void startScreen(){
 
 void gameMenu(){
 	unsigned int i;
-	setInputMode(MENUS);
-	Displays_mode(0);
+	char str_txt[30];
 
-	/*// Broken part!
+	setInputMode(MENUS);
+	gameMode = GAME_AI;
+	SDisplay_clearAll();
+
 	// Reset menu
-	menuSelector = 0;
-	for (i = 0; i<sizeof(settings); i++){
+	menuSelector = 0; menuSelectorOld = 0;
+	for (i = 0; i<numMenuItems; i++){
 		menuColours[i] = _BLACK;
 	}
-	menuColours[0] = _BLUE;*/
+	menuColours[0] = _BLUE;
 
-	Displays_clearScreen();
+	sprintf(str_txt, "<%d>", settings[2]);
+
+	//Displays_clearScreen();
 	Displays_fillColour(_WHITE);
 
-	enableInputs(1);
-
-	Displays_forceRefresh();
+	//Displays_forceRefresh();
 	// Menu items
-	pongSprites_renderBall(50, 71, _BLACK); ResetWDT();
-	pongSprites_writeText(90, 20, 1, "Main menu", _RED); ResetWDT();
+	pongSprites_renderBall(50, 71/*+25*menuSelector*/, _BLACK); ResetWDT();
+	pongSprites_writeText(100, 20, 1, "Main menu", _RED); ResetWDT();
 	pongSprites_writeText(75, 65, 1, "Mode: ", menuColours[0]); ResetWDT();
-	pongSprites_writeText(75, 90, 1, "Difficulty: ", menuColours[1]); ResetWDT();
+	pongSprites_writeText(75, 90, 1, "Paddle size: ", menuColours[1]); ResetWDT();
 	pongSprites_writeText(75, 115, 1, "Volume: ", menuColours[2]); ResetWDT();
-	pongSprites_writeText(75, 140, 1, "Start!", menuColours[3]); ResetWDT();
+	pongSprites_writeText(75, 140, 1, "Reset score > ", menuColours[3]); ResetWDT();
+	pongSprites_writeText(75, 165, 1, "START >", menuColours[4]); ResetWDT();
 
-	pongSprites_writeText(30, 180, 1, "Press [Enter] or [PB3]", _MAGENTA); ResetWDT();
+	// Options (Defaults)
+	pongSprites_writeText(240, 65, 1, "<AI>", _MAGENTA); ResetWDT();
+
+	pongSprites_writeText(242, 115, 1, str_txt, _MAGENTA); ResetWDT();
+
 	ResetWDT();
-	Displays_forceRefresh();
+	//Displays_forceRefresh(); // Hmm that frame buffer's being odd again
+	Displays_Refresh();
+	enableInputs(1);
 	while(getInputMode() == MENUS){
-
-		if ((menuSelector != menuSelectorOld)){//(settings != settingsOld) ||
+		if ((menuSelector != menuSelectorOld) || (memcmp(&settings, &settingsOld, sizeof(int)) != 0)){
 			// Clear screen and set input mode
-			Displays_fillColour(_WHITE);
+			//Displays_clearScreen();
 
-			enableInputs(1);
+			pongSprites_renderBall(50, (71+(int)25*menuSelectorOld), _WHITE); ResetWDT(); // Get rid of old ball
+
+			//Displays_forceRefresh();
 
 			// Menu items
-			pongSprites_renderBall(50, 73, _BLACK); ResetWDT();
-			pongSprites_writeText(90, 20, 1, "Main menu", _RED); ResetWDT();
-			pongSprites_writeText(75, 65, 1, "Mode: ", _BLACK); ResetWDT();
-			pongSprites_writeText(75, 90, 1, "Difficulty: ", _BLACK); ResetWDT();
-			pongSprites_writeText(75, 115, 1, "Volume: ", _BLACK); ResetWDT();
-			pongSprites_writeText(75, 140, 1, "Start!", _BLACK); ResetWDT();
+			pongSprites_renderBall(50, (71+(int)25*menuSelector), _BLACK); ResetWDT();
+			pongSprites_writeText(100, 20, 1, "Main menu", _RED); ResetWDT();
+			pongSprites_writeText(75, 65, 1, "Mode: ", menuColours[0]); ResetWDT();
+			pongSprites_writeText(75, 90, 1, "Paddle size: ", menuColours[1]); ResetWDT();
+			pongSprites_writeText(75, 115, 1, "Volume: ", menuColours[2]); ResetWDT();
+			pongSprites_writeText(75, 140, 1, "Reset score > ", menuColours[3]); ResetWDT();
+			pongSprites_writeText(75, 165, 1, "START >", menuColours[4]); ResetWDT();
 
-			pongSprites_writeText(30, 180, 1, "Press [Enter] or [PB3]", _MAGENTA); ResetWDT();
+			// Options -- Requires work
+			if (menuSelector == 0){ // Game mode
+				if (settings[0] == 1){ 			// If press right on Reset
+					pongSprites_writeText(240, 65, 1, "<AI>", _WHITE); ResetWDT();
+					pongSprites_writeText(240, 65, 1, "<2P>", _MAGENTA); ResetWDT();
+					gameMode = GAME;
+				} else {
+					pongSprites_writeText(240, 65, 1, "<2P>", _WHITE); ResetWDT();
+					pongSprites_writeText(240, 65, 1, "<AI>", _MAGENTA); ResetWDT();
+					gameMode = GAME_AI;
+				}
+			}
+
+			if (menuSelector == 2){ // Volume -- requires work
+				pongSprites_writeText(242, 115, 1, str_txt, _WHITE); ResetWDT();
+				sprintf(str_txt, "<%d>", settings[2]);
+				pongSprites_writeText(242, 115, 1, str_txt, _MAGENTA); ResetWDT();
+				setVolume(settings[2]);
+			}
+
 			Displays_forceRefresh();
+
+			menuSelectorOld = menuSelector;
+			for (i = 0; i<numMenuItems; i++){
+				settingsOld[i] = settings[i];
+				menuColours[i] = _BLACK;
+			}
 		}
 	ResetWDT();
 	}
@@ -115,17 +194,17 @@ void testScreen_AI( void ){
 	int x;
 	int variable = 240; //240
 
-	Displays_mode(3);
 	// Clear screen and set input mode
 	Displays_clearScreen();
 	setInputMode(GAME_AI);
+	pongEngine_resetBallLoc();
 
 	// Initialise engine
 	pongEngine_init();
 	ResetWDT();
 
 	pongEngine_createBall();
-	pongSprites_writeText(96, 60, 1, "TEST SCREEN", 0xFFFF);
+	pongSprites_writeText(96, 60, 1, "AI MODE", 0xFFFF);
 	pongSprites_writeText(96, 90, 0, "TESTICLES", 0xFFFF);
 	Displays_forceRefresh(); pongEngine_refreshScore();
 	while (getInputMode() == GAME_AI){
@@ -166,18 +245,19 @@ void testScreen( void ){
 	int dir = 0;
 	int x;
 	int variable = 240; //240
-	Displays_mode(3);
 
 	// Clear screen and set input mode
 	Displays_clearScreen();
 	setInputMode(GAME);
+
+	pongEngine_resetBallLoc();
 
 	// Initialise engine
 	pongEngine_init();
 	ResetWDT();
 
 	pongEngine_createBall();
-	pongSprites_writeText(96, 60, 1, "TEST SCREEN", 0xFFFF);
+	pongSprites_writeText(96, 60, 1, "2P MODE", 0xFFFF);
 	pongSprites_writeText(96, 90, 0, "TESTICLES", 0xFFFF);
 	Displays_forceRefresh(); pongEngine_refreshScore();
 	while (getInputMode() == GAME){
@@ -205,32 +285,3 @@ void testScreen( void ){
 	//gameEngine_paddleDestroy(2);
 	Displays_clearScreen();
 }
-
-
-//pongEngine_destroyBall();
-	/*for (x=8;x<320-9;x++)
-	{
-		pongSprites_renderBall(x, 70,LT24_BLUE);
-		if(x<180){ paddleX = x; }
-		pongSprites_renderPaddle(50, 180-paddleX, 0xFFFF);
-		pongSprites_renderPaddle(270, paddleX, 0xFFFF);
-		Displays_Refresh();
-		pongSprites_renderBall(x, 70,0x0000);
-		pongSprites_renderPaddle(50, 180-x, 0x0000);
-		pongSprites_renderPaddle(270, x, 0x0000);
-	}
-	for (x=320-9;x>8;x--)
-	{
-		pongSprites_renderBall(x, 70,LT24_RED);
-		if(x<180){ paddleX = x; }
-		pongSprites_renderPaddle(50, 180-paddleX, 0xFFFF);
-		pongSprites_renderPaddle(270, paddleX, 0xFFFF);
-		Displays_Refresh();
-		pongSprites_renderBall(x, 70,0x0000);
-		pongSprites_renderPaddle(50, 180-x, 0x0000);
-		pongSprites_renderPaddle(270, x, 0x0000);
-	}*/
-	/*
-	FS++;
-	Displays_frameSkip(FS);
-	*/

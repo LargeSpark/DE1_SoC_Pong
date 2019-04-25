@@ -14,7 +14,6 @@ int main(void) {
 
 	// Initialise displays
 	Displays_init(0xC8000000,0xC9000000,0xFF200060,0xFF200080);
-	Displays_mode(SOFTWAREOCTOFB);
 	Displays_frameSkip(FS);
 	ResetWDT();
 
@@ -35,9 +34,15 @@ int main(void) {
 	startScreen();
 	enableInputs(1);
 	while(1){
-		// Run start menu
-		gameMenu();
-		// Run test screen
-		testScreen_AI();
+		if (getInputMode() == MENUS){
+			// Run start menu
+			gameMenu();
+		} else if (getInputMode() == GAME){
+			// Run 2P test screen
+			testScreen();
+		} else if (getInputMode() == GAME_AI){
+			// Run test screen
+			testScreen_AI();
+		}
 	}
 }

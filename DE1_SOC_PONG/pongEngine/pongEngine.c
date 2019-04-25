@@ -65,10 +65,12 @@ void pongEngine_addPoint(int player){
 	pongEngine_refreshScore();
 }
 
-void pongEngine_resetScore(){
+void pongEngine_resetScore(unsigned int _Refresh){
 	player1Score = 0;
 	player1Score = 0;
-	pongEngine_refreshScore();
+	if (_Refresh != 0){
+		pongEngine_refreshScore();
+	}
 }
 
 void pongEngine_refreshScore(){
@@ -147,6 +149,10 @@ void pongEngine_moveBall(int angle, int speed){
 		//Move ball speed amount
 		ballCurrentPosPath = ballCurrentPosPath+speed;
 	}
+}
+
+void pongEngine_resetBallLoc( void ){
+	pongEngine_setBallLocation(centre_x, centre_y);
 }
 
 void pongEngine_setBallLocation(int x, int y){

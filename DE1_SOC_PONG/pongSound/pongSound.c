@@ -15,12 +15,14 @@ volatile unsigned int SoundOn = 1;
 volatile int sound = 1;
 int freq = 1000;
 float duration = 1;
+volatile unsigned VOLUME = 4;
 
 //Pointers
 volatile unsigned char* fifospace_ptr;
 volatile unsigned int*  audio_left_ptr;
 volatile unsigned int*  audio_right_ptr;
 volatile unsigned int* HPS_timer_ptr = (unsigned int *) 0xFFC08000;
+
 
 //Variables
 //Phase Accumulator
@@ -131,6 +133,9 @@ void ballOutBeep(){
 	Sound(B3, 100);
 }
 
+void setVolume(unsigned int _volume){
+	VOLUME = _volume;
+}
 
 // Fast sin lookup
 float lookupSin(unsigned int degree){

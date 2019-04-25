@@ -115,6 +115,7 @@ void pongSprites_renderRectangle(int x1,int x2, int y1, int y2, short colour){
 }
 
 void pongSprites_writeText(int x, int y, int size, char *text, short colour){
+	/* Text error seems to occur after addPoint(1) for vertical movement */
 	int letter[5][7];
 	int stringLength = strlen(text);
 	int character;

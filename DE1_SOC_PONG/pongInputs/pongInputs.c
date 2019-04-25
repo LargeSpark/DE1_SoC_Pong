@@ -112,7 +112,12 @@ void inputKeyboard( void ) {
 		keyBuffer[2] = 6; Input(_RETURN, keyBSpeed);
 	} else if ((key == _BKSPACE) && (keyBuffer[0] != 7)) {
 		keyBuffer[2] = 7; toggleSound();//Input(7, keyBSpeed);
+	} else if (key == _LEFT) 		{
+		keyBuffer[2] = 8; Input(_LEFT, keyBSpeed);
+	} else if (key == _RIGHT) 	{
+		keyBuffer[2] = 9; Input(_RIGHT, keyBSpeed);
 	}
+
 	// Ignore make/break signals
 	if ((key == 0xF0) || (key == 0xE0)) keyBuffer[2] = 0;
 
@@ -159,23 +164,36 @@ void Input(unsigned int key, unsigned int speed){
 
 
 	if (mode == MENUS){
-		if (key == _W){
-			menuMove(_UP);
-		} else if (key == _S){
-			menuMove(_DOWN);
-		} else if (key == _UP){
-			menuMove(_LEFT);
-		} else if (key == _DOWN){
-			menuMove(_RIGHT);
-		} else if ((key == _RETURN) || ((key == 99) && (speed == keySpeed))){
-			setInputMode(GAME_AI);
+		if (speed == keyBSpeed){
+			if (key == _UP){
+				menuMove(_UP);
+			} else if (key == _DOWN){
+				menuMove(_DOWN);
+			} else if (key == _LEFT){
+				menuMove(_LEFT);
+			} else if (key == _RIGHT){
+				menuMove(_RIGHT);
+			} else if (key == _RETURN){
+				setMenu(4, 1); menuMove(0);
+			}
+		} else {
+			if (key == _UP){
+				menuMove(_RIGHT);
+			} else if (key == _DOWN){
+				menuMove(_LEFT);
+			} else if (key == _W){
+				menuMove(_UP);
+			} else if (key == _S){
+				menuMove(_DOWN);
+			}
 		}
 	}
 
 
-	if (key == _BKSPACE){
+	if (key == _BKSPACE){ // Never reached
 		toggleSound();
 	}
+	ResetWDT();
 }
 
 void enableInputs(int enable){
@@ -195,6 +213,7 @@ void enableInputs(int enable){
 void setInputMode(unsigned int _mode){
 	//if (_mode == MENUS) { mode = MENUS; } else if (_mode == GAME){ mode = GAME; } else if (_mode == GAME_AI){ mode = GAME; }
 	mode = _mode;
+	if (mode == MENUS){ Displays_mode(0); } else { Displays_mode(3); }
 }
 
 int getInputMode( void ){

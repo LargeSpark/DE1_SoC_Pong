@@ -16,7 +16,6 @@
 
 //Define some useful constants
 #define F_SAMPLE 48000.0        // Sampling rate of WM8731 Codec (Do not change)
-#define VOLUME 	 4				// Don't put this too much higher with headphones in
 
 // Initialise driver
 void pongSound_Init( void );

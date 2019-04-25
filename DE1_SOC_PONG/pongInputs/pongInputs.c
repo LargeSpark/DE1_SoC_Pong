@@ -216,7 +216,7 @@ void enableInputs(int enable){
 void setInputMode(unsigned int _mode){
 	//if (_mode == MENUS) { mode = MENUS; } else if (_mode == GAME){ mode = GAME; } else if (_mode == GAME_AI){ mode = GAME; }
 	mode = _mode;
-	if (mode == MENUS){ Displays_mode(0); } else { Displays_mode(3); }
+	if (mode == MENUS){ Displays_mode(NOFRAMEBUFFER); } else { Displays_mode(SOFTWAREOCTOFB); }
 }
 
 int getInputMode( void ){

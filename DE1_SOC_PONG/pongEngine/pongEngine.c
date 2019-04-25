@@ -74,7 +74,7 @@ void pongEngine_resetScore(unsigned int _Refresh){
 }
 
 void pongEngine_refreshScore(){
-	char playerscorech[5];
+	char playerscorech[6];
 	int P1number0, P1number1, P2number0, P2number1;
 
 	// Fix overflow past 100 - loops to zero
@@ -93,6 +93,7 @@ void pongEngine_refreshScore(){
 	playerscorech[2] = ' ';
 	playerscorech[3] = P2number0 + '0';
 	playerscorech[4] = P2number1 + '0';
+	playerscorech[5] = '\0';
 
 	pongSprites_renderRectangle(centre_x - 28,centre_x+ 28 , 17, 17+14, 0x00);
 	pongSprites_renderRectangle(0,320 , 17, 17+14, 0x00);

@@ -26,6 +26,9 @@ void Sound(int _freq, float _duration);
 // Enable (1) or disable (0) sounds
 void enableSound(unsigned int _onoff);
 
+// Set volume, 1-9
+void setVolume(unsigned int _volume);
+
 // Toggle sound
 void toggleSound( void );
 

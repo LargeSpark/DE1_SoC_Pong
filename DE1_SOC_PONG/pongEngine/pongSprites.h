@@ -1,5 +1,5 @@
-#ifndef PONGDISPLAY_H
-#define PONGDISPLAY_H
+#ifndef PONGSPRITES_H
+#define PONGSPRITES_H
 
 #include "../pongDisplay/pongDisplay.h"
 #include "pongEngine.h"
@@ -14,6 +14,6 @@ void pongSprites_initBall( void );
 void pongSprites_renderBall(int x, int y, short colour);
 void pongSprites_renderPaddle(int x, int y, short colour);
 void pongSprites_writeText(int x, int y, int size, char *text, short colour);
-void pongSprites_renderRectangle(int x1,int x2, int y1, int y2, short colour);
+void pongSprites_renderRectangle(int x1,int x2, int y1, int y2, int colour);
 
 #endif

@@ -56,7 +56,7 @@ int minY = 0;
 int maxX = 320;
 int maxY = 240;
 
-void Displays_init(volatile short vga_PixelAddress, unsigned volatile int vga_CharacterAddress, unsigned volatile int lcd_pio_base, unsigned volatile int lcd_hw_base){
+void Displays_init(volatile int vga_PixelAddress, unsigned volatile int vga_CharacterAddress, unsigned volatile int lcd_pio_base, unsigned volatile int lcd_hw_base){
 
 	//init VGA
 	VGA_init(vga_PixelAddress,vga_CharacterAddress);
@@ -133,8 +133,8 @@ void Displays_clearScreen(){
 }
 
 void Displays_Refresh(){
-	int y = 0;
-	int x = 0;
+	//int y = 0;
+	//int x = 0;
 	if(frameskip==0){
 		if(modeSet == 0){
 
@@ -494,7 +494,7 @@ void DisplaysLocal_singleRefresh(){
 }
 
 void DisplaysLocal_FFBRefresh(){
-	int x;
+	//int x;
 	int y;
 	//find highest array amount
 	int highCount = 0;

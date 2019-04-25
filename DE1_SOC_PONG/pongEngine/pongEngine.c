@@ -67,7 +67,7 @@ void pongEngine_addPoint(int player){
 
 void pongEngine_resetScore(unsigned int _Refresh){
 	player1Score = 0;
-	player1Score = 0;
+	player2Score = 0;
 	if (_Refresh != 0){
 		pongEngine_refreshScore();
 	}

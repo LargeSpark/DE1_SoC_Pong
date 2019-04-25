@@ -6,7 +6,7 @@
  */
 
 #include "pongScreens.h"
-#include <string.h>
+//#include <string.h>
 
 volatile unsigned int menuSelector = 0;
 volatile unsigned int settings[] = {0,0,4,0,0};
@@ -41,7 +41,8 @@ void setMenu(unsigned int _menuSelector, unsigned int _setting){
 
 void menuMove(unsigned int direction){
 	unsigned int i;
-
+	char str_txt[30];
+	enableInputs(0);
 	for (i = 0; i<numMenuItems; i++){
 		settingsOld[i] = settings[i];
 		menuColours[i] = _BLACK;
@@ -64,7 +65,25 @@ void menuMove(unsigned int direction){
 	}
 	//printf("%d %d\n", menuSelector, settings[menuSelector]);// For debug only
 
-	// Instantaneous effects
+
+	// Instantaneous effects of the menu
+	if ((menuSelector == 2) && (settings[menuSelector] != settingsOld[menuSelector])){ // Volume -- requires work
+		sprintf(str_txt, "<%d>", settingsOld[2]);
+		pongSprites_writeText(242, 115, 1, str_txt, _WHITE); ResetWDT();
+		sprintf(str_txt, "<%d>", settings[2]);
+		pongSprites_writeText(242, 115, 1, str_txt, _MAGENTA); ResetWDT();
+
+		if (settings[2] != 0){
+			enableSound(1);
+			setVolume(settings[2]);
+		} else {
+			enableSound(0);
+		}
+
+		//Sound(G4, 50); ResetWDT();
+		//paddleBeep();
+	}
+
 	if (menuSelector == 3){
 		if (settings[3] == 1){ 			// If press right on Reset
 			settings[3] = 0;			// Reset setting
@@ -83,6 +102,7 @@ void menuMove(unsigned int direction){
 	usleep(200000); //paddleBeep();  // Prevent keyboard bounce
 	emptyFIFO();
 	ResetWDT();
+	enableInputs(1);
 }
 
 void startScreen(){
@@ -140,7 +160,7 @@ void gameMenu(){
 	Displays_Refresh();
 	enableInputs(1);
 	while(getInputMode() == MENUS){
-		if ((menuSelector != menuSelectorOld) || (memcmp(&settings, &settingsOld, sizeof(int)) != 0)){
+		if ((menuSelector != menuSelectorOld) || (settings[menuSelector] != settingsOld[menuSelector])){
 			// Clear screen and set input mode
 			//Displays_clearScreen();
 
@@ -158,6 +178,11 @@ void gameMenu(){
 			pongSprites_writeText(75, 165, 1, "START >", menuColours[4]); ResetWDT();
 
 			// Options -- Requires work
+
+			if (settings[2] != settingsOld[2]){
+				Sound(G4, 50);
+			}
+
 			if (menuSelector == 0){ // Game mode
 				if (settings[0] == 1){ 			// If press right on Reset
 					pongSprites_writeText(240, 65, 1, "<AI>", _WHITE); ResetWDT();
@@ -168,13 +193,6 @@ void gameMenu(){
 					pongSprites_writeText(240, 65, 1, "<AI>", _MAGENTA); ResetWDT();
 					gameMode = GAME_AI;
 				}
-			}
-
-			if (menuSelector == 2){ // Volume -- requires work
-				pongSprites_writeText(242, 115, 1, str_txt, _WHITE); ResetWDT();
-				sprintf(str_txt, "<%d>", settings[2]);
-				pongSprites_writeText(242, 115, 1, str_txt, _MAGENTA); ResetWDT();
-				setVolume(settings[2]);
 			}
 
 			Displays_forceRefresh();
@@ -192,8 +210,8 @@ void gameMenu(){
 
 void testScreen_AI( void ){
 	int dir = 270;
-	int x;
-	int variable = 240; //240
+	//int x;
+	//int variable = 240; //240
 
 	// Clear screen and set input mode
 	Displays_clearScreen();
@@ -244,8 +262,8 @@ void testScreen_AI( void ){
 
 void testScreen( void ){
 	int dir = 0;
-	int x;
-	int variable = 240; //240
+	//int x;
+	//int variable = 240; //240
 
 	// Clear screen and set input mode
 	Displays_clearScreen();
@@ -271,16 +289,16 @@ void testScreen( void ){
 			paddleBeep();
 			enableInputs(1);
 			dir = 180;
-			pongEngine_moveBall(dir, 1);
+			pongEngine_moveBall(dir, 2);
 		} else if ( pongEngine_getBallLocation_x() >= 312 ){
 			pongEngine_addPoint(1);
 			enableInputs(0);
 			ballOutBeep();
 			enableInputs(1);
 			dir = 0;
-			pongEngine_moveBall(dir, 1);
+			pongEngine_moveBall(dir, 2);
 		}
-		pongEngine_moveBall(dir, 1);
+		pongEngine_moveBall(dir, 2);
 	}
 	//gameEngine_paddleDestroy(1);
 	//gameEngine_paddleDestroy(2);

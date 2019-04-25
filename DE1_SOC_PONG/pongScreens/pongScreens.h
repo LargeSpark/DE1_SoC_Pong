@@ -5,11 +5,12 @@
  *      Author: Sam
  */
 
-#ifndef PONGSCREENS_PONGSCREENS_H_
-#define PONGSCREENS_PONGSCREENS_H_
+#ifndef PONGSCREENS_H_
+#define PONGSCREENS_H_
 
 #include "../pongInputs/pongInputs.h"
 #include "../pongSound/pongSound.h"
+#include "../pongSound/notes.h"
 #include "../pongEngine/pongSprites.h"
 #include "../pongDisplay/pongDisplay.h"
 #include "../DE1SoC_SevenSeg/sevenSeg.h"
@@ -27,12 +28,16 @@
 #define _CYAN    (_GREEN | _BLUE)
 #define _MAGENTA (_BLUE | _RED)
 
+void menuMove(unsigned int direction);
+
 void setMenu(unsigned int _menuSelector, unsigned int _setting);
+
+void startScreen( void );
 
 void testScreen( void );
 
-void testScreeen_AI( void );
+void testScreen_AI( void );
 
-void startMenu( void );
+void gameMenu( void );
 
-#endif /* PONGSCREENS_PONGSCREENS_H_ */
+#endif /* PONGSCREENS_H_ */

@@ -1,8 +1,10 @@
 #ifndef PONGENGINE_H
 #define PONGENGINE_H
 
+#include <stdlib.h>
 #include <cmath>
 #include "pongSprites.h"
+#include "../DE1SoC_SevenSeg/sevenSeg.h"
 #include "../HPS_Watchdog/HPS_Watchdog.h"
 #include "../pongDisplay/pongDisplay.h"
 #define PI 3.14159265359
@@ -22,6 +24,7 @@ void pongEngine_setBallLocation(int x, int y);
 int pongEngine_getBallAngle(void);
 int pongEngine_getBallLocation_x(void);
 int pongEngine_getBallLocation_y(void);
+void pongEngine_resetBallLoc( void );
 /*############ Paddle Functions ############*/
 void pongEngine_paddleMove(int player, int direction, int speed);
 void pongEngine_paddleSetYLimits(int maxy, int miny);

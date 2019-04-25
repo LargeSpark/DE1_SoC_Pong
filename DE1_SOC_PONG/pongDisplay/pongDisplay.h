@@ -4,6 +4,7 @@
 #include "../DE1Soc_LT24/DE1Soc_LT24.h"
 #include "../DE1Soc_VGA/DE1Soc_VGA.h"
 #include "../HPS_Watchdog/HPS_Watchdog.h"
+#include <string.h>
 
 #define NOFRAMEBUFFER 0
 #define SOFTWAREFB 1
@@ -12,7 +13,7 @@
 #define HARDWAREFB 4
 #define FASTFB 5
 
-void Displays_init(volatile short vga_PixelAddress, unsigned volatile int vga_CharacterAddress, unsigned volatile int lcd_pio_base, unsigned volatile int lcd_hw_base);
+void Displays_init(volatile int vga_PixelAddress, unsigned volatile int vga_CharacterAddress, unsigned volatile int lcd_pio_base, unsigned volatile int lcd_hw_base);
 void Displays_drawPixel(int x, int y, short colour);
 void Displays_frameSkip(int skipamount);
 void Displays_clearScreen( void );
@@ -23,6 +24,7 @@ void Displays_setWindow(int minx, int miny, int maxx, int maxy);
 short Displays_getPixel(int x, int y);
 void Displays_mode(int mode);
 void Displays_fillColour(short colour);
+void Displays_mode(int mode);
 
 //Functions not intended to be used outside of pongDisplay.cpp
 

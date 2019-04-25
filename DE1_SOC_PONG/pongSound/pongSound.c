@@ -35,10 +35,9 @@ signed int audio_sample = 0;
 void timerISR(HPSIRQSource interruptID, bool isInit, void* initParams) {
     if (!isInit) {
         volatile unsigned int * HPS_timer_ptr = (unsigned int *) 0xFFC08000;
-        int temp = 0;
         //Clear the Timer Interrupt Flag
         //By reading timer end of interrupt register
-        temp = HPS_timer_ptr[3];
+        HPS_timer_ptr[3];
         // Turn sound off
         sound = 0;
     }
@@ -98,6 +97,7 @@ void Sound(int _freq, float _duration){
 				*audio_left_ptr = audio_sample;
 				*audio_right_ptr = audio_sample;
 			}
+			ResetWDT();
 		}
 		// Disable timer ISR
 		HPS_timer_ptr[2] = 0x02; // mode = 1, enable = 0
@@ -112,6 +112,10 @@ void enableSound(unsigned int _onoff){
 
 void toggleSound(){
 	if (SoundOn == 1) { SoundOn = 0; } else SoundOn = 1;
+}
+
+void setVolume(unsigned int _volume){
+	VOLUME = _volume;
 }
 
 // Set sounds here
@@ -131,10 +135,6 @@ void paddleBeep(){
 
 void ballOutBeep(){
 	Sound(B3, 100);
-}
-
-void setVolume(unsigned int _volume){
-	VOLUME = _volume;
 }
 
 // Fast sin lookup

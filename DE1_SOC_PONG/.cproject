@@ -44,6 +44,18 @@
 							<tool id="com.arm.tool.librarian.1092711128" name="ARM Librarian 5" superClass="com.arm.tool.librarian"/>
 						</toolChain>
 					</folderInfo>
+					<folderInfo id="com.arm.eclipse.build.config.baremetal.exe.debug.1701029683.326945435" name="/" resourcePath="pongDisplay">
+						<toolChain id="com.arm.toolchain.baremetal.exe.debug.1472870902" name="ARM Compiler 5 (DS-5 built-in)" superClass="com.arm.toolchain.baremetal.exe.debug" unusedChildren="">
+							<option id="com.arm.toolchain.ac5.option.target.cpu_fpu.1838850382.1310686385" superClass="com.arm.toolchain.ac5.option.target.cpu_fpu.1838850382"/>
+							<option id="com.arm.toolchain.ac5.option.fppcs.1938089168.1549641749" name="Floating-point PCS" superClass="com.arm.toolchain.ac5.option.fppcs.1938089168"/>
+							<option id="com.arm.toolchain.ac5.option.inst.187976890.1523668600" name="Instruction set" superClass="com.arm.toolchain.ac5.option.inst.187976890"/>
+							<tool id="com.arm.tool.c.compiler.baremetal.exe.debug.1299259722" name="ARM C Compiler 5" superClass="com.arm.tool.c.compiler.baremetal.exe.debug.3241643"/>
+							<tool id="com.arm.tool.cpp.compiler.baremetal.exe.debug.872675047" name="ARM C++ Compiler 5" superClass="com.arm.tool.cpp.compiler.baremetal.exe.debug.1965236851"/>
+							<tool id="com.arm.tool.assembler.1900176850" name="ARM Assembler 5" superClass="com.arm.tool.assembler.1643610579"/>
+							<tool id="com.arm.tool.c.linker.1950745841" name="ARM Linker 5" superClass="com.arm.tool.c.linker.686831516"/>
+							<tool id="com.arm.tool.librarian.749724040" name="ARM Librarian 5" superClass="com.arm.tool.librarian.1092711128"/>
+						</toolChain>
+					</folderInfo>
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>

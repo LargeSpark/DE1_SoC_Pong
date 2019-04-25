@@ -2,15 +2,15 @@
 #include "pongDisplay/pongDisplay.h"
 #include "pongEngine/pongSprites.h"
 #include "pongEngine/pongEngine.h"
+#include "pongScreens/pongScreens.h"
 #include "pongInputs/pongInputs.h"
 #include "pongSound/pongSound.h"
-#include "pongScreens/pongScreens.h"
 #include "HPS_Watchdog/HPS_Watchdog.h"
 
 
 int main(void) {
 	int FS = 3;
-	int paddleX;
+	//int paddleX;
 
 	// Initialise displays
 	Displays_init(0xC8000000,0xC9000000,0xFF200060,0xFF200080);
@@ -32,6 +32,8 @@ int main(void) {
 
 	// Run loading screen
 	startScreen();
+
+	// Turn on inputs
 	enableInputs(1);
 	while(1){
 		if (getInputMode() == MENUS){

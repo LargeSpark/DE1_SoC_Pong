@@ -68,15 +68,15 @@ void pongSprites_renderPaddle(int x, int y, short colour){
 	}
 }
 
-void pongSprites_renderRectangle(int x1,int x2, int y1, int y2, short colour){
+void pongSprites_renderRectangle(int x1,int x2, int y1, int y2, int colour){
 	//taken from assignment 1 - graphics library and modified for paddle
 	int height = abs(y2-y1);
 	int width = abs(x1-x2);
 
 	int y=0;
 	int x=0;
-	int oy=0;
-	int ox=0;
+	//int oy=0;
+	//int ox=0;
 
 
 	//find bottom left value

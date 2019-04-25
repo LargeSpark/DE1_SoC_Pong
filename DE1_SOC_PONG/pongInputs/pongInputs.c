@@ -132,11 +132,11 @@ void inputKeyboard( void ) {
 
 void emptyFIFO( void ){
 	int RAVAIL = *(PS2_DATA) & 0xFFFF0000;
-	char temp;
 	while (RAVAIL > 0x1000){
-		//temp = *(PS2_DATA) & 0xFF;
+		char temp;
 		temp = *(PS2_DATA) & 0xFF; // Read necessary to clear FIFO
 		RAVAIL = *(PS2_DATA) & 0xFFFF0000;
+		temp &= temp; // Get rid of annoying warning
 	}
 }
 

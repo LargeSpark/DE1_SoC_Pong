@@ -6,6 +6,7 @@
  */
 
 #include "pongScreens.h"
+#include <string.h>
 
 volatile unsigned int menuSelector = 0;
 volatile unsigned int settings[] = {0,0,4,0,0};

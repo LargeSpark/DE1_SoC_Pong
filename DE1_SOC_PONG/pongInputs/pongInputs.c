@@ -56,6 +56,9 @@ void pushbuttonISR(HPSIRQSource interruptID, bool isInit, void* initParams) {
         else if (press == 8){
         	Input(_S, keySpeed);
         }
+        else if (press == 10){
+        	Input(99, keySpeed);
+        }
     }
     //Reset watchdog.
     HPS_ResetWatchdog();
@@ -162,7 +165,7 @@ void Input(unsigned int key, unsigned int speed){
 		}
 	}
 
-
+//menuMove(unsigned int direction)
 	if (mode == MENUS){
 		if (speed == keyBSpeed){
 			if (key == _UP){

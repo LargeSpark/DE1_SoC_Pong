@@ -135,6 +135,12 @@ void menuMove(unsigned int direction){
 			if (gameModeOld != gameMode){ // Reset score for new game modes
 				pongEngine_resetScore(0);
 			}
+			// Ensure last ball is gone for animation
+			pongSprites_renderRectangle(50-8, 50+8, 71-8, 180, _WHITE);
+			for (i = 50; i < 260; i++){
+				pongSprites_renderBall(i, 	(71+(int)25*menuSelector), _WHITE); ResetWDT(); // Get rid of old ball
+				pongSprites_renderBall(i+1, (71+(int)25*menuSelector), _BLACK); ResetWDT();   // Replace
+			}
 			setInputMode(gameMode); 	// Begin playing
 		}
 	}

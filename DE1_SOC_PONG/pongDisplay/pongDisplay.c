@@ -129,7 +129,7 @@ void Displays_drawPixel(int x, int y, short colour){
 void Displays_clearScreen(){
 	VGA_clearScreen();
 	LT24_clearDisplay(0x000);
-	Displays_fillColour(0);
+	//Displays_fillColour(0); //Unneccesary? SW
 }
 
 void Displays_Refresh(){

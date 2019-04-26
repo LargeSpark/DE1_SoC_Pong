@@ -9,12 +9,12 @@
 //#include <string.h>
 
 volatile unsigned int menuSelector = 0;
-volatile unsigned int settings[] = {0,0,4,0,0};
+volatile unsigned int settings[] = {0,5,4,0,0};
 volatile unsigned int menuSelectorOld = 0;
-volatile unsigned int settingsOld[] = {0,0,4,0,0};
+volatile unsigned int settingsOld[] = {0,5,4,0,0};
 short menuColours[] = {_BLUE, _BLACK, _BLACK, _BLACK, _BLACK};
 
-unsigned int settingsMax[] = {1, 1, 9, 1, 1};
+unsigned int settingsMax[] = {1, 9, 9, 1, 1};
 
 unsigned int numMenuItems = sizeof(settings)/sizeof(int);
 volatile unsigned int gameMode 		= GAME_AI;
@@ -96,6 +96,15 @@ void menuMove(unsigned int direction){
 		}
 	}
 
+	if ((menuSelector == 1) && (settings[menuSelector] != settingsOld[menuSelector])){ // Paddle size
+		sprintf(str_txt, "<%d>", settingsOld[1]);
+		pongSprites_writeText(242, 90, LARGE, str_txt, _WHITE); ResetWDT();
+		sprintf(str_txt, "<%d>", settings[1]);
+		pongSprites_writeText(242, 90, LARGE, str_txt, _MAGENTA); ResetWDT();
+
+		pongSprites_changePaddleSize(settings[1]);
+	}
+
 	if ((menuSelector == 2) && (settings[menuSelector] != settingsOld[menuSelector])){ // Volume
 		sprintf(str_txt, "<%d>", settingsOld[2]);
 		pongSprites_writeText(242, 115, LARGE, str_txt, _WHITE); ResetWDT();
@@ -157,7 +166,6 @@ void gameMenu(){
 
 	setInputMode(MENUS);
 	gameModeOld = gameMode;
-	gameMode = GAME_AI;
 	SDisplay_clearAll();
 
 	// Reset menu
@@ -166,7 +174,6 @@ void gameMenu(){
 		menuColours[i] = _BLACK;
 	}
 	menuColours[0] = _BLUE;
-	sprintf(str_txt, "<%d>", settings[2]);
 
 	//Displays_clearScreen();
 	Displays_fillColour(_WHITE);
@@ -188,6 +195,10 @@ void gameMenu(){
 		pongSprites_writeText(240, 65, LARGE, "<2P>", _MAGENTA); ResetWDT();
 	}
 
+	sprintf(str_txt, "<%d>", settings[1]); // Paddlesize options
+	pongSprites_writeText(242, 90, LARGE, str_txt, _MAGENTA); ResetWDT();
+
+	sprintf(str_txt, "<%d>", settings[2]); // Volume options
 	pongSprites_writeText(242, 115, LARGE, str_txt, _MAGENTA); ResetWDT();
 
 	ResetWDT();
@@ -225,7 +236,6 @@ void testScreen_AI( void ){
 	// Clear screen and set input mode
 	Displays_clearScreen();
 	setInputMode(GAME_AI);
-	pongEngine_resetBallLoc();
 
 	// Initialise engine
 	pongEngine_init();
@@ -277,8 +287,6 @@ void testScreen( void ){
 	// Clear screen and set input mode
 	Displays_clearScreen();
 	setInputMode(GAME);
-
-	pongEngine_resetBallLoc();
 
 	// Initialise engine
 	pongEngine_init();

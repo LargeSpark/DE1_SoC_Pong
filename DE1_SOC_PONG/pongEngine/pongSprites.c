@@ -2,14 +2,8 @@
 
 volatile int sprite_Ball[17][17];
 
-int paddlesize_x;
-int paddlesize_y;
-
-void pongSprites_init(){
-	pongSprites_initBall();
-	paddlesize_x = 5;
-	paddlesize_y = 60;
-}
+int paddlesize_x = 5;
+int paddlesize_y = 60;
 
 void pongSprites_initBall(void){
 	int x = 8;
@@ -149,4 +143,12 @@ void pongSprites_writeText(int x, int y, int size, char *text, short colour){
 			}
 		}
 	}
+}
+
+void pongSprites_changePaddleSize(unsigned int size){
+	paddlesize_y = 60+(size - 5)*10;
+}
+
+unsigned int pongSprites_getPaddleSizeY( void ){
+	return paddlesize_y;
 }

@@ -1,6 +1,5 @@
 #include "pongEngine.h"
 
-int engine_isInit = 0;
 //320x240
 /*############ Ball Globals ############*/
 //Calculated ball path
@@ -40,8 +39,12 @@ int player2Score = 0;
 /*############ General Functions ############*/
 void pongEngine_init(){
 	int topAdjust = 15; //VGA Pixel faults from y
-	pongSprites_init();
 	Displays_clearScreen();
+
+
+	pongEngine_resetPaddles();
+	pongEngine_resetBallLoc();
+
 	pongEngine_paddleCreate(1);
 	pongEngine_paddleCreate(2);
 
@@ -49,10 +52,10 @@ void pongEngine_init(){
 	//create arena
 	//create green area
 	pongSprites_renderRectangle(320,0, topAdjust, 0, (0x1F << 11));
-	if (engine_isInit == 0){
-		pongEngine_paddleSetYLimits(paddleMaxY, paddleMinY+topAdjust+1);
-		engine_isInit = 1;
-	}
+	paddleMinY = pongSprites_getPaddleSizeY()/2;
+	paddleMaxY = 240-paddleMinY;
+
+	pongEngine_paddleSetYLimits(paddleMaxY, paddleMinY+topAdjust+1);
 }
 /*############ Score Keeping ############*/
 void pongEngine_addPoint(int player){
@@ -95,8 +98,8 @@ void pongEngine_refreshScore(){
 	playerscorech[4] = P2number1 + '0';
 	playerscorech[5] = '\0';
 
-	pongSprites_renderRectangle(centre_x - 28,centre_x+ 28 , 17, 17+14, 0x00);
-	pongSprites_renderRectangle(0,320 , 17, 17+14, 0x00);
+	pongSprites_renderRectangle(centre_x - 30,centre_x+ 30 , 17, 17+14, 0x00);
+	//pongSprites_renderRectangle(0,320 , 17, 17+14, 0x00);
 	pongSprites_writeText(centre_x - 28, 17, 1, playerscorech, 0xFFFF);
 	//Displays_forceRefresh();
 }
@@ -123,7 +126,7 @@ void pongEngine_moveBall(int angle, int speed){
 	}
 	//Add speed here
 	//If angle change then calculate new instructions
-	 //Destroy ball to stop ghosting
+	//Destroy ball to stop ghosting
 	if(angle == ballAngle){
 		//To prevent overflow
 		if(ballCurrentPosPath > ballPathInstCounter){
@@ -153,7 +156,9 @@ void pongEngine_moveBall(int angle, int speed){
 }
 
 void pongEngine_resetBallLoc( void ){
-	pongEngine_setBallLocation(centre_x, centre_y);
+	//pongEngine_setBallLocation(centre_x, centre_y); // Avoiding extra ball on startup
+	ballX = centre_x;
+	ballY = centre_y;
 }
 
 void pongEngine_setBallLocation(int x, int y){
@@ -399,8 +404,10 @@ void pongEngine_paddleDestroy(int player){
 }
 
 void pongEngine_resetPaddles(){
-	pongEngine_paddleSetXLocation(1, paddle1X); pongEngine_paddleSetYLocation(1, centre_x);
-	pongEngine_paddleSetXLocation(2, paddle2X); pongEngine_paddleSetYLocation(1, centre_x);
+	pongEngine_paddleDestroy(1);
+	pongEngine_paddleDestroy(2);
+	pongEngine_paddleSetYLocation(1, centre_y);
+	pongEngine_paddleSetYLocation(2, centre_y);
 }
 
 unsigned int pongEngine_getPaddleY(unsigned int paddle){

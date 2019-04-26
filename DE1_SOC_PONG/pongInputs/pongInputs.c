@@ -144,11 +144,11 @@ void Input(unsigned int key, unsigned int speed){
 	if ((mode == GAME) || (mode == GAME_AI)){ // Common to games
 		if (key == _W){
 			pongEngine_paddleMove(1, DOWN, 	speed);
-			pongEngine_destroyBall(); // Partially repairs artifacts - constrains them to path of ball
+			//pongEngine_destroyBall(); // Partially repairs artifacts - constrains them to path of ball
 		}
 		else if (key == _S){
 			pongEngine_paddleMove(1, UP, 	speed);
-			pongEngine_destroyBall();
+			//pongEngine_destroyBall();
 		} else if (key == _ESC){ // Escape
 			setInputMode(MENUS);
 		}
@@ -157,11 +157,11 @@ void Input(unsigned int key, unsigned int speed){
 	if (mode == GAME){ // 2P only
 		if (key == _UP){
 			pongEngine_paddleMove(2, DOWN, 	speed);
-			pongEngine_destroyBall();
+			//pongEngine_destroyBall();
 		}
 		else if (key == _DOWN){
 			pongEngine_paddleMove(2, UP, 	speed);
-			pongEngine_destroyBall();
+			//pongEngine_destroyBall();
 		}
 	}
 

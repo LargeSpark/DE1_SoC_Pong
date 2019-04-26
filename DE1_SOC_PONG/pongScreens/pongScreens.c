@@ -20,6 +20,9 @@ unsigned int numMenuItems = sizeof(settings)/sizeof(int);
 volatile unsigned int gameMode 		= GAME_AI;
 volatile unsigned int gameModeOld 	= GAME_AI;
 
+volatile unsigned int *slider_ptr = (unsigned int *)0xFF200040;
+unsigned int last_slider;
+
 /*
 signed int settingStore[4][4] = { { , , , },
 								{ , , , },
@@ -152,6 +155,7 @@ void menuMove(unsigned int direction){
 }
 
 void startScreen(){
+	last_slider = *slider_ptr;
 	// Clear screen and set input mode
 	//Displays_fillColour(_GREEN);
 	Displays_fillColour(_RED);
@@ -231,6 +235,7 @@ void gameMenu(){
 		}
 	ResetWDT();
 	}
+	last_slider = *slider_ptr;
 	Displays_clearScreen();
 }
 
@@ -279,6 +284,11 @@ void testScreen_AI( void ){
 		}
 
 		pongEngine_moveBall(dir, 2);
+
+		if (*slider_ptr != last_slider){
+			setInputMode(MENUS);
+			last_slider = *slider_ptr;
+		}
 	}
 	//gameEngine_paddleDestroy(1);
 	//gameEngine_paddleDestroy(2);
@@ -322,6 +332,11 @@ void testScreen( void ){
 			pongEngine_moveBall(dir, 2);
 		}
 		pongEngine_moveBall(dir, 2);
+
+		if (*slider_ptr != last_slider){
+			setInputMode(MENUS);
+			last_slider = *slider_ptr;
+		}
 	}
 	//gameEngine_paddleDestroy(1);
 	//gameEngine_paddleDestroy(2);

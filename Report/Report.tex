@@ -74,15 +74,19 @@
   \or % page=1
   \or % page = 2
   \or Alexander Bolton% page = 3
-  \or Author% page = 4
-  \or Author% page = 5
-  \or Author% page = 6
-  \or Author% page = 7
-  \or Author% page = 8
-  \or Author% page = 9
-  \or Author% page = 10
-  \or Author% page = 11
-  \or Author% page = 12
+  \or Alexander Bolton% page = 4
+  \or Alexander Bolton% page = 5
+  \or Alexander Bolton% page = 6
+  \or Alexander Bolton% page = 7
+  \or Sam Wilcock% page = 8
+  \or Sam Wilcock% page = 9
+  \or Sam Wilcock% page = 10
+  \or Sam Wilcock% page = 11
+  \or John Jakobsen% page = 12
+  \or John Jakobsen% page = 13
+  \or John Jakobsen% page = 14
+  \or John Jakobsen% page = 15
+  \or Conclusion Author% page = 16
   \or Author% page = 13
   \or % page = 14
   \else
@@ -176,7 +180,8 @@ This code extracted from the project shows how a pixel is set in C.
 \begin{flushleft}
 This subsection discusses the display driver which allows pixels to be set to a frame buffer and refreshed on command. The frame buffer is made up of 2 arrays which were a front frame buffer (what's currently on screen) and a rear frame buffer (what wants to be put onto the screen). The advantage of this is that it allows pixels to be checked and allows refresh on command. 
 \\ \- \\
- Once the screen is desired to be refreshed the memory is compared between the front frame buffer and rear frame buffer to check if they are the same. If not the frame buffers are updated by checking each pixel in the frame buffers values. Any differences then update to display and to the front frame buffer. This is a very slow process so multiple frame buffers were created to experiment with. This experimentation involved splitting the screen into multiple sections and finding how many sections would be the fastest. 
+ Once the screen is desired to be refreshed the memory is compared between the front frame buffer and rear frame buffer to check if they are the same. If not the frame buffers are updated by checking each pixel in the frame buffers values. Any differences then update to display and to the front frame buffer. When first creating this frame buffer a problem with articulating occurred which is believed due to a memory overflow. The decision was made to split the frame buffer into 2 halves which reduced the memory used in each array which eliviated the issue. \\ \- \\
+Checking the pixels in a frame buffer is a very slow process so multiple frame buffers were created to experiment with. This experimentation involved splitting the screen into multiple sections and finding how many sections would be the fastest. This improved performance as multiple frame buffers were checked in memory and making the changes was done by comparing all pixels in a smaller area when there was a change in that area.
 \end{flushleft}
 \newpage
 \subsection{Sprites and Text}

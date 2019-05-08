@@ -1,8 +1,8 @@
 \contentsline {section}{\numberline {1}Introduction}{3}{section.1}
 \contentsline {section}{\numberline {2}Display and Graphics}{4}{section.2}
 \contentsline {subsection}{\numberline {2.1}VGA Driver}{4}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Sprites}{5}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Graphics Driver}{6}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.2}Display Driver}{5}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Sprites and Text}{6}{subsection.2.3}
 \contentsline {subsection}{\numberline {2.4}Game Engine Graphics}{7}{subsection.2.4}
 \contentsline {section}{\numberline {3}Controls and Menus}{8}{section.3}
 \contentsline {section}{\numberline {4}Game Physics}{9}{section.4}

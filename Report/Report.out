@@ -1,8 +1,8 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
 \BOOKMARK [1][-]{section.2}{Display and Graphics}{}% 2
 \BOOKMARK [2][-]{subsection.2.1}{VGA Driver}{section.2}% 3
-\BOOKMARK [2][-]{subsection.2.2}{Sprites}{section.2}% 4
-\BOOKMARK [2][-]{subsection.2.3}{Graphics Driver}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.2}{Display Driver}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Sprites and Text}{section.2}% 5
 \BOOKMARK [2][-]{subsection.2.4}{Game Engine Graphics}{section.2}% 6
 \BOOKMARK [1][-]{section.3}{Controls and Menus}{}% 7
 \BOOKMARK [1][-]{section.4}{Game Physics}{}% 8

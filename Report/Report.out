@@ -1,7 +1,11 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
 \BOOKMARK [1][-]{section.2}{Display and Graphics}{}% 2
-\BOOKMARK [1][-]{section.3}{Controls and Game Engine}{}% 3
-\BOOKMARK [1][-]{section.4}{Game Physics}{}% 4
-\BOOKMARK [1][-]{section.5}{Conclusion}{}% 5
-\BOOKMARK [1][-]{section.6}{Appendix}{}% 6
-\BOOKMARK [1][-]{section.6}{References}{}% 7
+\BOOKMARK [2][-]{subsection.2.1}{VGA Driver}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Sprites}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Graphics Driver}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{Game Engine Graphics}{section.2}% 6
+\BOOKMARK [1][-]{section.3}{Controls and Menus}{}% 7
+\BOOKMARK [1][-]{section.4}{Game Physics}{}% 8
+\BOOKMARK [1][-]{section.5}{Conclusion}{}% 9
+\BOOKMARK [1][-]{section.6}{Appendix}{}% 10
+\BOOKMARK [1][-]{section.6}{References}{}% 11

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.3.26)  8 MAY 2019 18:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.3.26)  8 MAY 2019 18:58
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1201,34 +1201,39 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [2] [3]
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 136.
- [4] [5] [6] [7] [8] [9] [10] [11] (./Report.bbl
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 144.
+LaTeX Font Info:    Try loading font information for TS1+phv on input line 146.
+
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1phv.fd
+File: ts1phv.fd 2001/06/04 scalable font definitions for TS1/phv.
+) [4] [5]
+[6] [7] [8] [9] [10] [11] (./Report.bbl
 
 LaTeX Warning: Empty `thebibliography' environment on input line 24.
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 159.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 179.
  [12]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 159.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 179.
  (./Report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 159.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 159.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 179.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 179.
 Package rerunfilecheck Info: File `Report.out' has not changed.
 (rerunfilecheck)             Checksum: E2C144098D06A2D314D1A34B6BC888CE;593.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 159.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 179.
  ) 
 Here is how much of TeX's memory you used:
- 10028 strings out of 492982
- 142522 string characters out of 6134896
- 325463 words of memory out of 5000000
- 13361 multiletter control sequences out of 15000+600000
- 70515 words of font info for 78 fonts, out of 8000000 for 9000
+ 10059 strings out of 492982
+ 142957 string characters out of 6134896
+ 325473 words of memory out of 5000000
+ 13388 multiletter control sequences out of 15000+600000
+ 70828 words of font info for 79 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 30i,11n,54p,227b,324s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 30i,11n,54p,514b,324s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on Report.pdf (12 pages, 46984 bytes).
+Output written on Report.pdf (12 pages, 48995 bytes).
 PDF statistics:
  145 PDF objects out of 1000 (max. 8388607)
  125 compressed objects within 2 object streams

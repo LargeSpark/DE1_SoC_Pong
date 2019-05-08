@@ -214,7 +214,18 @@ When generating and rendering text a library of hex values is used. The user inp
 \newpage
 \subsection{Game Engine Graphics}
 \begin{flushleft}
-•
+This section explains how the game engine uses sprites to make a usable resource in the final game engine. In the game engine each sprite (1 ball, 2 paddles) are kept a track of with coordinates set as global values. Each sprite can be created and destroyed using commands such as 'pongEngine\_paddleCreate(number of paddle)'. 
+\\ \- \\
+Once the ball is created it is required to be moved. This is carried out using the function 'pongEngine\_moveBall(int angle, int speed)'. To do this code was created to make a ball path. The ball path is saved as a set of instructions in an array. \\ \- \\Firstly to create the set of instructions the angle of the path must be found. This is carried out by finding the angle from the centre of the ball to the outside pixels of the screen. The coordinates are input into function 'pongEngine\_calcAngle' from a for loop which outputs an angle between 2 pixel co-ordinates. Once the angle has been found these coordinates are input into the function 'pongEngine\_genBallPathInst(ballX, ballY, angleX, angleY)' with ballX, ballY being the current coordinates of the ball and angleX, angleY being the outside coordinates which are at the required angle. This function generates a set of instructions to an array of instructions. The set of instructions is created using Bresenham's line theorem which creates a non-visible line which the ball can follow. If the angle is not changed then the instructions will not be regenerated. Everytime the ball moves it is first destroyed (turns all pixels black) and then redrawn in its new location. 
+\begin{figure}[H]
+	\centering
+	\lstinputlisting[language=C, firstline=316, lastline=323, frame=bt]{../DE1_SOC_PONG/pongEngine/pongEngine.c}
+		\caption{Code used to calculate angle between 2 co-ordinates}
+\end{figure}
+\- \\
+The paddles have 2 functions ('pongEngine\_paddleSetYLocation(int player, int y)' and 'pongEngine\_paddleSetXLocation(int player, int x)') which set the x and y value, destroys the selected paddle, redraws it, and finally stores the values into memory. These are used on initialisation, whilst in game the function 'pongEngine\_paddleMove(int player, int direction, int speed)' is used. This function takes the values of player, direction, and speed. The speed set is how many pixels the paddle must be moved. Direction is either up or down.
+\\ \- \\
+To update the score three functions are used, one function is to add a point to a selected player which increases the value of score in a variable. Another function resets the scores to zero. Finally a refresh score function which takes the scores from the stored variables and renders the score on screen.The score values are split down into individual numbers and then sent to the seven segment displays. The numbers are also turned into a char array. Every time the score is refreshed a black rectangle is drawn over the text to make it blank and then it is re-rendered using 'pongSprites\_WriteText'. An issue we encountered was random pixels appearing next to the score. The error was spotted by team member Sam Wilcock to be that an char array exit character was missing.
 \end{flushleft}
 \newpage
 \section{Controls and Menus}

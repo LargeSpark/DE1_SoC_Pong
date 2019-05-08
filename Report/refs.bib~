@@ -1,3 +1,0 @@
-@book{terasic_2014, title={TerasIC DE1-Soc User Manual}, publisher={TerasIC}, author={TerasIC}, year={2014}}
-@misc{stump_2012, title={Verilog VGA Clock Controller}, url={https://github.com/mstump/verilog-vga-controller/blob/master/src/clock.v}, journal={GitHub}, author={Stump, M}, year={2012}, month={Jun}, note = {Accessed April 2019}}
-@misc{stack_overflow, title={Split up a four-digit number in verilog}, url={https://stackoverflow.com/questions/22882882/split-up-a-four-digit-number-in-verilog}, journal={Stack Overflow}}

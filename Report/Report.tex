@@ -153,14 +153,22 @@ This subsection discusses the VGA driver and how it was implemented in the proje
 The pixels are layed out with the y coordinate starting from the top to bottom of the screen. The x coordinate is from right to left of the screen as shown in figure 1.
 \begin{figure}[H]
 	\centering
-	\fbox{\includegraphics[width=0.5\textwidth]{./images/VGAPixels.png}}
+	\fbox{\includegraphics[width=0.4\textwidth]{./images/VGAPixels.png}}
 	\caption{Pixel layout for pixel buffer of VGA controller \cite{altera_2014}}
 \end{figure}
+\- \\
 Each pixel once addressed can be set to a value of colour with by setting bits for red, green, and blue. Each colour is allocated 5 bits which indicate the strength of colour for the pixel as shown in figure 2. 
 \begin{figure}[H]
 	\centering
-	\fbox{\includegraphics[width=0.5\textwidth]{./images/VGAPixelcolour.png}}
+	\fbox{\includegraphics[width=0.3\textwidth]{./images/VGAPixelcolour.png}}
 	\caption{Pixel Colour Layout \cite{altera_2014}}
+\end{figure}
+\- \\
+This code extracted from the project shows how a pixel is set in C.
+\begin{figure}[H]
+	\centering
+	\lstinputlisting[language=C, firstline=20, lastline=25, frame=bt]{../DE1_SOC_PONG/DE1SoC_VGA/DE1SoC_VGA.c}
+		\caption{Code used to set pixel to a colour.}
 \end{figure}
 \end{flushleft}
 \newpage

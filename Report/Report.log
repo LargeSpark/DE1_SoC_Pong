@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.3.26)  8 MAY 2019 21:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.3.26)  8 MAY 2019 21:23
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1206,51 +1206,57 @@ LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
 File: ./images/VGAPixels.png Graphic file (type png)
 <use ./images/VGAPixels.png>
 Package pdftex.def Info: ./images/VGAPixels.png  used on input line 156.
-(pdftex.def)             Requested size: 241.84843pt x 175.82382pt.
+(pdftex.def)             Requested size: 193.47578pt x 140.65555pt.
 <./images/VGAPixelcolour.png, id=91, 567.11874pt x 151.56625pt>
 File: ./images/VGAPixelcolour.png Graphic file (type png)
 <use ./images/VGAPixelcolour.png>
-Package pdftex.def Info: ./images/VGAPixelcolour.png  used on input line 162.
-(pdftex.def)             Requested size: 241.84843pt x 64.63565pt.
- [4 <./images/VGAPixels.png> <./images/VGAPixelcolour.png>]
-LaTeX Font Info:    Try loading font information for TS1+phv on input line 169.
-
+Package pdftex.def Info: ./images/VGAPixelcolour.png  used on input line 163.
+(pdftex.def)             Requested size: 145.11053pt x 38.78186pt.
+ (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
+)
+(../DE1_SOC_PONG/DE1SoC_VGA/DE1SoC_VGA.c
+LaTeX Font Info:    Try loading font information for TS1+phv on input line 23.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1phv.fd
 File: ts1phv.fd 2001/06/04 scalable font definitions for TS1/phv.
-) [5] [6] [7] [8]
-[9] [10] [11] (./Report.bbl
+)) [4 <./images/VGAPixels.png> <./images/VGAPixelcolour.png>] [5] [6] [7] [8] [
+9] [10] [11]
+(./Report.bbl
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <12> not available
 (Font)              Font shape `T1/phv/m/sl' tried instead on input line 25.
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 197.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 205.
  [12]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 197.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 205.
  (./Report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 197.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 197.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 205.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 205.
 Package rerunfilecheck Info: File `Report.out' has not changed.
 (rerunfilecheck)             Checksum: E2C144098D06A2D314D1A34B6BC888CE;593.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 197.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 205.
  ) 
 Here is how much of TeX's memory you used:
- 10096 strings out of 492982
- 143497 string characters out of 6134896
- 326506 words of memory out of 5000000
- 13403 multiletter control sequences out of 15000+600000
- 77033 words of font info for 93 fonts, out of 8000000 for 9000
+ 10503 strings out of 492982
+ 147540 string characters out of 6134896
+ 371250 words of memory out of 5000000
+ 13790 multiletter control sequences out of 15000+600000
+ 80236 words of font info for 96 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 30i,11n,54p,514b,342s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,11n,75p,514b,1609s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/fourier/fourier-ms.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/adobe/utopia/putr8a.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/adobe/utopia/putri8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
 helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhv
 r8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on Report.pdf (12 pages, 82795 bytes).
+Output written on Report.pdf (12 pages, 85014 bytes).
 PDF statistics:
- 171 PDF objects out of 1000 (max. 8388607)
- 145 compressed objects within 2 object streams
- 30 named destinations out of 1000 (max. 500000)
+ 183 PDF objects out of 1000 (max. 8388607)
+ 157 compressed objects within 2 object streams
+ 38 named destinations out of 1000 (max. 500000)
  104 words of extra memory for PDF output out of 10000 (max. 10000000)
 

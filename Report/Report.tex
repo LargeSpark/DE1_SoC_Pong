@@ -1,0 +1,149 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[left=2cm, right=2cm, top=2cm]{geometry}
+\usepackage{graphicx} 
+\usepackage[export]{adjustbox}
+\usepackage{titlepic}
+\usepackage{amssymb}
+\usepackage{titling}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{color}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{wrapfig}
+\usepackage{helvet}
+\usepackage{fourier} 
+\usepackage{array}
+\usepackage{makecell}
+%\usepackage[square,sort,comma,numbers]{natbib}
+\usepackage{ragged2e}
+\usepackage{placeins}
+\bibliographystyle{IEEEtran}
+\usepackage{float}
+\setlength{\belowcaptionskip}{-15pt}
+\renewcommand{\familydefault}{\sfdefault}
+\newcommand{\squeezeup}{\vspace{-2.5mm}}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\renewcommand\theadalign{bc}
+\renewcommand\theadfont{\bfseries}
+\renewcommand\theadgape{\Gape[4pt]}
+\renewcommand\cellgape{\Gape[4pt]}
+
+\usepackage{fancyhdr,lipsum}
+\pagestyle{fancy}
+\fancyhf{}% Clear header/footer
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    %citecolor=gray,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black,
+    linktoc=all
+}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\tiny,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+
+\chead{%
+  \ifcase\value{page}
+  % empty test for page = 0
+  \or % page=1
+  \or % page = 2
+  \or Author% page = 3
+  \or Author% page = 4
+  \or Author% page = 5
+  \or Author% page = 6
+  \or Author% page = 7
+  \or Author% page = 8
+  \or Author% page = 9
+  \or Author% page = 10
+  \or Author% page = 11
+  \or Author% page = 12
+  \or Author% page = 13
+  \or % page = 14
+  \else
+  % Empty chead here!
+  \fi
+}
+
+\cfoot{\thepage}
+
+\lstset{style=mystyle}
+
+\pretitle{%
+  \begin{center}
+  \LARGE
+\includegraphics[width=0.5\textwidth, right]{UniLogo.png}\\[\bigskipamount]
+
+\hspace{15cm}
+
+\hspace{27cm}
+
+\hspace{27cm}
+
+\hspace{10cm}
+}
+\posttitle{\end{center}}	
+
+\begin{document}
+
+\title{\\ \textbf{ELEC5620M \\ Mini Project \\ \- \\ DE1-SoC Pong }}
+\author{Alexander Bolton - 200938078 \\ Sam Wilcock - \\ John Jakobsen - }
+\date{May 2019}
+\maketitle
+\begin{center}
+Submitted in accordance with the requirements for the degree of \\
+Master of Science in Embedded Systems Engineering
+\end{center}
+\vfill
+\begin{center}
+The University of Leeds \\  School of Electronic and Electrical Engineering
+\end{center}
+\newpage
+
+\tableofcontents
+\newpage 
+\section{Introduction}
+\begin{flushleft}
+Introduction
+\end{flushleft}
+\newpage
+
+\newpage
+\section{Conclusion}
+\begin{flushleft}
+
+\end{flushleft}
+\newpage
+\section{Appendix}
+
+\newpage
+\addcontentsline{toc}{section}{References}
+\begin{flushleft}
+\bibliography{refs}
+\end{flushleft}
+\end{document}

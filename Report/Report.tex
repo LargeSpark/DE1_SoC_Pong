@@ -195,7 +195,21 @@ A number of function were created for use by the engine. These are functions suc
 \newpage
 \subsection{Sprites and Text}
 \begin{flushleft}
-•
+This subsection discusses how sprites are rendered and created in the library and how text is also created. There are 2 main sprites for this game of pong.
+\\ \- \\
+The first sprite is the ball. The ball must be initialised into an array before it can be rendered. To initialise the ball Pythagoras theorem was used (as previously completed in the graphics library of a previous assessment in this module). Equation 3 is Pythagoras theorem equation which is used. When the result is equal to or is less than radius squared then the value in the array is set to 1. The code iterates from the centre point for all values of x and y and sets an array. This was created as such to allow the ball to be dynamically set in size. Once rendered the ball can be rendered by providing coordinates of where to render (from centre of ball) and a colour. This will use these values and set the pixels to the frame buffer.
+\begin{equation}
+	Radius^{2} = x^{2} + y^{2}
+\end{equation}
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.3\textwidth]{./images/PyCir.png}}
+	\caption{Pythagoras Theorem demonstrated inside circle}
+\end{figure}
+\- \\
+The paddle was set by iterating through a square of defined values and setting pixels to the colour desired by iterating through the height and width of the rectangle and setting values to the desired colour.
+\\ \- \\
+When generating and rendering text a library of hex values is used. The user inputs the character array of text they wish to use. These hex values are at 90 degree angles so the code first rotates the text 90 degrees to be upright for each letter in the char array into a letter array. A for loop is then used to set the pixels of the letter array to the frame buffer. If small then the is simply reads from the letter array and sets the appropriate pixel. If large 1 pixel in the letter array sets 4 pixels in the frame buffer. This allows large bold text. 
 \end{flushleft}
 \newpage
 \subsection{Game Engine Graphics}

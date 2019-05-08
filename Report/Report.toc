@@ -6,6 +6,7 @@
 \contentsline {subsection}{\numberline {2.4}Game Engine Graphics}{7}{subsection.2.4}
 \contentsline {section}{\numberline {3}Controls and Menus}{8}{section.3}
 \contentsline {section}{\numberline {4}Game Physics}{9}{section.4}
-\contentsline {section}{\numberline {5}Conclusion}{10}{section.5}
-\contentsline {section}{\numberline {6}Appendix}{11}{section.6}
-\contentsline {section}{References}{12}{section.6}
+\contentsline {section}{\numberline {5}Problems Encountered}{10}{section.5}
+\contentsline {section}{\numberline {6}Conclusion}{11}{section.6}
+\contentsline {section}{\numberline {7}Appendix}{12}{section.7}
+\contentsline {section}{References}{13}{section.7}

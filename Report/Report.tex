@@ -143,7 +143,25 @@ Section 5 will be the conclusion which will summarise the report and discuss if 
 \section{Display and Graphics}
 \subsection{VGA Driver}
 \begin{flushleft}
-•
+This subsection discusses the VGA driver and how it was implemented in the project. The VGA video out supports 640x480 however in this project is set to the default value of 320x240 pixels. The image displays from the VGA controller which is addressed from a pixel buffer. Each pixel value is addressable using equation 1. An example of the pixel at 0,1 is shown in equation 2. The default base address for the pixel buffer is 0xC8000000 as stated in the manual. \cite{altera_2014} 
+\begin{equation}
+	VGA_{base address} + (pixelX_{coordinates}\:pixelY_{coordinates}\:0_{2})
+\end{equation}
+\begin{equation}
+	C8000000_{16} + (00000001\:000000000\:0)_{2} = C8000400_{16}
+\end{equation}
+The pixels are layed out with the y coordinate starting from the top to bottom of the screen. The x coordinate is from right to left of the screen as shown in figure 1.
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.5\textwidth]{./images/VGAPixels.png}}
+	\caption{Pixel layout for pixel buffer of VGA controller \cite{altera_2014}}
+\end{figure}
+Each pixel once addressed can be set to a value of colour with by setting bits for red, green, and blue. Each colour is allocated 5 bits which indicate the strength of colour for the pixel as shown in figure 2. 
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.5\textwidth]{./images/VGAPixelcolour.png}}
+	\caption{Pixel Colour Layout \cite{altera_2014}}
+\end{figure}
 \end{flushleft}
 \newpage
 \subsection{Display Driver}

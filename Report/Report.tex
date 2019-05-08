@@ -174,7 +174,9 @@ This code extracted from the project shows how a pixel is set in C.
 \newpage
 \subsection{Display Driver}
 \begin{flushleft}
-•
+This subsection discusses the display driver which allows pixels to be set to a frame buffer and refreshed on command. The frame buffer is made up of 2 arrays which were a front frame buffer (what's currently on screen) and a rear frame buffer (what wants to be put onto the screen). The advantage of this is that it allows pixels to be checked and allows refresh on command. 
+\\ \- \\
+ Once the screen is desired to be refreshed the memory is compared between the front frame buffer and rear frame buffer to check if they are the same. If not the frame buffers are updated by checking each pixel in the frame buffers values. Any differences then update to display and to the front frame buffer. This is a very slow process so multiple frame buffers were created to experiment with. This experimentation involved splitting the screen into multiple sections and finding how many sections would be the fastest. 
 \end{flushleft}
 \newpage
 \subsection{Sprites and Text}

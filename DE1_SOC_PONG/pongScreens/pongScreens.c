@@ -23,18 +23,6 @@ volatile unsigned int gameModeOld 	= GAME_AI;
 volatile unsigned int *slider_ptr = (unsigned int *)0xFF200040;
 unsigned int last_slider;
 
-/*
-signed int settingStore[4][4] = { { , , , },
-								{ , , , },
-								{ , , , },
-								{ , , , } };
-
-signed int settingStore[4][4] = { { , , , },
-								{ , , , },
-								{ , , , },
-								{ , , , } };
-*/
-
 void setMenu(unsigned int _menuSelector, unsigned int _setting){
 	menuSelectorOld = menuSelector;
 	settingsOld[_menuSelector] = settings[_menuSelector];
@@ -155,19 +143,19 @@ void menuMove(unsigned int direction){
 }
 
 void startScreen(){
-	last_slider = *slider_ptr;
 	// Clear screen and set input mode
-	//Displays_fillColour(_GREEN);
-	Displays_fillColour(_RED);
-	setInputMode(MENUS);
+	Displays_fillColour(_RED); 	// Fill background
+	setInputMode(MENUS);		// Ensure input mode set to menus
 
+	// Write greeting and refresh
 	pongSprites_writeText(60, 120, 1, "Welcome to armPONG", 0xFFFF);
 	Displays_forceRefresh();
 	ResetWDT();
 
-	startSound();
+	startSound();					// Play startup sound
+	usleep(1000000); ResetWDT();	// Sleep for 2s
 	usleep(1000000); ResetWDT();
-	usleep(1000000); ResetWDT();
+	last_slider = *slider_ptr; // Ensure slider positions are saved
 }
 
 void gameMenu(){
@@ -254,7 +242,6 @@ void testScreen_AI( void ){
 
 	pongEngine_createBall();
 	pongSprites_writeText(96, 60, 1, "AI MODE", 0xFFFF);
-	pongSprites_writeText(96, 90, 0, "TESTICLES", 0xFFFF);
 	Displays_forceRefresh(); pongEngine_refreshScore();
 	while (getInputMode() == GAME_AI){
 		ResetWDT();
@@ -310,7 +297,6 @@ void testScreen( void ){
 
 	pongEngine_createBall();
 	pongSprites_writeText(96, 60, 1, "2P MODE", 0xFFFF);
-	pongSprites_writeText(96, 90, 0, "TESTICLES", 0xFFFF);
 	Displays_forceRefresh(); pongEngine_refreshScore();
 	while (getInputMode() == GAME){
 		ResetWDT();

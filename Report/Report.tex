@@ -9,13 +9,16 @@
 \usepackage{listings}
 \usepackage{color}
 \usepackage[T1]{fontenc}
+%\usepackage{fontspec}
+
 \usepackage[utf8]{inputenc}
 \usepackage{wrapfig}
 \usepackage{helvet}
 \usepackage{fourier} 
 \usepackage{array}
 \usepackage{makecell}
-%\usepackage[square,sort,comma,numbers]{natbib}
+\usepackage[square,sort,comma,numbers]{natbib}
+\usepackage{gensymb}
 \usepackage{ragged2e}
 \usepackage{placeins}
 \bibliographystyle{IEEEtran}
@@ -71,26 +74,25 @@
 \chead{%
   \ifcase\value{page}
   % empty test for page = 0
-  \or % page=1
-  \or % page = 2
+  \or Alexander Bolton% page=1
+  \or Alexander Bolton% page = 2
   \or Alexander Bolton% page = 3
   \or Alexander Bolton% page = 4
   \or Alexander Bolton% page = 5
-  \or Alexander Bolton% page = 6
-  \or Alexander Bolton% page = 7
+  \or Sam Wilcock% page = 6
+  \or Sam Wilcock% page = 7
   \or Sam Wilcock% page = 8
   \or Sam Wilcock% page = 9
   \or Sam Wilcock% page = 10
-  \or Sam Wilcock% page = 11
+  \or John Jakobsen% page = 11
   \or John Jakobsen% page = 12
   \or John Jakobsen% page = 13
   \or John Jakobsen% page = 14
-  \or John Jakobsen% page = 15
-  \or Alexander Bolton - Sam Wilcock - John Jakobsen% page = 16
-  \or Conclusion Author% page = 13
+  \or Alexander Bolton - Sam Wilcock - John Jakobsen% page = 15
+  \or Conclusion Author% page = 16
   \or % page = 14
   \else
-  % Empty chead here!
+  % Empty chead here! Lovely cheddar
   \fi
 }
 
@@ -114,11 +116,11 @@
 \posttitle{\end{center}}	
 
 \begin{document}
-
 \title{\\ \textbf{ELEC5620M \\ Mini Project \\ \- \\ DE1-SoC Pong }}
 \author{Alexander Bolton - 200938078 \\ Sam Wilcock - 201285260\\ John Jakobsen - }
 \date{May 2019}
 \maketitle
+\thispagestyle{empty}
 \begin{center}
 
 \end{center}
@@ -126,13 +128,17 @@
 \begin{center}
 The University of Leeds \\  School of Electronic and Electrical Engineering
 \end{center}
+
 \newpage
 
 \tableofcontents
+\thispagestyle{empty}
+
 \newpage 
+\pagenumbering{arabic}
 \section{Introduction}
 \begin{flushleft}
-This report will discuss the group project for the Embedded Microprocessor System Design module. The groups member's were Alexander Bolton, Sam Wilcock, and John Jakobsen. The projects aim was to create a game of Pong on the DE1-SoC's microprocessor unit (MPU) which utilised the LT24 LCD Screen, a VGA screen, PS2 keyboard controls, button controls, and have audio output.
+This report will discuss the group project for the Embedded Microprocessor System Design module. The groups members were Alexander Bolton, Sam Wilcock, and John Jakobsen. The projects aim was to create a game of Pong on the DE1-SoC's microprocessor unit (MPU) which utilised the LT24 LCD Screen, a VGA screen, PS2 keyboard controls, button controls, and have audio output.
 \\ \- \\
 This report will be broken down into sections with section 1 being the introduction. Section 2 will discuss the display and graphics side of the project including the VGA driver which controls the monitor, the display driver which controls both LCD and VGA screens with a frame buffer, sprites and text which will go into depth of how the sprites are created, finally game engine graphics which will go into how the game engine uses the sprites including destroying, creating, and moving the sprites. 
 \\ \- \\
@@ -224,10 +230,83 @@ Once the ball is created it is required to be moved. This is carried out using t
 \- \\
 The paddles have 2 functions ('pongEngine\_paddleSetYLocation(int player, int y)' and 'pongEngine\_paddleSetXLocation(int player, int x)') which set the x and y value, destroys the selected paddle, redraws it, and finally stores the values into memory. These are used on initialisation, whilst in game the function 'pongEngine\_paddleMove(int player, int direction, int speed)' is used. This function takes the values of player, direction, and speed. The speed set is how many pixels the paddle must be moved. Direction is either up or down.
 \\ \- \\
-To update the score three functions are used, one function is to add a point to a selected player which increases the value of score in a variable. Another function resets the scores to zero. Finally a refresh score function which takes the scores from the stored variables and renders the score on screen.The score values are split down into individual numbers and then sent to the seven segment displays. The numbers are also turned into a char array. Every time the score is refreshed a black rectangle is drawn over the text to make it blank and then it is re-rendered using 'pongSprites\_WriteText'. An issue we encountered was random pixels appearing next to the score. The error was spotted by team member Sam Wilcock to be that an char array exit character was missing.
+To update the score three functions are used, one function is to add a point to a selected player which increases the value of score in a variable. Another function resets the scores to zero. Finally a refresh score function which takes the scores from the stored variables and renders the score on screen.The score values are split down into individual numbers and then sent to the seven segment displays. The numbers are also turned into a char array. Every time the score is refreshed a black rectangle is drawn over the text to make it blank and then it is re-rendered using 'pongSprites\_WriteText'. An issue we encountered was random pixels appearing next to the score. The error was spotted by team member Sam Wilcock to be that a char array exit character ('\textbackslash{}0') was missing.
 \end{flushleft}
+
+
+
 \newpage
 \section{Controls and Menus}
+\subsection{Inputs}
+\begin{flushleft}
+This subsection discusses the implementation of the PS/2 keyboard, pushbutton and slider switch inputs. 
+
+
+\end{flushleft}
+
+
+
+\newpage
+\subsection{Menus {\&} Screen Navigation}
+\begin{flushleft}
+In this subsection, the menu and screen driver is discussed, along with how they are interfaced with from the main program loop.
+\\ \- \\
+There are 3 main types of screen to be reached within the pong game: a start-up screen, loaded once the game is switched on; a menu system, which needed to contain important settings for the game and be reachable from the game; and a game-play screen, where the pong engine is utilised.
+\\ \- \\  
+The start-up screen was simplest to implement, as it is non-interactive and runs on a timed basis; this meant that it could utilise purely blocking functions, including sound generation. At this point, the inputs are not enabled, so as not to produce unwanted effects for keypresses. A sound is played and a greeting displayed over a colour fill; this gave the added benefit at the time of debugging of being a useful tester for display and sound functions. This screen displays for a total of 4 seconds – 2 for the sounds to play in addition to an extra 2 second sleep.
+\begin{figure}[H]
+  \centering
+  \lstinputlisting[language=C, firstline=145, lastline=159, frame=bt]{../DE1_SOC_PONG/pongScreens/pongScreens.c}
+    \caption{Code used to run start-up screen.}
+\end{figure}
+\- \\
+\begin{figure}[H]
+  \centering
+  \fbox{\includegraphics[width=0.4\textwidth]{./images/StartScreen.png}}
+  \caption{Start-up screen}
+\end{figure}
+\- \\
+The menu system contained both blocking and non-blocking elements, including input and timer ISRs, sounds and animation, making it more complex. 
+
+\textbf{\textit{Include pictures of menu system working, explain each part, then explain function of game screens and main()}}
+
+\begin{figure}[H]
+	\centering	\fbox{\includegraphics[width=0.9\textwidth]{./images/Menus_Combined.jpg}}
+	\caption{Menus, showing choice of item, option, and the animation which runs on pressing start}
+\end{figure}
+
+
+\end{flushleft}
+
+
+
+\newpage
+\section{Audio Output}
+\begin{flushleft}
+This section explains the method used to implement sounds in the final design. In order to include sounds, the DE1-SoC WM8731 and I2C drivers were utilised in combination with an example code. \textit{[Reference T. Carpenter’s work from lab 4??]}. It was noted initially that the code was slow to perform due to the float arithmetic involved in calculating the sinusoid of an angle, which caused the FIFO buffer of the audio device to overflow. We realised therefore that there were 2 real ways of approaching the problem: either, to utilise the onboard FPU of the DE1-SoC, or to create a faster approximation of the $\sin\theta$ function.
+\\ \- \\
+The code below demonstrates the fast sin function that was devised. The values of $\sin\theta$ from $0\degree$ to $90\degree$ were first calculated in Matlab, multiplied by $10^5$ and rounded to whole numbers. These results were then copied into a lookup table within the ‘lookupSin(unsigned int degree)’ macro. The storing of the numbers as fixed integers as opposed to floating point numbers served to save on memory usage.
+
+\begin{figure}[H]
+	\centering
+	\lstinputlisting[language=C, firstline=141, lastline=167, frame=bt]{../DE1_SOC_PONG/pongSound/pongSound.c}
+	\caption{Code used produce fast sin lookup results for whole degrees.}
+\end{figure}
+
+\- \\
+By utilising the characteristics of the $y=\sin\theta$ function over the period $0\degree$ to $180\degree$, where [y] is mirrored about $x=90\degree$, and the characteristic that the function is mirrored about $y=0$ at $x=180\degree$, it was then possible to find an approximation of $\sin\theta$ for any whole positive integer $\theta$ up to $360\degree$. Within the Sound macro, the float input to ‘lookupSin’, indicating the phase, was wrapped to a maximum of 360\degree and cast to an integer type. The maximum error in this lookup function at whole integers was approximately $4.8\times10^-6$.
+\\ \- \\
+
+\textbf{\textit{Include sound generation function and individual sounds added. Maybe matlab graph of sinlookup?}}
+
+\textbf{\textit{Problems encountered – sound generation stopped temporarily if a key is pressed, solution, disable sounds temporarily during output}}
+  
+
+\end{flushleft}
+
+
+\newpage
+I'm a gap\\
 \newpage
 \section{Game Physics}
 \newpage

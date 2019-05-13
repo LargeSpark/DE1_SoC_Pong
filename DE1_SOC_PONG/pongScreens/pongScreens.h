@@ -16,6 +16,7 @@
 #include "../DE1SoC_SevenSeg/sevenSeg.h"
 #include "../HPS_Watchdog/HPS_Watchdog.h"
 #include "../HPS_usleep/HPS_usleep.h"
+#include "../pongEngine/pongPhysics.h"
 #include <stdio.h>
 #include <stdbool.h>
 

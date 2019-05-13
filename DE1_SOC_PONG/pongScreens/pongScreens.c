@@ -19,7 +19,7 @@ unsigned int settingsMax[] = {1, 9, 9, 1, 1};
 unsigned int numMenuItems = sizeof(settings)/sizeof(int);
 volatile unsigned int gameMode 		= GAME_AI;
 volatile unsigned int gameModeOld 	= GAME_AI;
-
+int n = 0;
 volatile unsigned int *slider_ptr = (unsigned int *)0xFF200040;
 unsigned int last_slider;
 
@@ -231,6 +231,10 @@ void testScreen_AI( void ){
 	int dir = 270;
 	//int x;
 	//int variable = 240; //240
+	int vel;
+	int* arr;
+	int x;
+	int variable = 240;
 
 	// Clear screen and set input mode
 	Displays_clearScreen();
@@ -246,6 +250,34 @@ void testScreen_AI( void ){
 	while (getInputMode() == GAME_AI){
 		ResetWDT();
 		Displays_forceRefresh();
+		if (n < 1) {
+					n++;
+					dir = pongPhysics_serve ();
+					vel = 2;
+			}
+
+		if ((pongEngine_getBallLocation_x() <= 50 + 15) && (pongEngine_getBallLocation_x() >= 50 + 10))   {
+
+			if ((pongEngine_getBallLocation_y() <= pongEngine_getPaddleY (1) + 30) && (pongEngine_getBallLocation_y() >= pongEngine_getPaddleY (1) - 30)) {
+
+			paddleBeep();
+		    arr = pongPhysics_paddleCollision(vel,dir,1);
+		    dir = arr[0];
+		    vel = arr[1];
+
+			}
+		} else if ((pongEngine_getBallLocation_x() >= 270 - 15) && (pongEngine_getBallLocation_x() <= 270 - 10))  { // -10
+
+			if ((pongEngine_getBallLocation_y() <= pongEngine_getPaddleY (2) + 30) && (pongEngine_getBallLocation_y() >= pongEngine_getPaddleY (2) - 30))  {
+
+			paddleBeep();
+			arr = pongPhysics_paddleCollision(vel,dir,2);
+			dir = arr[0];
+			vel = arr[1];
+
+
+			}
+		}
 
 		if ( pongEngine_getBallLocation_y() <= 25 ) {
 			pongEngine_addPoint(2);
@@ -287,6 +319,10 @@ void testScreen( void ){
 	//int x;
 	//int variable = 240; //240
 
+	int vel;
+	int* arr;
+	int x;
+	int variable = 240;
 	// Clear screen and set input mode
 	Displays_clearScreen();
 	setInputMode(GAME);
@@ -301,6 +337,35 @@ void testScreen( void ){
 	while (getInputMode() == GAME){
 		ResetWDT();
 		Displays_forceRefresh();
+
+		if (n < 1) {
+					n++;
+					dir = pongPhysics_serve ();
+					vel = 2;
+			}
+
+		if ((pongEngine_getBallLocation_x() <= 50 + 15) && (pongEngine_getBallLocation_x() >= 50 + 10))   {
+
+			if ((pongEngine_getBallLocation_y() <= pongEngine_getPaddleY (1) + 30) && (pongEngine_getBallLocation_y() >= pongEngine_getPaddleY (1) - 30)) {
+
+			paddleBeep();
+		    arr = pongPhysics_paddleCollision(vel,dir,1);
+		    dir = arr[0];
+		    vel = arr[1];
+
+			}
+		} else if ((pongEngine_getBallLocation_x() >= 270 - 15) && (pongEngine_getBallLocation_x() <= 270 - 10))  { // -10
+
+			if ((pongEngine_getBallLocation_y() <= pongEngine_getPaddleY (2) + 30) && (pongEngine_getBallLocation_y() >= pongEngine_getPaddleY (2) - 30))  {
+
+			paddleBeep();
+			arr = pongPhysics_paddleCollision(vel,dir,2);
+			dir = arr[0];
+			vel = arr[1];
+
+
+			}
+		}
 
 		if ( pongEngine_getBallLocation_x() <= 8 ) {
 			pongEngine_addPoint(2);

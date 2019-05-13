@@ -245,35 +245,17 @@ To update the score three functions are used, one function is to add a point to 
 \begin{flushleft}
 This subsection discusses the implementation of the PS/2 keyboard, pushbutton and slider switch inputs.
 
-\begin{table}[H]
-	\caption{Table of input functionality}
-	\begin{center}
-	\begin{tabular}{|c|c|c|c|}
-		\hline 
-		\textbf{Keyboard Key} & \textbf{Pushbutton Number (L-R)} & \textbf{Effect, In Game} & \textbf{Effect, Menu} \\ 
-		\hline 
-		W & 2 & P1 move up & Menu move up \\ 
-		\hline 
-		A & 1 & P1 move down & Menu move down \\ 
-		\hline 
-		UP & 4 & P2 move up & Menu option right \\ 
-		\hline 
-		DOWN & 3 & P2 move down & Menu option left \\ 
-		\hline 
-		ESC & SLIDER & Return to menu & No effect \\ 
-		\hline 
-		BKSPACE & N/A & Toggle sound & Toggle sound \\ 
-		\hline 
-	\end{tabular}
-	\end{center}
-\end{table}
-
+\begin{figure}[H]
+	\centering
+	\fbox{\includegraphics[width=0.75\textwidth]{./images/Controls.png}}
+	\caption{Input functionality}
+\end{figure}
+\- \\
 The slider buttons are arguably the simplest to implement. They are not attached to any of the built in IRQ exception handlers, and thus have to be dealt with by continuously checking their values. This is dealt with purely in the 'pongScreens.c' file as part of the gameplay screens' while loops; the pointer to the sliders' base address is defined initially, along with a buffer variable to store the previous value of the sliders as a new screen is formed, as such:
 \begin{figure}[H]
 	\lstinputlisting[language=C, firstline=158, lastline=158, frame=bt]{../DE1_SOC_PONG/pongScreens/pongScreens.c}
 	\caption{Save slider values}
 \end{figure}
-\- \\
 As the code for the gameplay screens are run, after the ball has been moved, the slider value is compared to the buffer, and if any of the switches have been moved, the gameplay mode variable is set to MENUS (a useful dummy definition in the header file) and the game exits to the main() while loop:
 \begin{figure}[H]
 	\lstinputlisting[language=C, firstline=275, lastline=278, frame=bt]{../DE1_SOC_PONG/pongScreens/pongScreens.c}
@@ -288,11 +270,9 @@ Additional macross which were written to help the functioning of the inputs incl
 
 \begin{figure}[H]
 	\centering
-	\fbox{\includegraphics[width=0.4\textwidth]{./images/InputStateMachine.png}}
+	\fbox{\includegraphics[width=0.38\textwidth]{./images/InputStateMachine.png}}
 	\caption{The Input() macro flow \label{fig:inSM}} 
 \end{figure}
-\- \\
-
 \end{flushleft}
 	
 \newpage

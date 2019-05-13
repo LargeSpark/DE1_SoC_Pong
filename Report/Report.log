@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.5.9)  13 MAY 2019 15:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.5.9)  13 MAY 2019 16:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1234,35 +1234,30 @@ Package pdftex.def Info: ./images/Menus_Combined.jpg  used on input line 301.
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.316 \newpage
-               <./images/Menus_Combined.jpg>]
-(../DE1_SOC_PONG/Report_Code/fakePongSound.c)
-LaTeX Font Info:    Font shape `T1/phv/bx/it' in size <12> not available
-(Font)              Font shape `T1/phv/b/it' tried instead on input line 333.
-LaTeX Font Info:    Font shape `T1/phv/b/it' in size <12> not available
-(Font)              Font shape `T1/phv/b/sl' tried instead on input line 333.
- [10pdfTeX warning (ext4): destination with the same identifier (name{figure.14
-}) has been already used, duplicate ignored
+               <./images/Menus_Combined.jpg>] (./Report_Code/fakePongSound.c)
+[10pdfTeX warning (ext4): destination with the same identifier (name{figure.14}
+) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.340 \newpage
+l.337 \newpage
               ] [11] [12] [13] [14] (./Report.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 356.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 353.
  [15]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 356.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 353.
  (./Report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 356.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 356.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 353.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 353.
 Package rerunfilecheck Info: File `Report.out' has not changed.
 (rerunfilecheck)             Checksum: 0A3CE96F2C4A50BD4BEC585760AFED06;832.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 356.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 353.
  ) 
 Here is how much of TeX's memory you used:
- 20554 strings out of 492616
- 348151 string characters out of 6133220
- 730280 words of memory out of 5000000
- 24064 multiletter control sequences out of 15000+600000
- 622194 words of font info for 126 fonts, out of 8000000 for 9000
+ 20558 strings out of 492616
+ 348150 string characters out of 6133220
+ 729280 words of memory out of 5000000
+ 24070 multiletter control sequences out of 15000+600000
+ 619338 words of font info for 124 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  40i,11n,74p,1377b,1512s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2019/texm
@@ -1270,13 +1265,12 @@ f-dist/fonts/type1/public/fourier/fourier-mlit.pfb><c:/texlive/2019/texmf-dist/
 fonts/type1/public/fourier/fourier-ms.pfb><c:/texlive/2019/texmf-dist/fonts/typ
 e1/adobe/utopia/putr8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/adobe/utopia
 /putri8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c
-:/texlive/2019/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb><c:/texlive/2019
-/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/texlive/2019/texmf-dist/fon
-ts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on Report.pdf (17 pages, 6227906 bytes).
+:/texlive/2019/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/texlive/2019/
+texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
+Output written on Report.pdf (17 pages, 6220388 bytes).
 PDF statistics:
- 338 PDF objects out of 1000 (max. 8388607)
- 296 compressed objects within 3 object streams
+ 334 PDF objects out of 1000 (max. 8388607)
+ 293 compressed objects within 3 object streams
  119 named destinations out of 1000 (max. 500000)
  161 words of extra memory for PDF output out of 10000 (max. 10000000)
 

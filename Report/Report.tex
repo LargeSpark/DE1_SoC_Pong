@@ -322,19 +322,16 @@ The code below demonstrates the fast sin function that was devised. The values o
 
 \begin{figure}[H]
 	\centering
-	\lstinputlisting[language=C, firstline=1, lastline=16, frame=bt]{../DE1_SOC_PONG/Report_Code/fakePongSound.c}
+	\lstinputlisting[language=C, firstline=1, lastline=16, frame=bt]{./Report_Code/fakePongSound.c}
 	\caption{Code used produce fast sin lookup results for whole degrees.}
 \end{figure}
 
 \- \\
 By utilising the characteristics of the $y=\sin\theta$ function over the period $0\degree$ to $180\degree$, where [y] is mirrored about $x=90\degree$, and the characteristic that the function is mirrored about $y=0$ at $x=180\degree$, it was then possible to find an approximation of $\sin\theta$ for any whole positive integer $\theta$ up to $360\degree$. Within the Sound macro, the float input to ‘lookupSin’, indicating the phase, was wrapped to a maximum of 360\degree and cast to an integer type. The maximum error in this lookup function at whole integers was approximately $4.9\times10^{-6}$.
 \\ \- \\
-
-\textbf{\textit{Include sound generation function and individual sounds added. Maybe matlab graph of sinlookup? Cut down!}}
-
-\textbf{\textit{Problems encountered – sound generation stopped temporarily if a key is pressed, solution, disable sounds temporarily during output}}
-  
-
+The 'Sound(int \_freq, float \_duration)' macro first checks if sounds are flagged as on (via the \textit{SoundOn} variable). If so, a timer ISR is created to run for the period length. The phase is then incremented by a set amount determined by the frequency argument. The sounds are pushed to the WM8731 FIFOs and played in a while loop which checks the \textit{sound} variable. When the timer ISR triggers, \textit{sound} is changed to 0 and the Sound function finishes. It was initially noted that during gameplay, key presses caused gaps in sounds, so the 'Sound' macro temporarily disables inputs for the duration it runs.
+Variable volume was implemented by adding a \textit{VOLUME} variable, which can be changed globally using the 'setVolume(int \_volume)' macro. The amplitude sent to the WM8731 is set as $2^{23+VOLUME}$, by bitshifting the value $2^{23}$ left VOLUME bits.
+In order to make sound generation more intuitive, an additional header file was created containing the frequencies of musical notes from A3 to G6, and then sound macros were created for the various components of the game, including paddle collisions, scoring, and the start sound.
 \end{flushleft}
 
 \newpage

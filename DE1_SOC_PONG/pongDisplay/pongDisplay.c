@@ -149,7 +149,7 @@ void Displays_Refresh(){
 			DisplaysLocal_octoRefresh();
 		}
 		else if(modeSet == HARDWAREFB){
-			VGA_BufferSwap();
+
 		}
 		else if(modeSet == FASTFB){
 			DisplaysLocal_FFBRefresh();
@@ -171,7 +171,7 @@ void Displays_Refresh(){
 				DisplaysLocal_octoRefresh();
 			}
 			else if(modeSet == HARDWAREFB){
-				VGA_BufferSwap();
+
 			}
 		}
 		else{
@@ -194,7 +194,7 @@ void Displays_forceRefresh(){
 			DisplaysLocal_octoRefresh();
 		}
 		else if(modeSet == HARDWAREFB){
-			VGA_BufferSwap();
+
 		}
 		else if(modeSet == FASTFB){
 			DisplaysLocal_FFBRefresh();
@@ -213,7 +213,7 @@ void Displays_forceRefresh(){
 				DisplaysLocal_octoRefresh();
 			}
 			else if(modeSet == HARDWAREFB){
-				VGA_BufferSwap();
+
 			}
 		}
 }
@@ -279,7 +279,6 @@ void Displays_setPixel(int x, int y, short colour){
 			}
 		}
 		else if(modeSet == HARDWAREFB){
-			VGA_drawPixelToHwBuffer(x, y, colour);
 		}
 		else if(modeSet == FASTFB){
 			if(x<160 && y<120){

@@ -322,12 +322,12 @@ The code below demonstrates the fast sin function that was devised. The values o
 
 \begin{figure}[H]
 	\centering
-	\lstinputlisting[language=C, firstline=1, lastline=16, frame=bt]{../DE1_SOC_PONG/pongSound/fakePongSound.c}
+	\lstinputlisting[language=C, firstline=1, lastline=16, frame=bt]{../DE1_SOC_PONG/Report_Code/fakePongSound.c}
 	\caption{Code used produce fast sin lookup results for whole degrees.}
 \end{figure}
 
 \- \\
-By utilising the characteristics of the $y=\sin\theta$ function over the period $0\degree$ to $180\degree$, where [y] is mirrored about $x=90\degree$, and the characteristic that the function is mirrored about $y=0$ at $x=180\degree$, it was then possible to find an approximation of $\sin\theta$ for any whole positive integer $\theta$ up to $360\degree$. Within the Sound macro, the float input to ‘lookupSin’, indicating the phase, was wrapped to a maximum of 360\degree and cast to an integer type. The maximum error in this lookup function at whole integers was approximately $4.8\times10^{-6}$.
+By utilising the characteristics of the $y=\sin\theta$ function over the period $0\degree$ to $180\degree$, where [y] is mirrored about $x=90\degree$, and the characteristic that the function is mirrored about $y=0$ at $x=180\degree$, it was then possible to find an approximation of $\sin\theta$ for any whole positive integer $\theta$ up to $360\degree$. Within the Sound macro, the float input to ‘lookupSin’, indicating the phase, was wrapped to a maximum of 360\degree and cast to an integer type. The maximum error in this lookup function at whole integers was approximately $4.9\times10^{-6}$.
 \\ \- \\
 
 \textbf{\textit{Include sound generation function and individual sounds added. Maybe matlab graph of sinlookup? Cut down!}}

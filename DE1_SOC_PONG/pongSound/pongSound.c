@@ -137,10 +137,10 @@ void ballOutBeep(){
 	Sound(B3, 100);
 }
 
-// Fast sin lookup
+
 float lookupSin(unsigned int degree){
 	// Angles found with matlab, x10^5 and rounded
-	static int lookup[91] = { 0, 1745, 3490, 5234, 6976, 8716, 10453, 12187, 13917,
+	static unsigned int lookup[91] = { 0, 1745, 3490, 5234, 6976, 8716, 10453, 12187, 13917,
 						15643, 17365, 19081, 20791, 22495, 24192, 25882, 27564,
 						29237, 30902, 32557, 34202, 35837, 37461, 39073, 40674,
 						42262, 43837, 45399, 46947, 48481, 50000, 51504, 52992,

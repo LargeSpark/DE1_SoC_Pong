@@ -31,6 +31,4 @@ void Displays_mode(int mode);
 void DisplaysLocal_singleRefresh( void );
 void DisplaysLocal_quadRefresh( void );
 void DisplaysLocal_octoRefresh( void );
-void DisplaysLocal_FFBRefresh( void );
-void DisplaysLocal_FFBSetFB(int x, int y, short colour);
 #endif

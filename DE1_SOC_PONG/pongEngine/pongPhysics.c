@@ -69,41 +69,60 @@ return outangle;
 
 int* pongPhysics_paddleCollision (int speed, int angle, int player) {
 
-int outangle;
-int outspeed;
+int outangle = 0;
+int outspeed = 0;
 int deltaAngle;
+float sector1 = (0.167 * pongSprites_getPaddleSizeY());
+float sector2 = (0.417 * pongSprites_getPaddleSizeY());
+float sector3 = (0.083 * pongSprites_getPaddleSizeY());
 
 int output[2];
 
+outangle	=  180 - angle;
+
 // Paddle sector 1 collision / no change in angle or speed
-if ((pongEngine_getBallLocation_y() < pongEngine_getPaddleY (player) + 10) && (pongEngine_getBallLocation_y() > pongEngine_getPaddleY (player) - 10)) {
+if ((pongEngine_getBallLocation_y() < pongEngine_getPaddleY(player) + (int)(sector1)) && (pongEngine_getBallLocation_y() > pongEngine_getPaddleY(player) - (int)(sector1))) {
 
 	deltaAngle = 0;
-	outspeed   = 2;
+	outspeed   = 4;
 
 //Paddle sector 2 collision
-} else if ((pongEngine_getBallLocation_y() >= pongEngine_getPaddleY (player) + 10) && (pongEngine_getBallLocation_y() <= pongEngine_getPaddleY (player) + 25)) {
+} else if ((pongEngine_getBallLocation_y() >= pongEngine_getPaddleY (player) + (int)(sector1)) && (pongEngine_getBallLocation_y() <= pongEngine_getPaddleY (player) + (int)(sector2))) {
 
 	deltaAngle = -10;
-	outspeed   = 3;
+	outspeed   = 6;
 
-} else if ((pongEngine_getBallLocation_y() < pongEngine_getPaddleY (player) - 10) && (pongEngine_getBallLocation_y() >= pongEngine_getPaddleY (player) - 25)) {
+} else if ((pongEngine_getBallLocation_y() < pongEngine_getPaddleY (player) - (int)(sector1)) && (pongEngine_getBallLocation_y() >= pongEngine_getPaddleY (player) - (int)(sector2))) {
 
 	deltaAngle = 10;
-	outspeed	= 3;
+	outspeed	= 6;
 
 //Paddle sector 3 collision
-} else if (pongEngine_getBallLocation_y() > pongEngine_getPaddleY(player) + 25 && pongEngine_getBallLocation_y() <= pongEngine_getPaddleY(player) + 30) {
+} else if (pongEngine_getBallLocation_y() > pongEngine_getPaddleY(player) + (int)(sector2) && pongEngine_getBallLocation_y() <= pongEngine_getPaddleY(player) + (int)(sector3)) {
 
 	deltaAngle = -20;
-	outspeed   = 4;
+	outspeed   = 8;
 
-} else if (pongEngine_getBallLocation_y() < pongEngine_getPaddleY(player) - 25 && pongEngine_getBallLocation_y() >= pongEngine_getPaddleY(player) - 30) {
+} else if (pongEngine_getBallLocation_y() < pongEngine_getPaddleY(player) - (int)(sector2) && pongEngine_getBallLocation_y() >= pongEngine_getPaddleY(player) - (int)(sector3)) {
 
 	deltaAngle = 20;
-	outspeed   = 4;
+	outspeed   = 8;
+
+} else {
+
+	outspeed = speed;
+
+	if ((pongEngine_getBallLocation_x() <= 50 + 15) && (pongEngine_getBallLocation_x() >= 50 + 10)) {
+
+	outangle = 135;
+
+	} else if ((pongEngine_getBallLocation_x() >= 270 - 15) && (pongEngine_getBallLocation_x() <= 270 - 10)) {
+
+	outangle = 45;
+
+	}
 }
-outangle	=  180 - angle;
+
 
 
 /*

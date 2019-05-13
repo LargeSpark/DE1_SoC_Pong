@@ -266,11 +266,11 @@ The use of the keyboard and the pushbutton switches allowed the use of IRQs as t
 \\ \- \\
 The pusbhutton ISR works in a similar way, by first reading the value from its interrupt register and then writing back to it to clear the interrupt flag (preventing infinite interrupts). The value is then compared in a simple state machine to ascertain which button was pressed, before the key is converted to a corresponding keyboard scancode and passed to 'void Input()'. 
 \\ \- \\
-Additional macross which were written to help the functioning of the inputs include 'setInputMode(unsigned int \_mode)' which sets the \textit{mode} variable, in order for the screen functions to switch and the Input function to deal with different screens; \mbox{'int getInputMode( void )'}, which returns the current value of \textit{mode}; and, most importantly, the \mbox{'void Input(unsigned int key, unsigned int speed)'} function, which is a state machine dealing with the inputs. The speed input serves a dual purpose. First, it was noted that it was far easier to press the keyboard keys faster than the pushbutton keys, in part due to the short typematic delay \cite{altium_ps2}, and so this allows the function to penalise the paddle speed accordingly. The other use is in detecting whether the input has come from the keyboard or pushbutton for dealing with menu motions. Fig \ref{fig:inSM} below demonstrates the macro's logic.
+Additional macross which were written to help the functioning of the inputs include 'enableInputs(int enable)' which switches the input interrupts on and off; \mbox{'setInputMode(unsigned int \_mode)'} which sets the \textit{mode} variable, in order for the screen functions to switch and the Input function to deal with different screens; \mbox{'int getInputMode( void )'}, which returns the current value of \textit{mode}; and, most importantly, the \mbox{'Input(unsigned int key, unsigned int speed)'} function, which is a state machine dealing with the inputs. The speed input serves a dual purpose. First, it was noted that it was far easier to press the keyboard keys faster than the pushbutton keys, in part due to the short typematic delay \cite{altium_ps2}, and so this allows the function to penalise the paddle speed accordingly. The other use is in detecting whether the input has come from the keyboard or pushbutton for dealing with menu motions. Fig \ref{fig:inSM} below demonstrates the macro's logic.
 
 \begin{figure}[H]
 	\centering
-	\fbox{\includegraphics[width=0.38\textwidth]{./images/InputStateMachine.png}}
+	\fbox{\includegraphics[width=0.36\textwidth]{./images/InputStateMachine.png}}
 	\caption{The Input() macro flow \label{fig:inSM}} 
 \end{figure}
 \end{flushleft}
@@ -295,7 +295,7 @@ The start-up screen was simplest to implement, as it is non-interactive and runs
   \caption{Start-up screen}
 \end{figure}
 \- \\
-The menu system contained both blocking and non-blocking elements, including input and timer ISRs, sounds and animation, making it more complex. 
+The menu system contained both blocking and non-blocking elements, including input and timer ISRs, sounds and animation, making it more complex. In order to 
 
 \textbf{\textit{Include pictures of menu system working, explain each part, then explain function of game screens and main()}}
 

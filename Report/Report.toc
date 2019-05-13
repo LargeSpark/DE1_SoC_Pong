@@ -6,10 +6,10 @@
 \contentsline {subsection}{\numberline {2.4}Game Engine Graphics}{5}{subsection.2.4}% 
 \contentsline {section}{\numberline {3}Controls and Menus}{6}{section.3}% 
 \contentsline {subsection}{\numberline {3.1}Inputs}{6}{subsection.3.1}% 
-\contentsline {subsection}{\numberline {3.2}Menus {\&} Screen Navigation}{7}{subsection.3.2}% 
-\contentsline {section}{\numberline {4}Audio Output}{9}{section.4}% 
+\contentsline {subsection}{\numberline {3.2}Menus {\&} Screen Navigation}{8}{subsection.3.2}% 
+\contentsline {section}{\numberline {4}Audio Output}{10}{section.4}% 
 \contentsline {section}{\numberline {5}Game Physics}{11}{section.5}% 
 \contentsline {section}{\numberline {6}Problems Encountered}{12}{section.6}% 
 \contentsline {section}{\numberline {7}Conclusion}{13}{section.7}% 
-\contentsline {section}{\numberline {8}Appendix}{14}{section.8}% 
+\contentsline {section}{\numberline {8}Appendix }{14}{section.8}% 
 \contentsline {section}{References}{15}{section.8}% 

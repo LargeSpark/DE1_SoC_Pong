@@ -283,8 +283,8 @@ void testScreen_AI( void ){
 			}
 		}
 
+		//collisions
 		if ( pongEngine_getBallLocation_y() <= 23 + 20  ) {
-			pongEngine_addPoint(2);
 			enableInputs(0);
 			paddleBeep();
 			enableInputs(1);
@@ -293,13 +293,14 @@ void testScreen_AI( void ){
 
 
 		} else if ( pongEngine_getBallLocation_y() >= 230 - 10){
-			pongEngine_addPoint(1);
 			enableInputs(0);
 			ballOutBeep();
 			enableInputs(1);
 
 			dir = pongPhysics_borderCollision(vel, dir);
 		}
+
+
 
 		// AI bit
 		if ( pongEngine_getBallLocation_y() > pongEngine_getPaddleY(2)){
@@ -318,7 +319,45 @@ void testScreen_AI( void ){
 			setInputMode(MENUS);
 			last_slider = *slider_ptr;
 		}
+		//This function adds points
+		if ( pongEngine_getBallLocation_x() <= 10  ) { //+20
+				pongEngine_destroyBall(); //destroy ball
+				Displays_forceRefresh(); //force refresh for buffers prior to points
+				enableInputs(0); //disable inputs
+				paddleBeep(); //play sound
+				enableInputs(1); //enable inputs
+				pongEngine_resetPaddles(); //reset paddles
+				pongEngine_resetBallLoc(); //reset ball location
+				pongEngine_createBall(); //create ball
+				pongEngine_paddleCreate(1); //create paddle
+				pongEngine_paddleCreate(2); //create paddle
+				pongEngine_moveBall(1, 0); //reset angle instructions
+				pongEngine_moveBall(0, 0);
+				Displays_forceRefresh(); pongEngine_refreshScore(); //force refresh
+				variable = 240; //reset var
+				n = 0; //reset var
+				pongEngine_addPoint(2); //add point
+		} else if ( pongEngine_getBallLocation_x() >= 320 - 10){
+			pongEngine_destroyBall(); //destroy ball
+			enableInputs(0); //disable inputs
+			paddleBeep(); //play sound
+			enableInputs(1); //enable inputs
+			pongEngine_resetPaddles(); //reset paddles
+			pongEngine_resetBallLoc(); //reset ball location
+			pongEngine_createBall(); //create ball
+			pongEngine_paddleCreate(1); //create paddle
+			pongEngine_paddleCreate(2); //create paddle
+			pongEngine_moveBall(1, 0); //reset angle instructions
+			pongEngine_moveBall(0, 0);
+			Displays_forceRefresh(); pongEngine_refreshScore(); //force refresh
+			variable = 240; //reset var
+			n = 0; //reset var
+			pongEngine_addPoint(1); //add point
+
+
+		}
 	}
+
 	//gameEngine_paddleDestroy(1);
 	//gameEngine_paddleDestroy(2);
 	Displays_clearScreen();
@@ -342,7 +381,7 @@ void testScreen( void ){
 	ResetWDT();
 
 	pongEngine_createBall();
-	pongSprites_writeText(96, 60, 1, "2P MODE", 0xFFFF);
+	//pongSprites_writeText(96, 60, 1, "2P MODE", 0xFFFF);
 	Displays_forceRefresh(); pongEngine_refreshScore();
 	n = 0;
 	while (getInputMode() == GAME){
@@ -378,8 +417,8 @@ void testScreen( void ){
 			}
 		}
 
-		if ( pongEngine_getBallLocation_y() <= 23  ) { //+20
-			pongEngine_addPoint(2);
+		//collisions
+		if ( pongEngine_getBallLocation_y() <= 23 + 20  ) {
 			enableInputs(0);
 			paddleBeep();
 			enableInputs(1);
@@ -388,13 +427,48 @@ void testScreen( void ){
 
 
 		} else if ( pongEngine_getBallLocation_y() >= 230 - 10){
-			pongEngine_addPoint(1);
 			enableInputs(0);
 			ballOutBeep();
 			enableInputs(1);
 
 			dir = pongPhysics_borderCollision(vel, dir);
-				}
+		}
+
+		//This function adds points
+		if ( pongEngine_getBallLocation_x() <= 10  ) { //+20
+			pongEngine_destroyBall(); //destroy ball
+			Displays_forceRefresh(); //force refresh for buffers prior to points
+			enableInputs(0); //disable inputs
+			paddleBeep(); //play sound
+			enableInputs(1); //enable inputs
+			pongEngine_resetPaddles(); //reset paddles
+			pongEngine_resetBallLoc(); //reset ball location
+			pongEngine_createBall(); //create ball
+			pongEngine_paddleCreate(1); //create paddle
+			pongEngine_paddleCreate(2); //create paddle
+			pongEngine_moveBall(1, 0); //reset angle instructions
+			pongEngine_moveBall(0, 0);
+			Displays_forceRefresh(); pongEngine_refreshScore(); //force refresh
+			variable = 240; //reset var
+			n = 0; //reset var
+			pongEngine_addPoint(2); //add point
+		} else if ( pongEngine_getBallLocation_x() >= 320 - 10){
+			pongEngine_destroyBall(); //destroy ball
+			enableInputs(0); //disable inputs
+			paddleBeep(); //play sound
+			enableInputs(1); //enable inputs
+			pongEngine_resetPaddles(); //reset paddles
+			pongEngine_resetBallLoc(); //reset ball location
+			pongEngine_createBall(); //create ball
+			pongEngine_paddleCreate(1); //create paddle
+			pongEngine_paddleCreate(2); //create paddle
+			pongEngine_moveBall(1, 0); //reset angle instructions
+			pongEngine_moveBall(0, 0);
+			Displays_forceRefresh(); pongEngine_refreshScore(); //force refresh
+			variable = 240; //reset var
+			n = 0; //reset var
+			pongEngine_addPoint(1); //add point
+		}
 
 		pongEngine_moveBall(dir, vel);
 

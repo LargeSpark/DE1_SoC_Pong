@@ -23,7 +23,7 @@ int ballMaxY = 232;
 
 /*############ Paddle Globals ############*/
 //Paddle thresholds
-int paddleMinY = 30;
+int paddleMinY = 50;
 int paddleMaxY = 210;
 //Paddle Locations
 int paddle1Y = centre_y;

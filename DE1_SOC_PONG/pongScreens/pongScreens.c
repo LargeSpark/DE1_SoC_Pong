@@ -246,6 +246,7 @@ void testScreen_AI( void ){
 	//pongSprites_writeText(96, 60, 1, "AI MODE", 0xFFFF);
 
 	Displays_forceRefresh(); pongEngine_refreshScore();
+	n = 0;
 	while (getInputMode() == GAME_AI){
 
 		ResetWDT();
@@ -343,6 +344,7 @@ void testScreen( void ){
 	pongEngine_createBall();
 	pongSprites_writeText(96, 60, 1, "2P MODE", 0xFFFF);
 	Displays_forceRefresh(); pongEngine_refreshScore();
+	n = 0;
 	while (getInputMode() == GAME){
 		ResetWDT();
 		Displays_forceRefresh();

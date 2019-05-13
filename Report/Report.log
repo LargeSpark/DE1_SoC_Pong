@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.5.9)  13 MAY 2019 13:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.5.9)  13 MAY 2019 15:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1107,7 +1107,7 @@ File: lstlang1.sty 2019/02/27 1.8b listings language file
 ) (c:/texlive/2019/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2019/02/27 1.8b (Carsten Heinz)
 )
-(../DE1_SoC_Pong/DE1SoC_VGA/DE1SoC_VGA.c)pdfTeX warning (ext4): destination wit
+(../DE1_SOC_PONG/DE1SoC_VGA/DE1SoC_VGA.c)pdfTeX warning (ext4): destination wit
 h the same identifier (name{page.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
@@ -1131,7 +1131,7 @@ l.187 \newpage
                                                   \fi \fi 
 l.187 \newpage
                <./images/VGAPixels.png> <./images/VGAPixelcolour.png>]
-(../DE1_SoC_Pong/pongDisplay/pongDisplay.c) [3pdfTeX warning (ext4): destinatio
+(../DE1_SOC_PONG/pongDisplay/pongDisplay.c) [3pdfTeX warning (ext4): destinatio
 n with the same identifier (name{figure.4}) has been already used, duplicate ig
 nored
 
@@ -1150,7 +1150,7 @@ Package pdftex.def Info: ./images/PyCir.png  used on input line 215.
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.223 \newpage
-               <./images/PyCir.png>] (../DE1_SoC_Pong/pongEngine/pongEngine.c
+               <./images/PyCir.png>] (../DE1_SOC_PONG/pongEngine/pongEngine.c
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
 (Font)              scaled to size 5.51999pt on input line 317.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
@@ -1168,8 +1168,8 @@ File: ./images/Controls.png Graphic file (type png)
 <use ./images/Controls.png>
 Package pdftex.def Info: ./images/Controls.png  used on input line 250.
 (pdftex.def)             Requested size: 362.77264pt x 183.07603pt.
- (../DE1_SoC_Pong/pongScreens/pongScreens.c)
-(../DE1_SoC_Pong/pongScreens/pongScreens.c) [6pdfTeX warning (ext4): destinatio
+ (../DE1_SOC_PONG/pongScreens/pongScreens.c)
+(../DE1_SOC_PONG/pongScreens/pongScreens.c) [6pdfTeX warning (ext4): destinatio
 n with the same identifier (name{figure.7}) has been already used, duplicate ig
 nored
 
@@ -1191,7 +1191,7 @@ l.266 \\
          \- \\ <./images/Controls.png>]
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <12> not available
 (Font)              Font shape `T1/phv/m/sl' tried instead on input line 269.
-<./images/InputStateMachine.png, id=199, 275.0275pt x 412.54124pt>
+<./images/InputStateMachine.png, id=197, 275.0275pt x 412.54124pt>
 File: ./images/InputStateMachine.png Graphic file (type png)
 <use ./images/InputStateMachine.png>
 Package pdftex.def Info: ./images/InputStateMachine.png  used on input line 273
@@ -1204,66 +1204,67 @@ Package pdftex.def Info: ./images/InputStateMachine.png  used on input line 273
                                                   \fi \fi 
 l.278 \newpage
                <./images/InputStateMachine.png>]
-(../DE1_SoC_Pong/pongScreens/pongScreens.c)
-<./images/StartScreen.png, id=208, 2080.77374pt x 1731.46875pt>
+(../DE1_SOC_PONG/pongScreens/pongScreens.c)
+<./images/StartScreen.png, id=206, 2080.77374pt x 1731.46875pt>
 File: ./images/StartScreen.png Graphic file (type png)
 <use ./images/StartScreen.png>
 Package pdftex.def Info: ./images/StartScreen.png  used on input line 294.
 (pdftex.def)             Requested size: 193.47578pt x 160.97737pt.
-LaTeX Font Info:    Font shape `T1/phv/bx/it' in size <12> not available
-(Font)              Font shape `T1/phv/b/it' tried instead on input line 300.
-LaTeX Font Info:    Font shape `T1/phv/b/it' in size <12> not available
-(Font)              Font shape `T1/phv/b/sl' tried instead on input line 300.
-<./images/Menus_Combined.jpg, id=209, 3702.633pt x 900.966pt>
-File: ./images/Menus_Combined.jpg Graphic file (type jpg)
-<use ./images/Menus_Combined.jpg>
-Package pdftex.def Info: ./images/Menus_Combined.jpg  used on input line 303.
-(pdftex.def)             Requested size: 435.32422pt x 105.92538pt.
  [8pdfTeX warning (ext4): destination with the same identifier (name{figure.11}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.306 
+l.299 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 12}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.306 
-       <./images/StartScreen.png>] [9pdfTeX warning (ext4): destination with th
-e same identifier (name{figure.13}) has been already used, duplicate ignored
+l.299 
+       <./images/StartScreen.png>]
+<./images/Menus_Combined.jpg, id=230, 3702.633pt x 900.966pt>
+File: ./images/Menus_Combined.jpg Graphic file (type jpg)
+<use ./images/Menus_Combined.jpg>
+Package pdftex.def Info: ./images/Menus_Combined.jpg  used on input line 301.
+(pdftex.def)             Requested size: 435.32422pt x 105.92538pt.
+ [9pdfTeX warning (ext4): destination with the same identifier (name{figure.13}
+) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.312 \newpage
+l.316 \newpage
                <./images/Menus_Combined.jpg>]
-(../DE1_SoC_Pong/pongSound/fakePongSound.c) [10pdfTeX warning (ext4): destinati
-on with the same identifier (name{figure.14}) has been already used, duplicate 
-ignored
+(../DE1_SOC_PONG/pongSound/fakePongSound.c)
+LaTeX Font Info:    Font shape `T1/phv/bx/it' in size <12> not available
+(Font)              Font shape `T1/phv/b/it' tried instead on input line 333.
+LaTeX Font Info:    Font shape `T1/phv/b/it' in size <12> not available
+(Font)              Font shape `T1/phv/b/sl' tried instead on input line 333.
+ [10pdfTeX warning (ext4): destination with the same identifier (name{figure.14
+}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.336 \newpage
+l.340 \newpage
               ] [11] [12] [13] [14] (./Report.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 352.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 356.
  [15]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 352.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 356.
  (./Report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 352.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 352.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 356.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 356.
 Package rerunfilecheck Info: File `Report.out' has not changed.
 (rerunfilecheck)             Checksum: 0A3CE96F2C4A50BD4BEC585760AFED06;832.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 352.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 356.
  ) 
 Here is how much of TeX's memory you used:
- 20590 strings out of 492616
- 348836 string characters out of 6133220
+ 20554 strings out of 492616
+ 348145 string characters out of 6133220
  730280 words of memory out of 5000000
- 24093 multiletter control sequences out of 15000+600000
+ 24064 multiletter control sequences out of 15000+600000
  622194 words of font info for 126 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 40i,11n,74p,1251b,1512s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 40i,11n,74p,1377b,1512s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2019/texm
 f-dist/fonts/type1/public/fourier/fourier-mlit.pfb><c:/texlive/2019/texmf-dist/
 fonts/type1/public/fourier/fourier-ms.pfb><c:/texlive/2019/texmf-dist/fonts/typ
@@ -1272,10 +1273,10 @@ e1/adobe/utopia/putr8a.pfb><c:/texlive/2019/texmf-dist/fonts/type1/adobe/utopia
 :/texlive/2019/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb><c:/texlive/2019
 /texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/texlive/2019/texmf-dist/fon
 ts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on Report.pdf (17 pages, 6225213 bytes).
+Output written on Report.pdf (17 pages, 6227906 bytes).
 PDF statistics:
- 341 PDF objects out of 1000 (max. 8388607)
- 299 compressed objects within 3 object streams
- 121 named destinations out of 1000 (max. 500000)
+ 338 PDF objects out of 1000 (max. 8388607)
+ 296 compressed objects within 3 object streams
+ 119 named destinations out of 1000 (max. 500000)
  161 words of extra memory for PDF output out of 10000 (max. 10000000)
 

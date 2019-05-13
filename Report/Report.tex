@@ -280,7 +280,7 @@ Additional macross which were written to help the functioning of the inputs incl
 \begin{flushleft}
 In this subsection, the menu and screen driver is discussed, along with how they are interfaced with from the main program loop.
 \\ \- \\
-There are 3 main types of screen to be reached within the pong game: a start-up screen, loaded once the game is switched on; a menu system, which needed to contain important settings for the game and be reachable from the game; and a game-play screen, where the pong engine is utilised.
+There are 3 main types of screen to be reached within the pong game: a start-up screen, loaded once the game is switched on; a menu system, which needed to contain important settings for the game and be reachable from the game; and a game-play screen, where the pong engine is utilised. The screen functions are called from the main() source. After the various libraries have been initialised, the start screen is called, and then the program enters an infinite loop which continuously checks the \textit{mode} variable from pongInputs. Different functions are then called depending on the mode - either MENUS, GAME, or GAME\_AI.
 \\ \- \\  
 The start-up screen was simplest to implement, as it is non-interactive and runs on a timed basis; this meant that it could utilise purely blocking functions, including sound generation. At this point, the inputs are not enabled, so as not to produce unwanted effects for keypresses. A sound is played and a greeting displayed over a colour fill; this gave the added benefit at the time of debugging of being a useful tester for display and sound functions. This screen displays for a total of 4 seconds – 2 for the sounds to play in addition to an extra 2 second sleep.
 \begin{figure}[H]
@@ -295,16 +295,20 @@ The start-up screen was simplest to implement, as it is non-interactive and runs
   \caption{Start-up screen}
 \end{figure}
 \- \\
-The menu system contained both blocking and non-blocking elements, including input and timer ISRs, sounds and animation, making it more complex. In order to 
-
-\textbf{\textit{Include pictures of menu system working, explain each part, then explain function of game screens and main()}}
+The menu system contained both blocking and non-blocking elements, including input and timer ISRs, sounds and animation, making it more complex. The menu is initialised simply, by using the 'pongSprites\_writeText' function to produce a list of items, with the currently selected menu item (dictated by variable \textit{menuSelector}) highlighted in blue, in addition to clearing the 7-segment displays. The setting values for the game mode, paddle size and volume are displayed next to the text, where the mode can be either 2-player or 1 player (AI) mode, and the paddle size and volume are an integer from 1 to 9. The 'pongSprites\_renderBall' macro was also used to provide a pointer to the current menu item. While the menu \textit{mode} is set to MENUS, the 'gameMenu( void )' function simply loops, waiting. The motion of the menu and its effects are passed on to the 'menuMove(unsigned int direction)' macro, which the input interrupts interact with through 'Input'; this function stores the previous values of \textit{menuSelector} and each menu option, and if there is a change, it shifts the ball pointer and colour highlighting of the text. It does this simply by writing over the previous text and ball items in the default colours (background white for the ball, black for the text), and then writing over the newly selected locations. 
 
 \begin{figure}[H]
 	\centering	\fbox{\includegraphics[width=0.9\textwidth]{./images/Menus_Combined.jpg}}
-	\caption{Menus, showing choice of item, option, and the animation which runs on pressing start}
+	\caption{Menus, showing choice of item, option, and the animation which runs on START}
 \end{figure}
-
-
+\- \\
+The first option, Mode, dictates the game mode, and works simply by changing the \textit{gameMode} variable which is passed to 'setInputMode' on starting a game. Second is the paddle size, which changes the paddle size with 'pongSprites\_changePaddleSize'. This function was built especially, and works on the formula $Length_y (px) = 60+(size - 5)\times10$ - hence the default option of 5 (out of 10) gives a paddle height of 60 pixels.
+\\ \- \\  
+The volume setting was slightly more difficult, as it was decided that changing the volume should play a tone at the current amplitude defined by this setting. It was found that the blocking nature of sounds combined with the fact that 'menuMove' is called by interrupts caused the sounds to play forever; hence this option only changes the volume (using 'setVolume') and then the screen's main loop plays sounds if it sees a change in this setting.
+\\ \- \\  
+In order to reset the score, a function was added to pongEngine, which simply sets the scores for each player to zero. Finally, the start button resets the score if \textit{gameMode} has changed, and then sets the input mode, allowing the menu loop to end and return to main(). An animation runs on pressing START, which moves the ball across the start text, erasing it.
+\\ \- \\  
+It was initially found that if inputs were pressed whilst the menu items were changing, a bug occurred where the display did not accurately depict the current menu items selected. This was remedied by disabling the inputs and re-enabling either side of 'menuMove', using 'enableInputs'.
 \end{flushleft}
 
 

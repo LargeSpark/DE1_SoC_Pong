@@ -1,0 +1,40 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Display and Graphics}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{VGA Driver}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Display Driver}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Sprites and Text}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{Game Engine Graphics}{section.2}% 6
+\BOOKMARK [1][-]{section.3}{Controls and Menus}{}% 7
+\BOOKMARK [2][-]{subsection.3.1}{Inputs}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.2}{Menus \046 Screen Navigation}{section.3}% 9
+\BOOKMARK [1][-]{section.4}{Audio Output}{}% 10
+\BOOKMARK [1][-]{section.5}{Game Physics}{}% 11
+\BOOKMARK [2][-]{subsection.5.1}{Collisions}{section.5}% 12
+\BOOKMARK [2][-]{subsection.5.2}{Code Architecture}{section.5}% 13
+\BOOKMARK [1][-]{section.6}{AI}{}% 14
+\BOOKMARK [1][-]{section.7}{Problems Encountered}{}% 15
+\BOOKMARK [2][-]{subsection.7.1}{Ball becoming stuck at border/ paddle}{section.7}% 16
+\BOOKMARK [2][-]{subsection.7.2}{Ball moving through paddle at collision}{section.7}% 17
+\BOOKMARK [2][-]{subsection.7.3}{Ball disappearing after paddle collision}{section.7}% 18
+\BOOKMARK [1][-]{section.8}{Conclusion}{}% 19
+\BOOKMARK [1][-]{section.9}{Appendix }{}% 20
+\BOOKMARK [2][-]{subsection.9.1}{Appendix A - sevenSeg.c}{section.9}% 21
+\BOOKMARK [2][-]{subsection.9.2}{Appendix B - sevenSeg.h}{section.9}% 22
+\BOOKMARK [2][-]{subsection.9.3}{Appendix C - DE1SoC VGA.c}{section.9}% 23
+\BOOKMARK [2][-]{subsection.9.4}{Appendix D - DE1SoC VGA.h}{section.9}% 24
+\BOOKMARK [2][-]{subsection.9.5}{Appendix E - pongDisplay.c}{section.9}% 25
+\BOOKMARK [2][-]{subsection.9.6}{Appendix F - pongDisplay.h}{section.9}% 26
+\BOOKMARK [2][-]{subsection.9.7}{Appendix G - pongEngine.c}{section.9}% 27
+\BOOKMARK [2][-]{subsection.9.8}{Appendix H - pongEngine.h}{section.9}% 28
+\BOOKMARK [2][-]{subsection.9.9}{Appendix I - pongSprites.c}{section.9}% 29
+\BOOKMARK [2][-]{subsection.9.10}{Appendix J - pongSprites.h}{section.9}% 30
+\BOOKMARK [2][-]{subsection.9.11}{Appendix K - pongPhysics.c}{section.9}% 31
+\BOOKMARK [2][-]{subsection.9.12}{Appendix L - pongPhysics.h}{section.9}% 32
+\BOOKMARK [2][-]{subsection.9.13}{Appendix M - pongInputs.c}{section.9}% 33
+\BOOKMARK [2][-]{subsection.9.14}{Appendix N - pongInputs.h}{section.9}% 34
+\BOOKMARK [2][-]{subsection.9.15}{Appendix O - pongSounds.c}{section.9}% 35
+\BOOKMARK [2][-]{subsection.9.16}{Appendix P - pongSounds.h}{section.9}% 36
+\BOOKMARK [2][-]{subsection.9.17}{Appendix Q - pongScreens.c}{section.9}% 37
+\BOOKMARK [2][-]{subsection.9.18}{Appendix R - pongScreens.h}{section.9}% 38
+\BOOKMARK [2][-]{subsection.9.19}{Appendix S - main.c}{section.9}% 39
+\BOOKMARK [1][-]{lstnumber.-26.49}{References}{}% 40

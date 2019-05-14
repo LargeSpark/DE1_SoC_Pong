@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000) (preloaded format=pdflatex 2019.5.9)  14 MAY 2019 10:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000) (preloaded format=pdflatex 2019.5.9)  14 MAY 2019 10:14
 entering extended mode
 **./Report.tex
 (Report.tex
@@ -1260,7 +1260,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 458.
 Here is how much of TeX's memory you used:
  25346 strings out of 494864
  431611 string characters out of 3178364
- 1025098 words of memory out of 3000000
+ 1025116 words of memory out of 3000000
  25870 multiletter control sequences out of 15000+200000
  622228 words of font info for 126 fonts, out of 3000000 for 9000
  0 hyphenation exceptions out of 8191
@@ -1274,7 +1274,7 @@ all/fonts/type1/urw/helvetic/uhvb8a.pfb></home/alex/.miktex/texmfs/install/font
 s/type1/urw/helvetic/uhvr8a.pfb></home/alex/.miktex/texmfs/install/fonts/type1/
 urw/helvetic/uhvro8a.pfb>
 Output written on /home/alex/Documents/Gits/DE1_SoC_Pong/Report/build/Report.pd
-f (56 pages, 6827497 bytes).
+f (56 pages, 6827500 bytes).
 PDF statistics:
  3758 PDF objects out of 4296 (max. 8388607)
  2764 named destinations out of 2984 (max. 500000)

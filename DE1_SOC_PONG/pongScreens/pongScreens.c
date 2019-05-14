@@ -230,7 +230,7 @@ void gameMenu(){
 void testScreen_AI( void ){
 	int dir;
 	int vel;
-	int *arr = malloc(2);
+	int *arr;
 
 
 	// Clear screen and set input mode

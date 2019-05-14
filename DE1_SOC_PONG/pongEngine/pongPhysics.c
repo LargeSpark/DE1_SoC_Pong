@@ -11,15 +11,15 @@ int angle;
 int speed;
 int rounds; //Number of rounds elapsed
 int nrand = 0;
-int psrand[] = {293, 326, 46, 329, 228, 35, 100, 197, 345,
-		347, 57, 349, 345, 175, 288, 51, 152, 330, 285, 345,
-		236, 13, 306, 336, 244, 273, 268, 141, 236, 62, 254,
-		11, 100, 17, 35, 296, 250, 114, 342, 12, 158, 137, 276,
-		286, 67, 176, 160, 233, 255, 272, 245, 236, 59, 43,
-		179, 346, 123, 211, 270, 182, 252, 321, 345, 197,
+int psrand[] = {293, 112, 46, 329, 228, 35, 100, 197, 335,
+		340, 57, 339, 335, 175, 288, 51, 152, 330, 285, 335,
+		236, 13, 306, 336, 244, 273, 208, 141, 236, 62, 254,
+		11, 100, 17, 35, 296, 250, 114, 332, 12, 158, 137, 276,
+		286, 67, 176, 160, 233, 255, 282, 245, 236, 59, 43,
+		179, 346, 123, 211, 260, 182, 252, 321, 345, 197,
 		50, 54, 303, 293, 335, 126, 71, 222, 170, 127, 299,
 		211, 198, 330, 103, 273, 271, 137, 204, 27, 19, 191,
-		281, 336, 47, 205, 169, 4, 121, 58, 286, 112, 190,
+		281, 336, 47, 205, 169, 14, 121, 58, 286, 326, 190,
 		60, 217, 235, 248};
 
 //
@@ -29,6 +29,12 @@ int psrand[] = {293, 326, 46, 329, 228, 35, 100, 197, 345,
 int pongPhysics_serve (void) {
 	int angle = psrand[nrand % 99] - 180;
 	nrand++;
+	if (angle < 20){
+		angle += 20;
+	}
+	if (angle > 340){
+		angle -= 20;
+	}
 	return angle;
 }
 
@@ -38,16 +44,16 @@ int pongPhysics_serve (void) {
 
 int pongPhysics_borderCollision (int speed, int angle) {
 
-int outangle;
+	int outangle;
 
-outangle	= -angle;
+	outangle	= -angle;
 
-pongEngine_moveBall(outangle, speed);		//Used to avoid ball getting stuck at the border
-pongEngine_moveBall(outangle, speed);
-pongEngine_moveBall(outangle, speed);
+	pongEngine_moveBall(outangle, speed);		//Used to avoid ball getting stuck at the border
+	pongEngine_moveBall(outangle, speed);
+	pongEngine_moveBall(outangle, speed);
 
-return outangle;
-
+	ResetWDT();
+	return outangle;
 }
 
 // Code to regulate paddle collisions
@@ -64,7 +70,7 @@ float sector3 = (0.083 * pongSprites_getPaddleSizeY());
 int output[2];
 
 outangle	=  180 - angle;
-
+ResetWDT();
 // Paddle sector 1 collision / no change in angle or speed
 if ((pongEngine_getBallLocation_y() < pongEngine_getPaddleY(player) + (int)(sector1)) && (pongEngine_getBallLocation_y() > pongEngine_getPaddleY(player) - (int)(sector1))) {
 
@@ -127,7 +133,7 @@ output[1] = outspeed;
 pongEngine_moveBall(output[0], output[1]);
 pongEngine_moveBall(output[0], output[1]);
 pongEngine_moveBall(output[0], output[1]);
-
+ResetWDT();
 
 return output;
 

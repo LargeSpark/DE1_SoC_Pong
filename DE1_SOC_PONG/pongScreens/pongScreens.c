@@ -303,11 +303,11 @@ void testScreen_AI( void ){
 
 
 		// AI bit
-		if ( pongEngine_getBallLocation_y() > pongEngine_getPaddleY(2)){
+		if ( pongEngine_getBallLocation_y() > pongEngine_getPaddleY(2)+10){
 
 			pongEngine_paddleMove(2, UP, 2);
 
-		} else if ( pongEngine_getBallLocation_y() < pongEngine_getPaddleY(2)){
+		} else if ( pongEngine_getBallLocation_y() < pongEngine_getPaddleY(2)-10){
 
 			pongEngine_paddleMove(2, DOWN, 	2);
 		}

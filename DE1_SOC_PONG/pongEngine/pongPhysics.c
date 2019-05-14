@@ -11,48 +11,23 @@ int angle;
 int speed;
 int rounds; //Number of rounds elapsed
 int nrand = 0;
-int psrand[] = {134, 34, 124, 33, 66, 113, 140, 15, 167, 140,
-		88, 78, 80, 55, 92, 92, 147, 143, 116, 68, 146, 96,
-		63, 169, 158, 99, 112, 106, 37, 54, 85, 41, 152, 35,
-		41, 31, 41, 78, 56, 166, 77, 33, 163, 176, 79, 20,
-		46, 74, 107, 47, 109, 128, 40, 21, 53, 57, 76, 91,
-		15, 47, 144, 5, 167, 131, 88, 104, 43, 83, 173, 98,
-		94, 42, 88, 112, 122, 71, 66, 178, 7, 159, 164, 143,
-		18, 47, 60, 122, 25, 130, 19, 118};
+int psrand[] = {293, 326, 46, 329, 228, 35, 100, 197, 345,
+		347, 57, 349, 345, 175, 288, 51, 152, 330, 285, 345,
+		236, 13, 306, 336, 244, 273, 268, 141, 236, 62, 254,
+		11, 100, 17, 35, 296, 250, 114, 342, 12, 158, 137, 276,
+		286, 67, 176, 160, 233, 255, 272, 245, 236, 59, 43,
+		179, 346, 123, 211, 270, 182, 252, 321, 345, 197,
+		50, 54, 303, 293, 335, 126, 71, 222, 170, 127, 299,
+		211, 198, 330, 103, 273, 271, 137, 204, 27, 19, 191,
+		281, 336, 47, 205, 169, 4, 121, 58, 286, 112, 190,
+		60, 217, 235, 248};
 
 //
 // Code to regulate serving rules
 //
 
 int pongPhysics_serve (void) {
-
-	/*int r = rand() % 9;	//Choose random number between 0 and 9
-	//int serveSpeed = 2 ;
-	int pr = 0;					//Previous receiver (Player 1 or player 2)
-
-	if (rounds < 1) {			//First serve
-		if (r <= 4) {			//Player 1 receives
-			angle = 0;
-			pr	  = 1;
-			rounds++;
-		} else if (r > 5) {		//Player 2 receives
-			angle = 180;
-			pr	  = 2;
-			rounds++;
-		}
-	} else {					//Alternate thereafter
-		if (pr == 1) {
-			angle = 180;
-			pr	  = 2  ;
-			rounds++;
-		} else if (pr == 2) {
-			angle = 0  ;
-			pr 	  = 1  ;
-			rounds++;
-		}
-	}*/
-
-	int angle = psrand[nrand % 89];
+	int angle = psrand[nrand % 100] - 180;
 	nrand++;
 	return angle;
 }

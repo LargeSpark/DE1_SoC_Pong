@@ -139,3 +139,7 @@ return output;
 
 
 }
+
+void resetRand(){
+	nrand = 0;
+}

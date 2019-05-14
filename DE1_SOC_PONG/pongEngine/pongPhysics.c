@@ -27,7 +27,7 @@ int psrand[] = {293, 326, 46, 329, 228, 35, 100, 197, 345,
 //
 
 int pongPhysics_serve (void) {
-	int angle = psrand[nrand % 100] - 180;
+	int angle = psrand[nrand % 99] - 180;
 	nrand++;
 	return angle;
 }
@@ -107,19 +107,6 @@ if ((pongEngine_getBallLocation_y() < pongEngine_getPaddleY(player) + (int)(sect
 
 	}
 }
-
-
-
-/*
-if (outangle > 180) { //outangle < 360
-	outangle = -(360 - outangle);
-} else if (outangle < -180) {
-	outangle = 360 + outangle;
-} else if (outangle == 360) { // == 0 = 180 / ==180 = 0
-	outangle = 0;
-}
-
-*/
 
 outangle = outangle + deltaAngle;
 

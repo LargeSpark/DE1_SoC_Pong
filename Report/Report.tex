@@ -223,7 +223,7 @@ This section explains how the game engine uses sprites to make a usable resource
 Once the ball is created it is required to be moved. This is carried out using the function 'pongEngine\_moveBall(int angle, int speed)'. To do this code was created to make a ball path. The ball path is saved as a set of instructions in an array. \\ \- \\Firstly to create the set of instructions the angle of the path must be found. This is carried out by finding the angle from the centre of the ball to the outside pixels of the screen. The coordinates are input into function 'pongEngine\_calcAngle' from a for loop which outputs an angle between 2 pixel co-ordinates. Once the angle has been found these coordinates are input into the function 'pongEngine\_genBallPathInst(ballX, ballY, angleX, angleY)' with ballX, ballY being the current coordinates of the ball and angleX, angleY being the outside coordinates which are at the required angle. This function generates a set of instructions to an array of instructions. The set of instructions is created using Bresenham's line theorem which creates a non-visible line which the ball can follow. If the angle is not changed then the instructions will not be regenerated. Everytime the ball moves it is first destroyed (turns all pixels black) and then redrawn in its new location. 
 \begin{figure}[H]
 	\centering
-	\lstinputlisting[language=C, firstline=316, lastline=323, frame=bt]{../DE1_SOC_PONG/pongEngine/pongEngine.c}
+	\lstinputlisting[language=C, firstline=328, lastline=333, frame=bt]{../DE1_SOC_PONG/pongEngine/pongEngine.c}
 		\caption{Code used to calculate angle between 2 co-ordinates}
 \end{figure}
 \- \\

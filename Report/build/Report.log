@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000) (preloaded format=pdflatex 2019.5.9)  14 MAY 2019 10:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000) (preloaded format=pdflatex 2019.5.9)  14 MAY 2019 10:40
 entering extended mode
 **./Report.tex
 (Report.tex
@@ -1162,8 +1162,13 @@ File: ./images/PyCir.png Graphic file (type png)
 Package pdftex.def Info: ./images/PyCir.png  used on input line 210.
 (pdftex.def)             Requested size: 145.11053pt x 145.89682pt.
  [4 <./images/PyCir.png>]
-(../DE1_SOC_PONG/pongEngine/pongEngine.c) [5]
-<./images/Controls.png, id=329, 648.021pt x 327.02174pt>
+(../DE1_SOC_PONG/pongEngine/pongEngine.c
+LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
+(Font)              scaled to size 5.51999pt on input line 330.
+LaTeX Font Info:    Font shape `U/futm/m/n' will be
+(Font)              scaled to size 5.51999pt on input line 330.
+) [5]
+<./images/Controls.png, id=327, 648.021pt x 327.02174pt>
 File: ./images/Controls.png Graphic file (type png)
 <use ./images/Controls.png>
 Package pdftex.def Info: ./images/Controls.png  used on input line 245.
@@ -1173,7 +1178,7 @@ Package pdftex.def Info: ./images/Controls.png  used on input line 245.
 (../DE1_SOC_PONG/pongScreens/pongScreens.c) [6 <./images/Controls.png>]
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <12> not available
 (Font)              Font shape `T1/phv/m/sl' tried instead on input line 264.
-<./images/InputStateMachine.png, id=351, 275.0275pt x 412.54124pt>
+<./images/InputStateMachine.png, id=349, 275.0275pt x 412.54124pt>
 File: ./images/InputStateMachine.png Graphic file (type png)
 <use ./images/InputStateMachine.png>
 Package pdftex.def Info: ./images/InputStateMachine.png  used on input line 268
@@ -1182,42 +1187,37 @@ Package pdftex.def Info: ./images/InputStateMachine.png  used on input line 268
 
 [7 <./images/InputStateMachine.png>] (../DE1_SOC_PONG/pongScreens/pongScreens.c
 )
-<./images/StartScreen.png, id=360, 2080.77374pt x 1731.46875pt>
+<./images/StartScreen.png, id=358, 2080.77374pt x 1731.46875pt>
 File: ./images/StartScreen.png Graphic file (type png)
 <use ./images/StartScreen.png>
 Package pdftex.def Info: ./images/StartScreen.png  used on input line 289.
 (pdftex.def)             Requested size: 193.47578pt x 160.97737pt.
  [8 <./images/StartScreen.png>]
-<./images/Menus_Combined.jpg, id=384, 3702.633pt x 900.966pt>
+<./images/Menus_Combined.jpg, id=382, 3702.633pt x 900.966pt>
 File: ./images/Menus_Combined.jpg Graphic file (type jpg)
 <use ./images/Menus_Combined.jpg>
 Package pdftex.def Info: ./images/Menus_Combined.jpg  used on input line 296.
 (pdftex.def)             Requested size: 435.32422pt x 105.92538pt.
  [9 <./images/Menus_Combined.jpg>]
-(Report_Code/fakePongSound.c
-LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 5.51999pt on input line 8.
-LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 5.51999pt on input line 8.
-) [10]
-<./images/JohnFigs/1.png, id=414, 79.29625pt x 438.63875pt>
+(Report_Code/fakePongSound.c) [10]
+<./images/JohnFigs/1.png, id=412, 79.29625pt x 438.63875pt>
 File: ./images/JohnFigs/1.png Graphic file (type png)
 <use ./images/JohnFigs/1.png>
 Package pdftex.def Info: ./images/JohnFigs/1.png  used on input line 345.
 (pdftex.def)             Requested size: 48.37263pt x 267.58931pt.
  [11 <./images/JohnFigs/1.png>]
-<./images/JohnFigs/2.png, id=420, 358.33875pt x 222.8325pt>
+<./images/JohnFigs/2.png, id=418, 358.33875pt x 222.8325pt>
 File: ./images/JohnFigs/2.png Graphic file (type png)
 <use ./images/JohnFigs/2.png>
 Package pdftex.def Info: ./images/JohnFigs/2.png  used on input line 355.
 (pdftex.def)             Requested size: 193.47578pt x 120.31415pt.
  [12 <./images/JohnFigs/2.png>]
-<./images/JohnFigs/3.png, id=426, 427.5975pt x 770.88pt>
+<./images/JohnFigs/3.png, id=424, 427.5975pt x 770.88pt>
 File: ./images/JohnFigs/3.png Graphic file (type png)
 <use ./images/JohnFigs/3.png>
 Package pdftex.def Info: ./images/JohnFigs/3.png  used on input line 364.
 (pdftex.def)             Requested size: 199.16928pt x 359.06715pt.
-<./images/JohnFigs/4.png, id=427, 360.34625pt x 574.145pt>
+<./images/JohnFigs/4.png, id=425, 360.34625pt x 574.145pt>
 File: ./images/JohnFigs/4.png Graphic file (type png)
 <use ./images/JohnFigs/4.png>
 Package pdftex.def Info: ./images/JohnFigs/4.png  used on input line 366.
@@ -1253,8 +1253,8 @@ Package rerunfilecheck Info: File `Report.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 462.
  ) 
 Here is how much of TeX's memory you used:
- 25308 strings out of 494864
- 430692 string characters out of 3178364
+ 25306 strings out of 494864
+ 430664 string characters out of 3178364
  1025117 words of memory out of 3000000
  25863 multiletter control sequences out of 15000+200000
  622228 words of font info for 126 fonts, out of 3000000 for 9000
@@ -1269,9 +1269,9 @@ all/fonts/type1/urw/helvetic/uhvb8a.pfb></home/alex/.miktex/texmfs/install/font
 s/type1/urw/helvetic/uhvr8a.pfb></home/alex/.miktex/texmfs/install/fonts/type1/
 urw/helvetic/uhvro8a.pfb>
 Output written on /home/alex/Documents/Gits/DE1_SoC_Pong/Report/build/Report.pd
-f (55 pages, 6823155 bytes).
+f (55 pages, 6823024 bytes).
 PDF statistics:
- 3723 PDF objects out of 4296 (max. 8388607)
- 2733 named destinations out of 2984 (max. 500000)
+ 3721 PDF objects out of 4296 (max. 8388607)
+ 2731 named destinations out of 2984 (max. 500000)
  381 words of extra memory for PDF output out of 10000 (max. 10000000)
 

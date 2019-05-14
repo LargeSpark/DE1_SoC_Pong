@@ -9,9 +9,10 @@
 
 
 int main(void) {
+
 	int FS = 3;
 	//int paddleX;
-
+	srand(999);
 	// Initialise displays
 	Displays_init(0xC8000000,0xC9000000,0xFF200060,0xFF200080);
 	Displays_frameSkip(FS);

@@ -10,6 +10,15 @@
 int angle;
 int speed;
 int rounds; //Number of rounds elapsed
+int nrand = 0;
+int psrand[] = {134, 34, 124, 33, 66, 113, 140, 15, 167, 140,
+		88, 78, 80, 55, 92, 92, 147, 143, 116, 68, 146, 96,
+		63, 169, 158, 99, 112, 106, 37, 54, 85, 41, 152, 35,
+		41, 31, 41, 78, 56, 166, 77, 33, 163, 176, 79, 20,
+		46, 74, 107, 47, 109, 128, 40, 21, 53, 57, 76, 91,
+		15, 47, 144, 5, 167, 131, 88, 104, 43, 83, 173, 98,
+		94, 42, 88, 112, 122, 71, 66, 178, 7, 159, 164, 143,
+		18, 47, 60, 122, 25, 130, 19, 118};
 
 //
 // Code to regulate serving rules
@@ -17,8 +26,8 @@ int rounds; //Number of rounds elapsed
 
 int pongPhysics_serve (void) {
 
-	int r = rand() % 1;	//Choose random number between 0 and 9
-	int serveSpeed = 2 ;
+	/*int r = rand() % 9;	//Choose random number between 0 and 9
+	//int serveSpeed = 2 ;
 	int pr = 0;					//Previous receiver (Player 1 or player 2)
 
 	if (rounds < 1) {			//First serve
@@ -41,9 +50,10 @@ int pongPhysics_serve (void) {
 			pr 	  = 1  ;
 			rounds++;
 		}
+	}*/
 
-	}
-
+	int angle = psrand[nrand % 89];
+	nrand++;
 	return angle;
 }
 
@@ -89,23 +99,23 @@ if ((pongEngine_getBallLocation_y() < pongEngine_getPaddleY(player) + (int)(sect
 //Paddle sector 2 collision
 } else if ((pongEngine_getBallLocation_y() >= pongEngine_getPaddleY (player) + (int)(sector1)) && (pongEngine_getBallLocation_y() <= pongEngine_getPaddleY (player) + (int)(sector2))) {
 
-	deltaAngle = -10;
+	deltaAngle = 10;
 	outspeed   = 6;
 
 } else if ((pongEngine_getBallLocation_y() < pongEngine_getPaddleY (player) - (int)(sector1)) && (pongEngine_getBallLocation_y() >= pongEngine_getPaddleY (player) - (int)(sector2))) {
 
-	deltaAngle = 10;
+	deltaAngle = -10;
 	outspeed	= 6;
 
 //Paddle sector 3 collision
 } else if (pongEngine_getBallLocation_y() > pongEngine_getPaddleY(player) + (int)(sector2) && pongEngine_getBallLocation_y() <= pongEngine_getPaddleY(player) + (int)(sector3)) {
 
-	deltaAngle = -20;
+	deltaAngle = 20;
 	outspeed   = 8;
 
 } else if (pongEngine_getBallLocation_y() < pongEngine_getPaddleY(player) - (int)(sector2) && pongEngine_getBallLocation_y() >= pongEngine_getPaddleY(player) - (int)(sector3)) {
 
-	deltaAngle = 20;
+	deltaAngle = -20;
 	outspeed   = 8;
 
 } else {

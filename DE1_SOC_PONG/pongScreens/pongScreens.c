@@ -365,9 +365,6 @@ void testScreen_AI( void ){
 
 void testScreen( void ){
 	int dir = 0;
-	//int x;
-	//int variable = 240; //240
-
 	int vel;
 	int* arr;
 	int x;

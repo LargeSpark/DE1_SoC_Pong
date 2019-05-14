@@ -162,6 +162,7 @@ void gameMenu(){
 	unsigned int i;
 	char str_txt[30];
 
+	resetRand();
 	setInputMode(MENUS);
 	gameModeOld = gameMode;
 	SDisplay_clearAll();

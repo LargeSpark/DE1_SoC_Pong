@@ -19,7 +19,7 @@
 int pongPhysics_serve (void);
 int pongPhysics_borderCollision (int speed, int angle);
 int* pongPhysics_paddleCollision (int speed, int angle, int player);
-
+void resetRand( void );
 
 
 

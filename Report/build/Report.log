@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000) (preloaded format=pdflatex 2019.5.9)  14 MAY 2019 10:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000) (preloaded format=pdflatex 2019.5.9)  14 MAY 2019 10:35
 entering extended mode
 **./Report.tex
 (Report.tex
@@ -891,7 +891,7 @@ File: lipsum.ltd.tex 2019/01/02 v2.2 The Lorem ipsum dummy text
 ))
 Package hyperref Info: Option `colorlinks' set `true' on input line 57.
 
-(/home/alex/Documents/Gits/DE1_SoC_Pong/Report/build/Report.aux)
+(Report.aux)
 \openout1 = `Report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 123.
@@ -911,8 +911,7 @@ LaTeX Font Info:    ... okay on input line 123.
 LaTeX Font Info:    Checking defaults for FML/futm/m/it on input line 123.
 LaTeX Font Info:    Try loading font information for FML+futm on input line 123
 .
-
-(/home/alex/.miktex/texmfs/install/tex/latex/fourier/fmlfutm.fd
+ (/home/alex/.miktex/texmfs/install/tex/latex/fourier/fmlfutm.fd
 File: fmlfutm.fd 2004/10/30 Fontinst v1.926 font definitions for FML/futm.
 )
 LaTeX Font Info:    ... okay on input line 123.
@@ -1021,8 +1020,7 @@ LaTeX Info: Redefining \ref on input line 123.
 LaTeX Info: Redefining \pageref on input line 123.
 LaTeX Info: Redefining \nameref on input line 123.
 
-(/home/alex/Documents/Gits/DE1_SoC_Pong/Report/build/Report.out)
-(/home/alex/Documents/Gits/DE1_SoC_Pong/Report/build/Report.out)
+(Report.out) (Report.out)
 \@outlinefile=\write3
 \openout3 = `Report.out'.
 
@@ -1041,10 +1039,9 @@ erthousand on input line 123.
 LaTeX Info: Redefining \ohm on input line 123.
 Package gensymb Info: Using \textohm for \ohm on input line 123.
 Package gensymb Info: Using \textmu for \micro on input line 123.
-
-ABD: EverySelectfont initializing macros
+ ABD: EverySelectfont initializing macros
 LaTeX Info: Redefining \selectfont on input line 123.
-<UniLogo.png, id=159, 2007.5pt x 582.175pt>
+<UniLogo.png, id=163, 2007.5pt x 582.175pt>
 File: UniLogo.png Graphic file (type png)
 <use UniLogo.png>
 Package pdftex.def Info: UniLogo.png  used on input line 128.
@@ -1095,8 +1092,7 @@ File: ts1phv.fd 2001/06/04 scalable font definitions for TS1/phv.
 {/home/alex/.miktex/texmfs/data/pdftex/config/pdftex.map} <./UniLogo.png>]
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <17.28> not available
 (Font)              Font shape `T1/phv/b/n' tried instead on input line 139.
-
-(/home/alex/Documents/Gits/DE1_SoC_Pong/Report/build/Report.toc
+ (Report.toc
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
 (Font)              Font shape `T1/phv/b/n' tried instead on input line 1.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
@@ -1111,31 +1107,31 @@ LaTeX Font Info:    Font shape `U/futm/m/n' will be
 (Font)              scaled to size 8.27998pt on input line 3.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
 (Font)              scaled to size 6.43999pt on input line 3.
-)
-\tf@toc=\write4
-\openout4 = `Report.toc'.
 
- [2]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
 Make it at least 14.49998pt.
 We now make it that large for the rest of the document.
 This may cause the page layout to be inconsistent, however.
 
-[3]pdfTeX warning (ext4): destination with the same identifier (name{page.1}) h
-as been already used, duplicate ignored
+[2])
+\tf@toc=\write4
+\openout4 = `Report.toc'.
+
+ [3]pdfTeX warning (ext4): destination with the same identifier (name{page.1}) 
+has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.150 \newpage
                [1]
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/phv/b/n' tried instead on input line 152.
-<./images/VGAPixels.png, id=260, 316.18124pt x 229.85875pt>
+<./images/VGAPixels.png, id=266, 316.18124pt x 229.85875pt>
 File: ./images/VGAPixels.png Graphic file (type png)
 <use ./images/VGAPixels.png>
 Package pdftex.def Info: ./images/VGAPixels.png  used on input line 164.
 (pdftex.def)             Requested size: 193.47578pt x 140.65555pt.
-<./images/VGAPixelcolour.png, id=263, 567.11874pt x 151.56625pt>
+<./images/VGAPixelcolour.png, id=269, 567.11874pt x 151.56625pt>
 File: ./images/VGAPixelcolour.png Graphic file (type png)
 <use ./images/VGAPixelcolour.png>
 Package pdftex.def Info: ./images/VGAPixelcolour.png  used on input line 171.
@@ -1160,14 +1156,14 @@ ith the same identifier (name{page.3}) has been already used, duplicate ignored
                    \relax 
 l.199 \newpage
                [3]
-<./images/PyCir.png, id=301, 370.38374pt x 372.39125pt>
+<./images/PyCir.png, id=307, 370.38374pt x 372.39125pt>
 File: ./images/PyCir.png Graphic file (type png)
 <use ./images/PyCir.png>
 Package pdftex.def Info: ./images/PyCir.png  used on input line 210.
 (pdftex.def)             Requested size: 145.11053pt x 145.89682pt.
  [4 <./images/PyCir.png>]
 (../DE1_SOC_PONG/pongEngine/pongEngine.c) [5]
-<./images/Controls.png, id=323, 648.021pt x 327.02174pt>
+<./images/Controls.png, id=329, 648.021pt x 327.02174pt>
 File: ./images/Controls.png Graphic file (type png)
 <use ./images/Controls.png>
 Package pdftex.def Info: ./images/Controls.png  used on input line 245.
@@ -1177,7 +1173,7 @@ Package pdftex.def Info: ./images/Controls.png  used on input line 245.
 (../DE1_SOC_PONG/pongScreens/pongScreens.c) [6 <./images/Controls.png>]
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <12> not available
 (Font)              Font shape `T1/phv/m/sl' tried instead on input line 264.
-<./images/InputStateMachine.png, id=345, 275.0275pt x 412.54124pt>
+<./images/InputStateMachine.png, id=351, 275.0275pt x 412.54124pt>
 File: ./images/InputStateMachine.png Graphic file (type png)
 <use ./images/InputStateMachine.png>
 Package pdftex.def Info: ./images/InputStateMachine.png  used on input line 268
@@ -1186,13 +1182,13 @@ Package pdftex.def Info: ./images/InputStateMachine.png  used on input line 268
 
 [7 <./images/InputStateMachine.png>] (../DE1_SOC_PONG/pongScreens/pongScreens.c
 )
-<./images/StartScreen.png, id=354, 2080.77374pt x 1731.46875pt>
+<./images/StartScreen.png, id=360, 2080.77374pt x 1731.46875pt>
 File: ./images/StartScreen.png Graphic file (type png)
 <use ./images/StartScreen.png>
 Package pdftex.def Info: ./images/StartScreen.png  used on input line 289.
 (pdftex.def)             Requested size: 193.47578pt x 160.97737pt.
  [8 <./images/StartScreen.png>]
-<./images/Menus_Combined.jpg, id=378, 3702.633pt x 900.966pt>
+<./images/Menus_Combined.jpg, id=384, 3702.633pt x 900.966pt>
 File: ./images/Menus_Combined.jpg Graphic file (type jpg)
 <use ./images/Menus_Combined.jpg>
 Package pdftex.def Info: ./images/Menus_Combined.jpg  used on input line 296.
@@ -1204,24 +1200,24 @@ LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
 (Font)              scaled to size 5.51999pt on input line 8.
 ) [10]
-<./images/JohnFigs/1.png, id=408, 79.29625pt x 438.63875pt>
+<./images/JohnFigs/1.png, id=414, 79.29625pt x 438.63875pt>
 File: ./images/JohnFigs/1.png Graphic file (type png)
 <use ./images/JohnFigs/1.png>
 Package pdftex.def Info: ./images/JohnFigs/1.png  used on input line 345.
 (pdftex.def)             Requested size: 48.37263pt x 267.58931pt.
  [11 <./images/JohnFigs/1.png>]
-<./images/JohnFigs/2.png, id=414, 358.33875pt x 222.8325pt>
+<./images/JohnFigs/2.png, id=420, 358.33875pt x 222.8325pt>
 File: ./images/JohnFigs/2.png Graphic file (type png)
 <use ./images/JohnFigs/2.png>
 Package pdftex.def Info: ./images/JohnFigs/2.png  used on input line 355.
 (pdftex.def)             Requested size: 193.47578pt x 120.31415pt.
  [12 <./images/JohnFigs/2.png>]
-<./images/JohnFigs/3.png, id=420, 427.5975pt x 770.88pt>
+<./images/JohnFigs/3.png, id=426, 427.5975pt x 770.88pt>
 File: ./images/JohnFigs/3.png Graphic file (type png)
 <use ./images/JohnFigs/3.png>
 Package pdftex.def Info: ./images/JohnFigs/3.png  used on input line 364.
 (pdftex.def)             Requested size: 199.16928pt x 359.06715pt.
-<./images/JohnFigs/4.png, id=421, 360.34625pt x 574.145pt>
+<./images/JohnFigs/4.png, id=427, 360.34625pt x 574.145pt>
 File: ./images/JohnFigs/4.png Graphic file (type png)
 <use ./images/JohnFigs/4.png>
 Package pdftex.def Info: ./images/JohnFigs/4.png  used on input line 366.
@@ -1245,23 +1241,22 @@ Package pdftex.def Info: ./images/JohnFigs/4.png  used on input line 366.
 (../DE1_SOC_PONG/pongSound/pongSound.h) [44]
 (../DE1_SOC_PONG/pongScreens/pongScreens.c [45] [46] [47] [48]) [49]
 (../DE1_SOC_PONG/pongScreens/pongScreens.h) [50] (../DE1_SOC_PONG/main.c)
-[51] (/home/alex/Documents/Gits/DE1_SoC_Pong/Report/build/Report.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 458.
+[51] (Report.bbl)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 462.
  [52]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 458.
-
-(/home/alex/Documents/Gits/DE1_SoC_Pong/Report/build/Report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 458.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 458.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 462.
+ (Report.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 462.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 462.
 Package rerunfilecheck Info: File `Report.out' has not changed.
-(rerunfilecheck)             Checksum: 8CE49FB9CD245CCC435171F0DDED4CC7;2665.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 458.
+(rerunfilecheck)             Checksum: 9852D255FDE1F086969CADF9E3903B7F;2703.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 462.
  ) 
 Here is how much of TeX's memory you used:
- 25306 strings out of 494864
- 431020 string characters out of 3178364
- 1025116 words of memory out of 3000000
- 25862 multiletter control sequences out of 15000+200000
+ 25308 strings out of 494864
+ 430692 string characters out of 3178364
+ 1025117 words of memory out of 3000000
+ 25863 multiletter control sequences out of 15000+200000
  622228 words of font info for 126 fonts, out of 3000000 for 9000
  0 hyphenation exceptions out of 8191
  61i,12n,96p,1379b,2022s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1274,9 +1269,9 @@ all/fonts/type1/urw/helvetic/uhvb8a.pfb></home/alex/.miktex/texmfs/install/font
 s/type1/urw/helvetic/uhvr8a.pfb></home/alex/.miktex/texmfs/install/fonts/type1/
 urw/helvetic/uhvro8a.pfb>
 Output written on /home/alex/Documents/Gits/DE1_SoC_Pong/Report/build/Report.pd
-f (55 pages, 6821964 bytes).
+f (55 pages, 6823155 bytes).
 PDF statistics:
- 3717 PDF objects out of 4296 (max. 8388607)
- 2732 named destinations out of 2984 (max. 500000)
- 373 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 3723 PDF objects out of 4296 (max. 8388607)
+ 2733 named destinations out of 2984 (max. 500000)
+ 381 words of extra memory for PDF output out of 10000 (max. 10000000)
 

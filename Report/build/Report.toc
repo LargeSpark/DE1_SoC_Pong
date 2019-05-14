@@ -11,29 +11,30 @@
 \contentsline {section}{\numberline {5}Game Physics}{11}{section.5}% 
 \contentsline {subsection}{\numberline {5.1}Collisions}{11}{subsection.5.1}% 
 \contentsline {subsection}{\numberline {5.2}Code Architecture}{12}{subsection.5.2}% 
-\contentsline {section}{\numberline {6}Problems Encountered}{14}{section.6}% 
-\contentsline {subsection}{\numberline {6.1}Ball becoming stuck at border/ paddle}{14}{subsection.6.1}% 
-\contentsline {subsection}{\numberline {6.2}Ball moving through paddle at collision}{14}{subsection.6.2}% 
-\contentsline {subsection}{\numberline {6.3}Ball disappearing after paddle collision}{14}{subsection.6.3}% 
-\contentsline {section}{\numberline {7}Conclusion}{15}{section.7}% 
-\contentsline {section}{\numberline {8}Appendix }{16}{section.8}% 
-\contentsline {subsection}{\numberline {8.1}Appendix A - sevenSeg.c}{16}{subsection.8.1}% 
-\contentsline {subsection}{\numberline {8.2}Appendix B - sevenSeg.h}{17}{subsection.8.2}% 
-\contentsline {subsection}{\numberline {8.3}Appendix C - DE1SoC VGA.c}{18}{subsection.8.3}% 
-\contentsline {subsection}{\numberline {8.4}Appendix D - DE1SoC VGA.h}{19}{subsection.8.4}% 
-\contentsline {subsection}{\numberline {8.5}Appendix E - pongDisplay.c}{20}{subsection.8.5}% 
-\contentsline {subsection}{\numberline {8.6}Appendix F - pongDisplay.h}{25}{subsection.8.6}% 
-\contentsline {subsection}{\numberline {8.7}Appendix G - pongEngine.c}{26}{subsection.8.7}% 
-\contentsline {subsection}{\numberline {8.8}Appendix H - pongEngine.h}{31}{subsection.8.8}% 
-\contentsline {subsection}{\numberline {8.9}Appendix I - pongSprites.c}{32}{subsection.8.9}% 
-\contentsline {subsection}{\numberline {8.10}Appendix J - pongSprites.h}{34}{subsection.8.10}% 
-\contentsline {subsection}{\numberline {8.11}Appendix K - pongPhysics.c}{35}{subsection.8.11}% 
-\contentsline {subsection}{\numberline {8.12}Appendix L - pongPhysics.h}{37}{subsection.8.12}% 
-\contentsline {subsection}{\numberline {8.13}Appendix M - pongInputs.c}{38}{subsection.8.13}% 
-\contentsline {subsection}{\numberline {8.14}Appendix N - pongInputs.h}{41}{subsection.8.14}% 
-\contentsline {subsection}{\numberline {8.15}Appendix O - pongSounds.c}{42}{subsection.8.15}% 
-\contentsline {subsection}{\numberline {8.16}Appendix P - pongSounds.h}{44}{subsection.8.16}% 
-\contentsline {subsection}{\numberline {8.17}Appendix Q - pongScreens.c}{45}{subsection.8.17}% 
-\contentsline {subsection}{\numberline {8.18}Appendix R - pongScreens.h}{50}{subsection.8.18}% 
-\contentsline {subsection}{\numberline {8.19}Appendix S - main.c}{51}{subsection.8.19}% 
+\contentsline {section}{\numberline {6}AI}{13}{section.6}% 
+\contentsline {section}{\numberline {7}Problems Encountered}{14}{section.7}% 
+\contentsline {subsection}{\numberline {7.1}Ball becoming stuck at border/ paddle}{14}{subsection.7.1}% 
+\contentsline {subsection}{\numberline {7.2}Ball moving through paddle at collision}{14}{subsection.7.2}% 
+\contentsline {subsection}{\numberline {7.3}Ball disappearing after paddle collision}{14}{subsection.7.3}% 
+\contentsline {section}{\numberline {8}Conclusion}{15}{section.8}% 
+\contentsline {section}{\numberline {9}Appendix }{16}{section.9}% 
+\contentsline {subsection}{\numberline {9.1}Appendix A - sevenSeg.c}{16}{subsection.9.1}% 
+\contentsline {subsection}{\numberline {9.2}Appendix B - sevenSeg.h}{17}{subsection.9.2}% 
+\contentsline {subsection}{\numberline {9.3}Appendix C - DE1SoC VGA.c}{18}{subsection.9.3}% 
+\contentsline {subsection}{\numberline {9.4}Appendix D - DE1SoC VGA.h}{19}{subsection.9.4}% 
+\contentsline {subsection}{\numberline {9.5}Appendix E - pongDisplay.c}{20}{subsection.9.5}% 
+\contentsline {subsection}{\numberline {9.6}Appendix F - pongDisplay.h}{25}{subsection.9.6}% 
+\contentsline {subsection}{\numberline {9.7}Appendix G - pongEngine.c}{26}{subsection.9.7}% 
+\contentsline {subsection}{\numberline {9.8}Appendix H - pongEngine.h}{31}{subsection.9.8}% 
+\contentsline {subsection}{\numberline {9.9}Appendix I - pongSprites.c}{32}{subsection.9.9}% 
+\contentsline {subsection}{\numberline {9.10}Appendix J - pongSprites.h}{34}{subsection.9.10}% 
+\contentsline {subsection}{\numberline {9.11}Appendix K - pongPhysics.c}{35}{subsection.9.11}% 
+\contentsline {subsection}{\numberline {9.12}Appendix L - pongPhysics.h}{37}{subsection.9.12}% 
+\contentsline {subsection}{\numberline {9.13}Appendix M - pongInputs.c}{38}{subsection.9.13}% 
+\contentsline {subsection}{\numberline {9.14}Appendix N - pongInputs.h}{41}{subsection.9.14}% 
+\contentsline {subsection}{\numberline {9.15}Appendix O - pongSounds.c}{42}{subsection.9.15}% 
+\contentsline {subsection}{\numberline {9.16}Appendix P - pongSounds.h}{44}{subsection.9.16}% 
+\contentsline {subsection}{\numberline {9.17}Appendix Q - pongScreens.c}{45}{subsection.9.17}% 
+\contentsline {subsection}{\numberline {9.18}Appendix R - pongScreens.h}{50}{subsection.9.18}% 
+\contentsline {subsection}{\numberline {9.19}Appendix S - main.c}{51}{subsection.9.19}% 
 \contentsline {section}{References}{52}{lstnumber.-26.49}% 

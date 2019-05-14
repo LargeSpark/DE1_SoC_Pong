@@ -10,40 +10,31 @@
 int angle;
 int speed;
 int rounds; //Number of rounds elapsed
+int nrand = 0;
+int psrand[] = {293, 112, 46, 329, 228, 35, 100, 197, 335,
+		340, 57, 339, 335, 175, 288, 51, 152, 330, 285, 335,
+		236, 13, 306, 336, 244, 273, 208, 141, 236, 62, 254,
+		11, 100, 17, 35, 296, 250, 114, 332, 12, 158, 137, 276,
+		286, 67, 176, 160, 233, 255, 282, 245, 236, 59, 43,
+		179, 346, 123, 211, 260, 182, 252, 321, 345, 197,
+		50, 54, 303, 293, 335, 126, 71, 222, 170, 127, 299,
+		211, 198, 330, 103, 273, 271, 137, 204, 27, 19, 191,
+		281, 336, 47, 205, 169, 14, 121, 58, 286, 326, 190,
+		60, 217, 235, 248};
 
 //
 // Code to regulate serving rules
 //
 
 int pongPhysics_serve (void) {
-
-	int r = rand() % 1;	//Choose random number between 0 and 9
-	int serveSpeed = 2 ;
-	int pr = 0;					//Previous receiver (Player 1 or player 2)
-
-	if (rounds < 1) {			//First serve
-		if (r <= 4) {			//Player 1 receives
-			angle = 0;
-			pr	  = 1;
-			rounds++;
-		} else if (r > 5) {		//Player 2 receives
-			angle = 180;
-			pr	  = 2;
-			rounds++;
-		}
-	} else {					//Alternate thereafter
-		if (pr == 1) {
-			angle = 180;
-			pr	  = 2  ;
-			rounds++;
-		} else if (pr == 2) {
-			angle = 0  ;
-			pr 	  = 1  ;
-			rounds++;
-		}
-
+	int angle = psrand[nrand % 99] - 180;
+	nrand++;
+	if (angle < 20){
+		angle += 20;
 	}
-
+	if (angle > 340){
+		angle -= 20;
+	}
 	return angle;
 }
 
@@ -53,16 +44,16 @@ int pongPhysics_serve (void) {
 
 int pongPhysics_borderCollision (int speed, int angle) {
 
-int outangle;
+	int outangle;
 
-outangle	= -angle;
+	outangle	= -angle;
 
-pongEngine_moveBall(outangle, speed);		//Used to avoid ball getting stuck at the border
-pongEngine_moveBall(outangle, speed);
-pongEngine_moveBall(outangle, speed);
+	pongEngine_moveBall(outangle, speed);		//Used to avoid ball getting stuck at the border
+	pongEngine_moveBall(outangle, speed);
+	pongEngine_moveBall(outangle, speed);
 
-return outangle;
-
+	ResetWDT();
+	return outangle;
 }
 
 // Code to regulate paddle collisions
@@ -79,7 +70,7 @@ float sector3 = (0.083 * pongSprites_getPaddleSizeY());
 int output[2];
 
 outangle	=  180 - angle;
-
+ResetWDT();
 // Paddle sector 1 collision / no change in angle or speed
 if ((pongEngine_getBallLocation_y() < pongEngine_getPaddleY(player) + (int)(sector1)) && (pongEngine_getBallLocation_y() > pongEngine_getPaddleY(player) - (int)(sector1))) {
 
@@ -89,23 +80,23 @@ if ((pongEngine_getBallLocation_y() < pongEngine_getPaddleY(player) + (int)(sect
 //Paddle sector 2 collision
 } else if ((pongEngine_getBallLocation_y() >= pongEngine_getPaddleY (player) + (int)(sector1)) && (pongEngine_getBallLocation_y() <= pongEngine_getPaddleY (player) + (int)(sector2))) {
 
-	deltaAngle = -10;
+	deltaAngle = 10;
 	outspeed   = 6;
 
 } else if ((pongEngine_getBallLocation_y() < pongEngine_getPaddleY (player) - (int)(sector1)) && (pongEngine_getBallLocation_y() >= pongEngine_getPaddleY (player) - (int)(sector2))) {
 
-	deltaAngle = 10;
+	deltaAngle = -10;
 	outspeed	= 6;
 
 //Paddle sector 3 collision
 } else if (pongEngine_getBallLocation_y() > pongEngine_getPaddleY(player) + (int)(sector2) && pongEngine_getBallLocation_y() <= pongEngine_getPaddleY(player) + (int)(sector3)) {
 
-	deltaAngle = -20;
+	deltaAngle = 20;
 	outspeed   = 8;
 
 } else if (pongEngine_getBallLocation_y() < pongEngine_getPaddleY(player) - (int)(sector2) && pongEngine_getBallLocation_y() >= pongEngine_getPaddleY(player) - (int)(sector3)) {
 
-	deltaAngle = 20;
+	deltaAngle = -20;
 	outspeed   = 8;
 
 } else {
@@ -122,19 +113,6 @@ if ((pongEngine_getBallLocation_y() < pongEngine_getPaddleY(player) + (int)(sect
 
 	}
 }
-
-
-
-/*
-if (outangle > 180) { //outangle < 360
-	outangle = -(360 - outangle);
-} else if (outangle < -180) {
-	outangle = 360 + outangle;
-} else if (outangle == 360) { // == 0 = 180 / ==180 = 0
-	outangle = 0;
-}
-
-*/
 
 outangle = outangle + deltaAngle;
 
@@ -155,7 +133,7 @@ output[1] = outspeed;
 pongEngine_moveBall(output[0], output[1]);
 pongEngine_moveBall(output[0], output[1]);
 pongEngine_moveBall(output[0], output[1]);
-
+ResetWDT();
 
 return output;
 

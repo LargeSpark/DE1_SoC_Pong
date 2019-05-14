@@ -231,8 +231,7 @@ void testScreen_AI( void ){
 	int dir;
 	int vel;
 	int *arr;
-	int x;
-	int variable = 240;
+
 
 	// Clear screen and set input mode
 	Displays_clearScreen();
@@ -248,7 +247,6 @@ void testScreen_AI( void ){
 	Displays_forceRefresh(); pongEngine_refreshScore();
 	n = 0;
 	while (getInputMode() == GAME_AI){
-
 		ResetWDT();
 		Displays_forceRefresh();
 
@@ -303,11 +301,11 @@ void testScreen_AI( void ){
 
 
 		// AI bit
-		if ( pongEngine_getBallLocation_y() > pongEngine_getPaddleY(2)){
+		if ( pongEngine_getBallLocation_y() > pongEngine_getPaddleY(2)+10){
 
 			pongEngine_paddleMove(2, UP, 2);
 
-		} else if ( pongEngine_getBallLocation_y() < pongEngine_getPaddleY(2)){
+		} else if ( pongEngine_getBallLocation_y() < pongEngine_getPaddleY(2)-10){
 
 			pongEngine_paddleMove(2, DOWN, 	2);
 		}
@@ -334,7 +332,6 @@ void testScreen_AI( void ){
 				pongEngine_moveBall(1, 0); //reset angle instructions
 				pongEngine_moveBall(0, 0);
 				Displays_forceRefresh(); pongEngine_refreshScore(); //force refresh
-				variable = 240; //reset var
 				n = 0; //reset var
 				pongEngine_addPoint(2); //add point
 		} else if ( pongEngine_getBallLocation_x() >= 320 - 10){
@@ -350,7 +347,6 @@ void testScreen_AI( void ){
 			pongEngine_moveBall(1, 0); //reset angle instructions
 			pongEngine_moveBall(0, 0);
 			Displays_forceRefresh(); pongEngine_refreshScore(); //force refresh
-			variable = 240; //reset var
 			n = 0; //reset var
 			pongEngine_addPoint(1); //add point
 
@@ -365,13 +361,9 @@ void testScreen_AI( void ){
 
 void testScreen( void ){
 	int dir = 0;
-	//int x;
-	//int variable = 240; //240
-
 	int vel;
 	int* arr;
-	int x;
-	int variable = 240;
+
 	// Clear screen and set input mode
 	Displays_clearScreen();
 	setInputMode(GAME);
@@ -413,7 +405,6 @@ void testScreen( void ){
 			dir = arr[0];
 			vel = arr[1];
 
-
 			}
 		}
 
@@ -449,7 +440,6 @@ void testScreen( void ){
 			pongEngine_moveBall(1, 0); //reset angle instructions
 			pongEngine_moveBall(0, 0);
 			Displays_forceRefresh(); pongEngine_refreshScore(); //force refresh
-			variable = 240; //reset var
 			n = 0; //reset var
 			pongEngine_addPoint(2); //add point
 		} else if ( pongEngine_getBallLocation_x() >= 320 - 10){
@@ -465,7 +455,6 @@ void testScreen( void ){
 			pongEngine_moveBall(1, 0); //reset angle instructions
 			pongEngine_moveBall(0, 0);
 			Displays_forceRefresh(); pongEngine_refreshScore(); //force refresh
-			variable = 240; //reset var
 			n = 0; //reset var
 			pongEngine_addPoint(1); //add point
 		}

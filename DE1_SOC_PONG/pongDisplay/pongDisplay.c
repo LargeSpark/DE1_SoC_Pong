@@ -217,8 +217,8 @@ void Displays_setWindow(int minx, int miny, int maxx, int maxy){
 //This sets the pixel to the framebuffer
 void Displays_setPixel(int x, int y, short colour){
 	//check if within window
-	int z;
-	int found = 0;
+	//int z;
+	//int found = 0;
 	//checks if within window set
 	if(x >= minX && x < maxX && y >= minY && y < maxY){
 		//if no framebuffer draw straight to the display hardware

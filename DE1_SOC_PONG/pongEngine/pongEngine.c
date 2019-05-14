@@ -341,7 +341,7 @@ int pongEngine_calcAngle(int x1, int y1, int x2, int y2){
 /*############ Paddle Functions ############*/
 //set paddle limits on y axis
 void pongEngine_paddleSetYLimits(int maxy, int miny){
-	paddleMinY = miny;
+	paddleMinY = miny+15;
 	paddleMaxY = maxy;
 }
 //set paddle y location

@@ -21,6 +21,7 @@ linkcolor=black
 \usepackage{fourier} 
 \usepackage{array}
 \usepackage{makecell}
+\usepackage{subfig}
 \usepackage[square,sort,comma,numbers]{natbib}
 \usepackage{gensymb}
 \usepackage{ragged2e}
@@ -216,7 +217,7 @@ The first sprite is the ball. The ball must be initialised into an array before 
 	\caption{Pythagoras Theorem demonstrated inside circle}
 \end{figure}
 \- \\
-The paddle was set by iterating through a square of defined values and setting pixels to the colour desired by iterating through the height and width of the rectangle and setting values to the desired colour.
+The paddle was set by iterating through a square of defined values and setting these pixels on by using a function. This was then called on every change of the paddle.
 \\ \- \\
 When generating and rendering text a library of hex values is used. The user inputs the character array of text they wish to use. These hex values are at 90 degree angles so the code first rotates the text 90 degrees to be upright for each letter in the char array into a letter array. A for loop is then used to set the pixels of the letter array to the frame buffer. If small then the is simply reads from the letter array and sets the appropriate pixel. If large 1 pixel in the letter array sets 4 pixels in the frame buffer. This allows large bold text. 
 \end{flushleft}
@@ -336,12 +337,66 @@ In order to make sound generation more intuitive, an additional header file was 
 
 \newpage
 \section{Game Physics}
+\begin{flushleft}
+This section of the report details the physics engine of the game which is used to regulate the movement of the ball and its interactions with the paddles and the arena borders. 
+\end{flushleft}
+\subsection{Collisions}
+\begin{flushleft}
+Collisions are very important in a game of Pong as they are the only means by which the player can interact with the ball. The code in this project has been designed so that the ball moves through the game arena with a speed and angle that can be changed by collisions with the border and the paddles. Each paddle is divided into sectors which each produce different outgoing speed and angle values. Sectors that produce a more pronounced outcome, and therefore one more likely to surprise the other player, are smaller and more difficult to hit. A skilful player should be able to anticipate the path of the ball and align their paddle accordingly to gain maximum advantage from the collision. 
+\\ \- \\
+Figure 15 shows a schematic of the paddle with its collision sectors. Shown in yellow is sector 1, where the ball is perfectly reflected (i.e. angle of reflection = angle of incidence) and the outgoing speed is lowest. This sector is the largest as it gives the least amount of advantage to the player; the rebound angle is predictable and the outgoing speed is relatively easy to manage. Sector 2 is the second largest sector as it gives a 10 degree angle change and a medium outgoing speed. Sector 3 is the smallest and gives the largest change in angle with 20 degrees and the highest outgoing speed. 
+\\ \- \\
+\begin{figure}[H]
+  \centering
+  \fbox{\includegraphics[width=0.1\textwidth]{./images/JohnFigs/1.png}}
+  \caption{showing location and relative size of each sector on the paddle.}
+\end{figure}
+\newpage
+\subsection{Code Architecture}
+The code for the physics of the game engine has its origin in the pongScreens.c file. This is where the game actually runs from and contains the while loop in which the ball is moved, and hence also where the collision checks occur. Six sets of collision checks are included within this while loop; two for the paddle collisions, two for each of the horizontal border collisions and two for the vertical sides of the arena. This latter set is not involved in the game physics as when a collision occurs here the game is reset and a point is added to the opposing player. 
+\\ \- \\
+The code for the horizontal border collisions is quite simple. Within the while loop in pongScreens, the collision check for the horizontal sides of the arena is triggered when the ball enters a predefined space, defined as 20 pixels from the top of the screen or 10 pixels from the bottom. When the ball enters this area, a new angle is retrieved from the function pongPhysics\_borderCollision with the new angle simply calculated as the negative of the incoming angle. For example, an incoming angle of 20 degrees will produce an outgoing angle of negative 20 degrees to the horizontal (left being 0) as shown in figure 16.
+\begin{figure}[H]
+  \centering
+  \fbox{\includegraphics[width=0.4\textwidth]{./images/JohnFigs/2.png}}
+  \caption{showing 20 degree collision with border and subsequent rebound}
+\end{figure}
+\- \\
+The code for the paddle collisions is more complicated than that for border collision although it is similar. In much the same way, the check for the border collision takes place in the while loop within pongScreens. Defined as 15 pixels in front of the paddle (whose length can be varied), when a collision check occurs, a new value for the speed and the angle is obtained from pongPhysics\_borderCollision and used to move the ball until a new collision is made. This is done by subtracting the incoming angle from 180 degrees and adding to it a value called deltaAngle. deltaAngle is determined by the point on the paddle with which the ball collides, and is either 0, 10 or 35 (or their negative equivalent) depending on the sector with which the ball collides. A section of code is then used to make sure the angle stays within a constant frame of reference. In much the same way, a new velocity is calculated depending on what sector the ball collides with the velocities from sectors 2 and 3 being increasingly large. The inbound speed has no bearing on the calculated outbound speed. The angle and outbound speed are instantiated as a pointer-array and returned to pongScreens. The array is then read there and the new velocity and angle used to move the ball.
+\newpage
+Two flowcharts of the code that regulates the collisions are shown below :
+\begin{figure}[H]
+    \centering
+    \subfloat[Flowchart for new angle/speed calculation]{{\includegraphics[width=7cm]{./images/JohnFigs/3.png} }}%
+    \qquad
+    \subfloat[Flowchart for collision checks]{{\includegraphics[width=7cm]{./images/JohnFigs/4.png} }}%
+    \caption{flowcharts of the code that regulates the collisions}%
+    \label{fig:example}%
+\end{figure}
+\end{flushleft}
 \newpage
 \section{Problems Encountered}
+\begin{flushleft}
+This sections details some of the many bugs that were encountered in the creation of the physics engine and the solutions that were employed in fixing them.
+\end{flushleft}
+\subsection{Ball becoming stuck at border/ paddle}
+\begin{flushleft}
+This was one of the earliest bugs encountered in the creation of the physics engine. When the ball collided with the paddle or the game border, it would become stuck, breaking the game and requiring a reset. This was caused by the direction (angle) of the ball constantly changing to the new value and then resetting to the new value as the ball remained within the collision space. This was fixed by introducing the pongEngine\_moveBall command into the pongPhysics\_borderCollision function. This ‘kicks’ the ball out of the collision space before allowing the pongEngine\_moveBall function within the while loop to continue moving the ball afterwards.
+\end{flushleft}
+\subsection{Ball moving through paddle at collision}
+\begin{flushleft}
+This bug has arisen several times throughout the development of the physics engine. Simply put, the ball is not affected by the collision boundaries at the paddle wall and instead travels straight through the paddle. Its difficult to predict when this happen and therefore difficult to step through the code and test for it, however it seems to only happen infrequently as of the latest build. Eariler versions of the bug seem to have been caused by the new angle calculations being incorrect as the calculated value exceeded 360. Introducing code that keeps the angle calculations within a constant frame of reference (ie between 0 and 180/-180) seems to have drastically reduced its frequency, although it can still happen on occasion.
+\end{flushleft}
+\subsection{Ball disappearing after paddle collision}
+\begin{flushleft}
+his bug was particularly difficult to resolve even though the fix was ultimately quite simple. When the ball collided with a paddle wall it would sometimes randomly disappear without forewarning. Again, this was quite difficult to test for due to the unpredictable nature of the bug. Using breakpoints in the code eventually uncovered the problem. Sometimes when a paddle collision was made, the ball would collide with a part of the paddle not covered by the series of if-else statements in the pongPhysics\_paddleCollision code. As such, no value was assigned to the variable ‘outspeed’ when it was returned to the pongScreens file. A nonsensical random value, usually quite large, was instead assigned, causing the ball to have an impossibly high speed and disappear from view. This was fixed by initialising the ‘outspeed’ variable with 0, and introducing an ‘else’ statement that would cover what to do in such a situation.
+\end{flushleft}
 \newpage
 \section{Conclusion}
 \begin{flushleft}
-
+To conclude, a version of the well known game Pong was programmed using the DE1-SoC Development Board from Terasic. Code was written in C and compiled and debugged using the ARM DS-5 suite of software. The design incorporated the use of a range of hardware peripherals and outputs including VGA, LCD, PS/2, audio jack and 7-segment display. The game has been designed to be played either single player against a simple AI or against another player. A menu system has been created allowing the player to select the mode they wish to play in as well as the size of the paddles in the game. The coding architecture and general approach to the project have been described as have the bugs/problems encountered during the course of the project. 
+\\ \- \\
+The code for the game was extensively tested and debugged through hardware testing. Generally the game is quite robust and functions well when subjected to testing. Nevertheless a few bugs still exist, particularly with regards to the ball’s behaviour when collisions occur within the game. Another bug would be screen tearing because of the multiple small frame buffers. Further testing and debugging should be conducted to address these issues. 
 \end{flushleft}
 \newpage
 \section{Appendix \label{section:appendix}}

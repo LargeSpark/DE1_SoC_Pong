@@ -1,0 +1,20 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Display and Graphics}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{VGA Driver}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Display Driver}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Sprites and Text}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{Game Engine Graphics}{section.2}% 6
+\BOOKMARK [1][-]{section.3}{Controls and Menus}{}% 7
+\BOOKMARK [2][-]{subsection.3.1}{Inputs}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.2}{Menus \046 Screen Navigation}{section.3}% 9
+\BOOKMARK [1][-]{section.4}{Audio Output}{}% 10
+\BOOKMARK [1][-]{section.5}{Game Physics}{}% 11
+\BOOKMARK [2][-]{subsection.5.1}{Collisions}{section.5}% 12
+\BOOKMARK [2][-]{subsection.5.2}{Code Architecture}{section.5}% 13
+\BOOKMARK [1][-]{section.6}{Problems Encountered}{}% 14
+\BOOKMARK [2][-]{subsection.6.1}{Ball becoming stuck at border/ paddle}{section.6}% 15
+\BOOKMARK [2][-]{subsection.6.2}{Ball moving through paddle at collision}{section.6}% 16
+\BOOKMARK [2][-]{subsection.6.3}{Ball disappearing after paddle collision}{section.6}% 17
+\BOOKMARK [1][-]{section.7}{Conclusion}{}% 18
+\BOOKMARK [1][-]{section.8}{Appendix }{}% 19
+\BOOKMARK [1][-]{section.8}{References}{}% 20

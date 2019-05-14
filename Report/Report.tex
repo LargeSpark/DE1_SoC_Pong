@@ -92,9 +92,9 @@ linkcolor=black
   \or John Jakobsen% page = 11
   \or John Jakobsen% page = 12
   \or John Jakobsen% page = 13
-  \or John Jakobsen% page = 14
-  \or Alexander Bolton - Sam Wilcock - John Jakobsen% page = 15
-  \or Conclusion Author% page = 16
+  \or Alexander Bolton - Sam Wilcock - John Jakobsen% page = 14
+  \or Alexander Bolton - John Jakobsen% page = 15
+  \or % page = 16
   \or % page = 14
   \else
   % Empty chead here! Lovely cheddar
@@ -145,13 +145,7 @@ The University of Leeds \\  School of Electronic and Electrical Engineering
 \begin{flushleft}
 This report will discuss the group project for the Embedded Microprocessor System Design module. The groups members were Alexander Bolton, Sam Wilcock, and John Jakobsen. The projects aim was to create a game of Pong on the DE1-SoC's microprocessor unit (MPU) which utilised the LT24 LCD Screen, a VGA screen, PS2 keyboard controls, button controls, and have audio output.
 \\ \- \\
-This report will be broken down into sections with section 1 being the introduction. Section 2 will discuss the display and graphics side of the project including the VGA driver which controls the monitor, the display driver which controls both LCD and VGA screens with a frame buffer, sprites and text which will go into depth of how the sprites are created, finally game engine graphics which will go into how the game engine uses the sprites including destroying, creating, and moving the sprites. 
-\\ \- \\
-Section 3 will discuss...
-\\ \- \\
-Section 4 will discuss...
-\\ \- \\
-Section 5 will be the conclusion which will summarise the report and discuss if we have met the aims of the project. It will discuss what could be improved upon and changed. All code will be placed in the end of the report in the appendices. 
+This report will be broken down into sections with section 1 being the introduction. Section 2 will discuss the display and graphics side of the project including the VGA driver which controls the monitor, the display driver which controls both LCD and VGA screens with a frame buffer, sprites and text which will go into depth of how the sprites are created, finally game engine graphics which will go into how the game engine uses the sprites including destroying, creating, and moving the sprites. Section 3 will discuss controls and menus and how the screen navigation works. It will also discuss the interrupts and how the PS2 driver is implemented. Section 4 will discuss audio output and the implementation of a fast sine function which avoids float mathematics as well as timer ISR which control sound operation.Section 5 will discuss the physics engine and the implementation of collisions and the code architecture. Section 6 will be the conclusion which will summarise the report and discuss if we have met the aims of the project. It will discuss what could be improved upon and changed. All code will be placed in the end of the report in the appendices. 
 \end{flushleft}
 \newpage
 \section{Display and Graphics}
@@ -400,6 +394,62 @@ The code for the game was extensively tested and debugged through hardware testi
 \end{flushleft}
 \newpage
 \section{Appendix \label{section:appendix}}
+\subsection{Appendix A - sevenSeg.c}
+\lstinputlisting[language=C, frame=bt]{../DE1_SOC_PONG/DE1SoC_SevenSeg/sevenSeg.c}
+\newpage
+\subsection{Appendix B - sevenSeg.h}
+\lstinputlisting[language=C, frame=bt]{../DE1_SOC_PONG/DE1SoC_SevenSeg/sevenSeg.h}
+\newpage
+\subsection{Appendix C - DE1SoC VGA.c}
+\lstinputlisting[language=C, frame=bt]{../DE1_SOC_PONG/DE1SoC_VGA/DE1SoC_VGA.c}
+\newpage
+\subsection{Appendix D - DE1SoC VGA.h}
+\lstinputlisting[language=C, frame=bt]{../DE1_SOC_PONG/DE1SoC_VGA/DE1SoC_VGA.h}
+\newpage
+\subsection{Appendix E - pongDisplay.c}
+\lstinputlisting[language=C, frame=bt]{../DE1_SOC_PONG/pongDisplay/pongDisplay.c}
+\newpage
+\subsection{Appendix F - pongDisplay.h}
+\lstinputlisting[language=C, frame=bt]{../DE1_SOC_PONG/pongDisplay/pongDisplay.h}
+\newpage
+\subsection{Appendix G - pongEngine.c}
+\lstinputlisting[language=C, frame=bt]{../DE1_SOC_PONG/pongEngine/pongEngine.c}
+\newpage
+\subsection{Appendix H - pongEngine.h}
+\lstinputlisting[language=C, frame=bt]{../DE1_SOC_PONG/pongEngine/pongEngine.h}
+\newpage
+\subsection{Appendix I - pongSprites.c}
+\lstinputlisting[language=C, frame=bt]{../DE1_SOC_PONG/pongEngine/pongSprites.c}
+\newpage
+\subsection{Appendix J - pongSprites.h}
+\lstinputlisting[language=C, frame=bt]{../DE1_SOC_PONG/pongEngine/pongSprites.h}
+\newpage
+\subsection{Appendix K - pongPhysics.c}
+\lstinputlisting[language=C, frame=bt]{../DE1_SOC_PONG/pongEngine/pongPhysics.c}
+\newpage
+\subsection{Appendix L - pongPhysics.h}
+\lstinputlisting[language=C, frame=bt]{../DE1_SOC_PONG/pongEngine/pongPhysics.h}
+\newpage
+\subsection{Appendix M - pongInputs.c}
+\lstinputlisting[language=C, frame=bt]{../DE1_SOC_PONG/pongInputs/pongInputs.c}
+\newpage
+\subsection{Appendix N - pongInputs.h}
+\lstinputlisting[language=C, frame=bt]{../DE1_SOC_PONG/pongInputs/pongInputs.h}
+\newpage
+\subsection{Appendix O - pongSounds.c}
+\lstinputlisting[language=C, frame=bt]{../DE1_SOC_PONG/pongSound/pongSound.c}
+\newpage
+\subsection{Appendix P - pongSounds.h}
+\lstinputlisting[language=C, frame=bt]{../DE1_SOC_PONG/pongSound/pongSound.h}
+\newpage
+\subsection{Appendix Q - pongScreens.c}
+\lstinputlisting[language=C, frame=bt]{../DE1_SOC_PONG/pongScreens/pongScreens.c}
+\newpage
+\subsection{Appendix R - pongScreens.h}
+\lstinputlisting[language=C, frame=bt]{../DE1_SOC_PONG/pongScreens/pongScreens.h}
+\newpage
+\subsection{Appendix S - main.c}
+\lstinputlisting[language=C, frame=bt]{../DE1_SOC_PONG/main.c}
 \newpage
 \addcontentsline{toc}{section}{References}
 \begin{flushleft}
